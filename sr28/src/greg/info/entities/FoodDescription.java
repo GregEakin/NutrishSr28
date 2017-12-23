@@ -1,9 +1,8 @@
-package greg.info;
+package greg.info.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "FOOD_DES")
@@ -16,7 +15,7 @@ public class FoodDescription {
     private String ManufacName;
     private String Survey;
     private String Ref_desc;
-    private Byte Refuse;
+    private Integer Refuse;
     private String SciName;
     private Double N_Factor;
     private Double Pro_Factor;
@@ -29,8 +28,8 @@ public class FoodDescription {
         return NDB_No;
     }
 
-    public void setNDB_No(String id) {
-        this.NDB_No = id;
+    public void setNDB_No(String nDB_No) {
+        this.NDB_No = nDB_No;
     }
 
     @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
@@ -97,11 +96,11 @@ public class FoodDescription {
     }
 
     @Column(name = "Refuse", columnDefinition = "tinyint")
-    public Byte getRefuse() {
+    public Integer getRefuse() {
         return Refuse;
     }
 
-    public void setRefuse(Byte refuse) {
+    public void setRefuse(Integer refuse) {
         Refuse = refuse;
     }
 
@@ -149,4 +148,17 @@ public class FoodDescription {
     public void setCHO_Factor(Double CHO_Factor) {
         this.CHO_Factor = CHO_Factor;
     }
+
+    private Set<LanguaL> courses = new HashSet<LanguaL>(0);
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
+    public Set<LanguaL> getCourses() {
+        return this.courses;
+    }
+
+    public void setCourses(Set<LanguaL> courses) {
+        this.courses = courses;
+    }
+
 }

@@ -1,6 +1,6 @@
 package greg.info;
 
-import com.fasterxml.classmate.AnnotationConfiguration;
+import greg.info.entities.FoodDescription;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,13 +8,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.hibernate.service.ServiceRegistry;
 
 import javax.persistence.metamodel.EntityType;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
-import java.util.Optional;
 
 public class TestFoodDes {
     private static final String line1 = "~01001~^~0100~^~Butter, salted~^~BUTTER,WITH SALT~^~~^~~^~Y~^~~^0^~~^6.38^4.27^8.79^3.87";
@@ -71,7 +68,7 @@ public class TestFoodDes {
         if (fields[5].length() > 2) item.setManufacName(fields[5].substring(1, fields[5].length() - 1));
         if (fields[6].length() > 2) item.setSurvey(fields[6].substring(1, fields[6].length() - 1));
         if (fields[7].length() > 2) item.setRef_desc(fields[7].substring(1, fields[7].length() - 1));
-        if (fields[8].length() > 0) item.setRefuse(Byte.parseByte(fields[8]));
+        if (fields[8].length() > 0) item.setRefuse(Integer.parseInt(fields[8]));
         if (fields[9].length() > 2) item.setSciName(fields[8].substring(1, fields[9].length() - 1));
         if (fields[10].length() > 0) item.setN_Factor(Double.parseDouble(fields[10]));
         if (fields[11].length() > 0) item.setPro_Factor(Double.parseDouble(fields[11]));

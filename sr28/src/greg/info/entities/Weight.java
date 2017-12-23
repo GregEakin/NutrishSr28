@@ -1,4 +1,4 @@
-package greg.info;
+package greg.info.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -20,8 +20,9 @@
         <property name="hibernate.connection.password">1</property>
         <property name="hibernate.connection.url">jdbc:hsqldb:mem:howtodoinjava</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
-        <mapping class="greg.info.FoodDescription"/>
-        <mapping class="greg.info.FoodGroupDescription"/>
-        <mapping class="greg.info.Weight"/>
+        <mapping class="greg.info.entities.FoodDescription"/>
+        <mapping class="greg.info.entities.FoodGroup"/>
+        <mapping class="greg.info.entities.LanguaL"/>
+        <mapping class="greg.info.entities.Weight"/>
     </session-factory>
 </hibernate-configuration>
