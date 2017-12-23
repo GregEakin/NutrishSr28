@@ -161,4 +161,27 @@ public class FoodDescription {
         this.courses = courses;
     }
 
+    private Set<Weight> weights;
+
+    @OneToMany(mappedBy="NDB_No")
+    public Set<Weight> getWeights() {
+        return weights;
+    }
+
+    public void setWeights(Set<Weight> weights) {
+        this.weights = weights;
+    }
+
+    private Set<NutrientData> nutrientData;
+
+    @OneToMany(mappedBy = "NDB_No")
+    public Set<NutrientData> getNutrientData() {
+        return nutrientData;
+    }
+
+    public void setNutrientData(Set<NutrientData> nutrientData)
+    {
+        this.nutrientData = nutrientData;
+    }
+
 }
