@@ -26,6 +26,7 @@ public class FoodDescription {
     private Set<Footnote> footnotes = new HashSet<>(0);
     private Set<NutrientData> nutrientData = new HashSet<>(0);
     private Set<Weight> weights = new HashSet<>(0);
+    private Abbreviations abbreviation;
 
     @Id
     // linked one-to-one in Abbreviations
@@ -201,5 +202,15 @@ public class FoodDescription {
 
     public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
         this.nutrientDefinitions = nutrients;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
+    public Abbreviations getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(Abbreviations abbreviation) {
+        this.abbreviation = abbreviation;
     }
 }
