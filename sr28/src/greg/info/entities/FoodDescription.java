@@ -21,6 +21,11 @@ public class FoodDescription {
     private Double Pro_Factor;
     private Double Fat_Factor;
     private Double CHO_Factor;
+    private Set<LanguaL> languages = new HashSet<>(0);
+    private Set<NutrientDefinition> nutrientDefinitions = new HashSet<>(0);
+    private Set<Footnote> footnotes = new HashSet<>(0);
+    private Set<NutrientData> nutrientData = new HashSet<>(0);
+    private Set<Weight> weights = new HashSet<>(0);
 
     @Id
     // linked one-to-one in Abbreviations
@@ -151,8 +156,6 @@ public class FoodDescription {
         this.CHO_Factor = CHO_Factor;
     }
 
-    private Set<Footnote> footnotes;
-
     @OneToMany(mappedBy = "foodDescription")
     public Set<Footnote> getFootnotes() {
         return footnotes;
@@ -161,8 +164,6 @@ public class FoodDescription {
     public void setFootnotes(Set<Footnote> footnotes) {
         this.footnotes = footnotes;
     }
-
-    private Set<NutrientData> nutrientData;
 
     @OneToMany(mappedBy = "foodDescription")
     public Set<NutrientData> getNutrientData() {
@@ -173,8 +174,6 @@ public class FoodDescription {
         this.nutrientData = nutrientData;
     }
 
-    private Set<Weight> weights;
-
     @OneToMany(mappedBy = "foodDescription")
     public Set<Weight> getWeights() {
         return weights;
@@ -184,8 +183,6 @@ public class FoodDescription {
         this.weights = weights;
     }
 
-    private Set<LanguaL> languages = new HashSet<>(0);
-
     @ManyToMany
     @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
     public Set<LanguaL> getLanguages() {
@@ -194,5 +191,15 @@ public class FoodDescription {
 
     public void setLanguages(Set<LanguaL> courses) {
         this.languages = courses;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
+    public Set<NutrientDefinition> getNutrientDefinitions() {
+        return nutrientDefinitions;
+    }
+
+    public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
+        this.nutrientDefinitions = nutrients;
     }
 }

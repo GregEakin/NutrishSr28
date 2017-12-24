@@ -30,9 +30,9 @@ public class NutrientDefinition {
     @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
     private Set<NutrientDefinition> nutrientDefinitionSet;
 
-//    @ManyToMany
-//    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
-//    private Set<FoodDescription> nutrients;
+    @ManyToMany
+    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
+    private Set<FoodDescription> foodDescriptions;
 
     public String getNutr_No() {
         return Nutr_No;
@@ -88,5 +88,13 @@ public class NutrientDefinition {
 
     public void setNutrientDefinitionSet(Set<NutrientDefinition> nutrientDefinitionSet) {
         this.nutrientDefinitionSet = nutrientDefinitionSet;
+    }
+
+    public Set<FoodDescription> getFoodDescriptions() {
+        return foodDescriptions;
+    }
+
+    public void setFoodDescriptions(Set<FoodDescription> nutrients) {
+        this.foodDescriptions = nutrients;
     }
 }
