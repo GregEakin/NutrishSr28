@@ -51,7 +51,6 @@ public class TestFoodDes {
                 System.out.println("executing: " + query.getQueryString());
                 for (Object o : query.list()) {
                     System.out.println("  " + o);
-                    break;
                 }
             }
         }
