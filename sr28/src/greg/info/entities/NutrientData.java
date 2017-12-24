@@ -8,14 +8,14 @@ import java.util.Set;
 @Table(name = "NUT_DAT")
 public class NutrientData implements Serializable {
     // private String NDB_No;                  // Nutrient Databank number that uniquely identifies a food item.
-    private FoodDescription foodDescription;
-    private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
+    private FoodDescription foodDescription;        // The food item
+    private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
     private Double Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
     private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
     private DataDerivation dataDerivation;  // Deriv_Cd - Data Derivation Code giving specific information on how the value is determined.  This field is populated only for items added or updated starting with SR14.  This field may not be populated if older records were used in the calculation of the mean value.
-    private String Ref_NDB_No;              // NDB number of the item used to calculate a missing value. Populated only for items added or updated starting with SR14.
+    private FoodDescription refFoodDescription;        // The item used to calculate a missing value. Populated only for items added or updated starting with SR14.
     private String Add_Nutr_Mark;           // Indicates a vitamin or mineral added for fortification or enrichment. This field is populated for ready-toeat breakfast cereals and many brand-name hot cereals in food group 08.
     private Integer Num_Studies;            // Number of studies.
     private Double Min;                     // Min.
@@ -106,13 +106,14 @@ public class NutrientData implements Serializable {
         this.dataDerivation = dataDerivation;
     }
 
-    @Column(name = "Ref_NDB_No", columnDefinition = "character(5)")
-    public String getRef_NDB_No() {
-        return Ref_NDB_No;
+    @OneToOne
+    @JoinColumn(name = "Ref_NDB_No", columnDefinition = "character(5)")
+    public FoodDescription getRefFoodDescription() {
+        return refFoodDescription;
     }
 
-    public void setRef_NDB_No(String ref_NDB_No) {
-        Ref_NDB_No = ref_NDB_No;
+    public void setRefFoodDescription(FoodDescription foodDescription) {
+        this.refFoodDescription = foodDescription;
     }
 
     @Column(name = "Add_Nutr_Mark", columnDefinition = "character(1)")
