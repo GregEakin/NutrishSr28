@@ -14,7 +14,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class TestFoodDes {
+public class Main {
     public static void main(String[] args) throws Exception {
 
         URL configUrl = HibernateUtil.class.getResource("/hibernate.cfg.xml");
@@ -37,7 +37,7 @@ public class TestFoodDes {
             }
 
             DumpEntities(sessionFactory);
-            // dump();
+            dump();
         }
     }
 
