@@ -1,9 +1,6 @@
 package greg.info.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /*
@@ -16,17 +13,18 @@ import java.io.Serializable;
 @Entity
 @Table(name = "WEIGHT")
 public class Weight implements Serializable {
-    private String NDB_No;
+    private FoodDescription foodDescription;
     private String Seq;
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public String getNDB_No() {
-        return NDB_No;
+    @ManyToOne
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
     }
 
-    public void setNDB_No(String NDB_No) {
-        this.NDB_No = NDB_No;
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
     }
 
     @Id
@@ -45,7 +43,8 @@ public class Weight implements Serializable {
 
         Weight that = (Weight) o;
 
-        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null) return false;
+        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null)
+            return false;
         if (Seq != null ? !Seq.equals(that.Seq) : that.Seq != null)
             return false;
 
@@ -54,7 +53,7 @@ public class Weight implements Serializable {
 
     public int hashCode() {
         int result;
-        result = (NDB_No != null ? NDB_No.hashCode() : 0);
+        result = (foodDescription != null ? foodDescription.hashCode() : 0);
         result = 31 * result + (Seq != null ? Seq.hashCode() : 0);
         return result;
     }

@@ -21,7 +21,8 @@
         <property name="hibernate.connection.url">jdbc:hsqldb:mem:howtodoinjava</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
         <mapping class="greg.info.entities.Abbreviations"/>
-        <mapping class="greg.info.entities.DataDerivationCode"/>
+        <mapping class="greg.info.entities.DataDerivation"/>
+        <mapping class="greg.info.entities.DataSource"/>
         <mapping class="greg.info.entities.FoodDescription"/>
         <mapping class="greg.info.entities.FoodGroup"/>
         <mapping class="greg.info.entities.Footnote"/>

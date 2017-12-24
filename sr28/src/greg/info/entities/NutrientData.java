@@ -2,37 +2,50 @@ package greg.info.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "NUT_DAT")
 public class NutrientData implements Serializable {
-    private String NDB_No;
-    private String Nutr_No;
-    private Double Nutr_Val;
-    private Double Num_Data_Pts;
-    private Double Std_Error;
-    private SourceCode sourceCode;  // Src_Cd
-    private String Deriv_Cd;
-    private String Ref_NDB_No;
-    private String Add_Nutr_Mark;
-    private Integer Num_Studies;
-    private Double Min;
-    private Double Max;
-    private Integer DF;
-    private Double Low_EB;
-    private Double Up_EB;
-    private String Stat_cmt;
-    private String AddMod_Date;
-    private String CC;
+    // private String NDB_No;                  // Nutrient Databank number that uniquely identifies a food item.
+    private FoodDescription foodDescription;
+    private String Nutr_No;                 // Unique 3-digit identifier code for a nutrient.
+    private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
+    private Double Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
+    private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
+    private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
+    private DataDerivation dataDerivation;  // Deriv_Cd - Data Derivation Code giving specific information on how the value is determined.  This field is populated only for items added or updated starting with SR14.  This field may not be populated if older records were used in the calculation of the mean value.
+    private String Ref_NDB_No;              // NDB number of the item used to calculate a missing value. Populated only for items added or updated starting with SR14.
+    private String Add_Nutr_Mark;           // Indicates a vitamin or mineral added for fortification or enrichment. This field is populated for ready-toeat breakfast cereals and many brand-name hot cereals in food group 08.
+    private Integer Num_Studies;            // Number of studies.
+    private Double Min;                     // Min.
+    private Double Max;                     // Max.
+    private Integer DF;                     // Degrees of freedom.
+    private Double Low_EB;                  // Lower 95% error bound.
+    private Double Up_EB;                   // Upper 95% error bound.
+    private String Stat_cmt;                // Statistical comments.
+    private String AddMod_Date;             // Indicates when a value was either added to the database or last modified.
+    private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
+    private Set<DataSource> dataSources;
+
+    //  Links to the Food Description file by NDB_No
+    //  Links to the Food Description file by Ref_NDB_No
+    //  Links to the Weight file by NDB_No
+    //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
+    //  Links to the Sources of Data Link file by NDB_No and Nutr_No
+    //  Links to the Nutrient Definition file by Nutr_No
+    //  Links to the Source Code file by Src_Cd
+    //  Links to the Data Derivation Code Description file by Deriv_Cd
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public String getNDB_No() {
-        return NDB_No;
+    @ManyToOne
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
     }
 
-    public void setNDB_No(String NDB_No) {
-        this.NDB_No = NDB_No;
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
     }
 
     @Id
@@ -82,13 +95,14 @@ public class NutrientData implements Serializable {
         this.sourceCode = sourceCode;
     }
 
-    @Column(name = "Deriv_Cd", columnDefinition = "character(4)")
-    public String getDeriv_Cd() {
-        return Deriv_Cd;
+    @ManyToOne
+    @JoinColumn(name = "Deriv_Cd", columnDefinition = "character(4)")
+    public DataDerivation getDataDerivation() {
+        return dataDerivation;
     }
 
-    public void setDeriv_Cd(String deriv_Cd) {
-        Deriv_Cd = deriv_Cd;
+    public void setDataDerivation(DataDerivation dataDerivation) {
+        this.dataDerivation = dataDerivation;
     }
 
     @Column(name = "Ref_NDB_No", columnDefinition = "character(5)")
@@ -191,13 +205,23 @@ public class NutrientData implements Serializable {
         this.CC = CC;
     }
 
+    @ManyToMany
+    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID")})
+    public Set<DataSource> getDataSources() {
+        return dataSources;
+    }
+
+    public void setDataSources(Set<DataSource> dataSources) {
+        this.dataSources = dataSources;
+    }
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         NutrientData that = (NutrientData) o;
 
-        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null) return false;
+        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null) return false;
         if (Nutr_No != null ? !Nutr_No.equals(that.Nutr_No) : that.Nutr_No != null)
             return false;
 
@@ -206,7 +230,7 @@ public class NutrientData implements Serializable {
 
     public int hashCode() {
         int result;
-        result = (NDB_No != null ? NDB_No.hashCode() : 0);
+        result = (foodDescription != null ? foodDescription.hashCode() : 0);
         result = 31 * result + (Nutr_No != null ? Nutr_No.hashCode() : 0);
         return result;
     }

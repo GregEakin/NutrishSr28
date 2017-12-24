@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "FOOD_DES")
 public class FoodDescription {
     private String NDB_No;
-    private String FdGrp_Cd;
+    private FoodGroup foodGroup;    // FdGrp_Cd
     private String Long_Desc;
     private String Shrt_Desc;
     private String ComName;
@@ -32,13 +32,14 @@ public class FoodDescription {
         this.NDB_No = nDB_No;
     }
 
-    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
-    public String getFdGrp_Cd() {
-        return FdGrp_Cd;
+    @ManyToOne
+    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+    public FoodGroup getFoodGroup() {
+        return foodGroup;
     }
 
-    public void setFdGrp_Cd(String fdGrp_Cd) {
-        FdGrp_Cd = fdGrp_Cd;
+    public void setFoodGroup(FoodGroup foodGroup) {
+        this.foodGroup = foodGroup;
     }
 
     @Column(name = "Long_Desc", columnDefinition = "varchar(200)", nullable = false)
@@ -151,7 +152,7 @@ public class FoodDescription {
 
     private Set<LanguaL> courses = new HashSet<LanguaL>(0);
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
     public Set<LanguaL> getCourses() {
         return this.courses;
@@ -161,9 +162,31 @@ public class FoodDescription {
         this.courses = courses;
     }
 
+    private Set<Footnote> footnotes;
+
+    @OneToMany(mappedBy = "foodDescription")
+    public Set<Footnote> getFootnotes() {
+        return footnotes;
+    }
+
+    public void setFootnotes(Set<Footnote> footnotes) {
+        this.footnotes = footnotes;
+    }
+
+    private Set<NutrientData> nutrientData;
+
+    @OneToMany(mappedBy = "foodDescription")
+    public Set<NutrientData> getNutrientData() {
+        return nutrientData;
+    }
+
+    public void setNutrientData(Set<NutrientData> nutrientData) {
+        this.nutrientData = nutrientData;
+    }
+
     private Set<Weight> weights;
 
-    @OneToMany(mappedBy="NDB_No")
+    @OneToMany(mappedBy = "foodDescription")
     public Set<Weight> getWeights() {
         return weights;
     }
@@ -171,17 +194,4 @@ public class FoodDescription {
     public void setWeights(Set<Weight> weights) {
         this.weights = weights;
     }
-
-    private Set<NutrientData> nutrientData;
-
-    @OneToMany(mappedBy = "NDB_No")
-    public Set<NutrientData> getNutrientData() {
-        return nutrientData;
-    }
-
-    public void setNutrientData(Set<NutrientData> nutrientData)
-    {
-        this.nutrientData = nutrientData;
-    }
-
 }

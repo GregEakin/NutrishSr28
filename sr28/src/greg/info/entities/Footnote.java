@@ -7,20 +7,22 @@ import java.util.Set;
 @Entity
 @Table(name = "FOOTNOTE")
 public class Footnote implements Serializable {
-    private String NDB_No;
+    // private String NDB_No;
+    private FoodDescription foodDescription;
     private String Footnt_No;
     private String Footnt_Typ;
     private String Nutr_No;
     private String Footnt_Txt;
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public String getNDB_No() {
-        return NDB_No;
+    @ManyToOne
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
     }
 
-    public void setNDB_No(String NDB_No) {
-        this.NDB_No = NDB_No;
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
     }
 
     @Id
@@ -39,7 +41,7 @@ public class Footnote implements Serializable {
 
         Footnote that = (Footnote) o;
 
-        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null) return false;
+        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null) return false;
         if (Footnt_No != null ? !Footnt_No.equals(that.Footnt_No) : that.Footnt_No != null)
             return false;
 
@@ -48,7 +50,7 @@ public class Footnote implements Serializable {
 
     public int hashCode() {
         int result;
-        result = (NDB_No != null ? NDB_No.hashCode() : 0);
+        result = (foodDescription != null ? foodDescription.hashCode() : 0);
         result = 31 * result + (Footnt_No != null ? Footnt_No.hashCode() : 0);
         return result;
     }

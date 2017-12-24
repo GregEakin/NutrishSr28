@@ -34,7 +34,7 @@ public class Abbreviations {
 
     private Double Water; // N 10.2 Water (g/100 g)
 
-    @Column(name = "Water", columnDefinition = "float", nullable = false)
+    @Column(name = "Water", columnDefinition = "float")
     public Double getWater() {
         return Water;
     }
