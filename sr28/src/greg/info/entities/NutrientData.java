@@ -50,7 +50,7 @@ public class NutrientData implements Serializable {
     }
 
     @Id
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
     public NutrientDefinition getNutrientDefinition() {
         return nutrientDefinition;
@@ -107,7 +107,7 @@ public class NutrientData implements Serializable {
         this.dataDerivation = dataDerivation;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Ref_NDB_No", columnDefinition = "character(5)")
     public FoodDescription getRefFoodDescription() {
         return refFoodDescription;
