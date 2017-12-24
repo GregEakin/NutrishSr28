@@ -12,6 +12,7 @@ public class Footnote implements Serializable {
     private String Footnt_Typ;                  // Type of footnote:
     private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
     private String Footnt_Txt;                  // Footnote text.
+    private Set<NutrientData> nutrientDataSet;
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -67,17 +68,18 @@ public class Footnote implements Serializable {
         Footnt_Txt = footnt_Txt;
     }
 
-    private Set<NutrientData> nutrientData;
+    @OneToMany
+    @JoinColumns({
+            @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false),
+            @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+    })
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
+    }
 
-//    @OneToMany
-//    @JoinColumn(name = "NutrientData", columnDefinition = "character(5)", nullable = false)
-//    public Set<NutrientData> getNutrientData() {
-//        return nutrientData;
-//    }
-//
-//    public void setNutrientData(Set<NutrientData> nutrients) {
-//        this.nutrientData = nutrients;
-//    }
+    public void setNutrientDataSet(Set<NutrientData> nutrients) {
+        this.nutrientDataSet = nutrients;
+    }
 
     public boolean equals(Object o) {
         if (this == o) return true;

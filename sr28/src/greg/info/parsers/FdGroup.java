@@ -13,14 +13,14 @@ import java.util.stream.Stream;
 public class FdGroup {
     public static final String Filename = ".\\data\\FD_GROUP.txt";
 
-    public static void fileFoodGroup(final Session session) throws IOException {
+    public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
         try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-            lines.forEach((line) -> lineFoodGroup(session, line));
+            lines.forEach((line) -> parseLine(session, line));
         }
     }
 
-    public static void lineFoodGroup(final Session session, final String line) {
+    private static void parseLine(final Session session, final String line) {
 
         String[] fields = line.split("\\^", -1);
 

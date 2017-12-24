@@ -13,15 +13,15 @@ import java.util.stream.Stream;
 public class Weight {
     public static final String Filename = ".\\data\\WEIGHT.txt";
 
-    public static void fileWeight(final Session session) throws IOException {
+    public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
         try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-            lines.forEach((line) -> lineWeight(session, line));
+            lines.forEach((line) -> praseLine(session, line));
         }
     }
 
 
-    public static void lineWeight(final Session session, final String line) {
+    private static void praseLine(final Session session, final String line) {
 
         String[] fields = line.split("\\^", -1);
 
@@ -53,5 +53,4 @@ public class Weight {
 
         session.save("Weight", item);
     }
-
 }

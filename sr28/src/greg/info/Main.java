@@ -10,29 +10,27 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import javax.persistence.metamodel.EntityType;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        URL configUrl = HibernateUtil.class.getResource("/hibernate.cfg.xml");
-        Configuration configuration = new Configuration().configure(configUrl);
+        Configuration configuration = new Configuration().configure("META-INF/hibernate.cfg.xml");
         StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         try (final SessionFactory sessionFactory = configuration.buildSessionFactory()) {
 
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
-                Abbrev.fileAbbreviations(session);
-                FdGroup.fileFoodGroup(session);
-                FoodDes.fileFoodDescription(session);
+                Abbrev.parseFile(session);
+                FdGroup.parseFile(session);
+                FoodDes.parseFile(session);
                 // NutrientData
                 // Footnote
-                Weight.fileWeight(session);
-                LangDesc.fileLanguaL(session);
-                LanguaL.fileLanguaLMap(session);
+                Weight.parseFile(session);
+                LangDesc.parseFile(session);
+                LanguaL.parseFile(session);
                 transaction.commit();
             }
 

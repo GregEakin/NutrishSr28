@@ -28,6 +28,7 @@ public class NutrientData implements Serializable {
     private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
     private Set<DataSource> dataSourceSet;
     private Set<Weight> weightSet;
+    private Set<Footnote> footnoteSet;
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
@@ -226,6 +227,16 @@ public class NutrientData implements Serializable {
 
     public void setWeightSet(Set<Weight> weightSet) {
         this.weightSet = weightSet;
+    }
+
+    @ManyToMany
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public Set<Footnote> getFootnoteSet() {
+        return footnoteSet;
+    }
+
+    public void setFootnoteSet(Set<Footnote> footnoteSet) {
+        this.footnoteSet = footnoteSet;
     }
 
     @Override

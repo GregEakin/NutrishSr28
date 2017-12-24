@@ -18,14 +18,14 @@ import java.util.stream.Stream;
 public class FoodDes {
     public static final String Filename = ".\\data\\FOOD_DES.txt";
 
-    public static void fileFoodDescription(final Session session) throws IOException {
+    public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
         try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-            lines.forEach((line) -> lineFoodDescription(session, line));
+            lines.forEach((line) -> parseLine(session, line));
         }
     }
 
-    public static void lineFoodDescription(final Session session, final String line) {
+    private static void parseLine(final Session session, final String line) {
 
         String[] fields = line.split("\\^", -1);
 
