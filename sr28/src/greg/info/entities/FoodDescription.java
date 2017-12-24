@@ -184,7 +184,7 @@ public class FoodDescription {
         this.weights = weights;
     }
 
-    private Set<LanguaL> languages = new HashSet<LanguaL>(0);
+    private Set<LanguaL> languages = new HashSet<>(0);
 
     @ManyToMany
     @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
