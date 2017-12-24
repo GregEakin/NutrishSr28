@@ -7,17 +7,12 @@ import java.util.Set;
 @Entity
 @Table(name="LANGDESC")
 public class LanguaL {
+    private String Factor_Code;
+    private String Description;
+    private Set<FoodDescription> foodDescriptionSet;
+
     @Id
     @Column(name = "Factor_Code", columnDefinition = "character(5)", nullable = false, unique = true)
-    private String Factor_Code;
-
-    @Column(name = "Description", columnDefinition = "varchar(140)", nullable = false)
-    private String Description;
-
-    @ManyToMany
-    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "Factor_Code")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
-    private Set<FoodDescription> foodDescriptions;
-
     public String getFactor_Code() {
         return Factor_Code;
     }
@@ -26,6 +21,7 @@ public class LanguaL {
         Factor_Code = factor_Code;
     }
 
+    @Column(name = "Description", columnDefinition = "varchar(140)", nullable = false)
     public String getDescription() {
         return Description;
     }
@@ -34,11 +30,13 @@ public class LanguaL {
         Description = description;
     }
 
-    public Set<FoodDescription> getFoodDescriptions() {
-        return foodDescriptions;
+    @ManyToMany
+    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "Factor_Code")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
+    public Set<FoodDescription> getFoodDescriptionSet() {
+        return foodDescriptionSet;
     }
 
-    public void setFoodDescriptions(Set<FoodDescription> foodDescriptions) {
-        this.foodDescriptions = foodDescriptions;
+    public void setFoodDescriptionSet(Set<FoodDescription> foodDescriptions) {
+        this.foodDescriptionSet = foodDescriptions;
     }
 }

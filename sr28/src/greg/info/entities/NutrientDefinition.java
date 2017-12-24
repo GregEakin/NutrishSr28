@@ -6,34 +6,17 @@ import java.util.Set;
 @Entity
 @Table(name = "NUTR_DEF")
 public class NutrientDefinition {
-    @Id
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, unique = true)
     private String Nutr_No;
-
-    @Column(name = "Units", columnDefinition = "character(7)", nullable = false)
     private String Units;
-
-    @Column(name = "Tagname", columnDefinition = "varchar(20)")
     private String Tagname;
-
-    @Column(name = "NutrDesc", columnDefinition = "varchar(60)", nullable = false)
     private String NutrDesc;
-
-    @Column(name = "Num_Dec", columnDefinition = "character(1)", nullable = false)
     private String Num_Dec;
-
-    @Column(name = "SR_Order", columnDefinition = "Integer", nullable = false)
     private String SR_Order;
-
-    //  Links to the Nutrient Data file by Nutr_No
-    @OneToMany
-    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
     private Set<NutrientDefinition> nutrientDefinitionSet;
-
-    @ManyToMany
-    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
     private Set<FoodDescription> foodDescriptions;
 
+    @Id
+    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, unique = true)
     public String getNutr_No() {
         return Nutr_No;
     }
@@ -42,6 +25,7 @@ public class NutrientDefinition {
         Nutr_No = nutr_No;
     }
 
+    @Column(name = "Units", columnDefinition = "character(7)", nullable = false)
     public String getUnits() {
         return Units;
     }
@@ -50,6 +34,7 @@ public class NutrientDefinition {
         Units = units;
     }
 
+    @Column(name = "Tagname", columnDefinition = "varchar(20)")
     public String getTagname() {
         return Tagname;
     }
@@ -58,6 +43,7 @@ public class NutrientDefinition {
         Tagname = tagname;
     }
 
+    @Column(name = "NutrDesc", columnDefinition = "varchar(60)", nullable = false)
     public String getNutrDesc() {
         return NutrDesc;
     }
@@ -66,6 +52,7 @@ public class NutrientDefinition {
         NutrDesc = nutrDesc;
     }
 
+    @Column(name = "Num_Dec", columnDefinition = "character(1)", nullable = false)
     public String getNum_Dec() {
         return Num_Dec;
     }
@@ -74,6 +61,7 @@ public class NutrientDefinition {
         Num_Dec = num_Dec;
     }
 
+    @Column(name = "SR_Order", columnDefinition = "Integer", nullable = false)
     public String getSR_Order() {
         return SR_Order;
     }
@@ -82,6 +70,9 @@ public class NutrientDefinition {
         this.SR_Order = SR_Order;
     }
 
+    //  Links to the Nutrient Data file by Nutr_No
+    @OneToMany
+    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
     public Set<NutrientDefinition> getNutrientDefinitionSet() {
         return nutrientDefinitionSet;
     }
@@ -90,6 +81,8 @@ public class NutrientDefinition {
         this.nutrientDefinitionSet = nutrientDefinitionSet;
     }
 
+    @ManyToMany
+    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
     public Set<FoodDescription> getFoodDescriptions() {
         return foodDescriptions;
     }

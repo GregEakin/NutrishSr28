@@ -26,7 +26,8 @@ public class NutrientData implements Serializable {
     private String Stat_cmt;                // Statistical comments.
     private String AddMod_Date;             // Indicates when a value was either added to the database or last modified.
     private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
-    private Set<DataSource> dataSources;
+    private Set<DataSource> dataSourceSet;
+    private Set<Weight> weightSet;
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
@@ -209,12 +210,22 @@ public class NutrientData implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID")})
-    public Set<DataSource> getDataSources() {
-        return dataSources;
+    public Set<DataSource> getDataSourceSet() {
+        return dataSourceSet;
     }
 
-    public void setDataSources(Set<DataSource> dataSources) {
-        this.dataSources = dataSources;
+    public void setDataSourceSet(Set<DataSource> dataSources) {
+        this.dataSourceSet = dataSources;
+    }
+
+    @ManyToMany
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public Set<Weight> getWeightSet() {
+        return weightSet;
+    }
+
+    public void setWeightSet(Set<Weight> weightSet) {
+        this.weightSet = weightSet;
     }
 
     @Override
