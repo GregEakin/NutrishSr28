@@ -29,7 +29,6 @@ public class FoodDescription {
     private Abbreviations abbreviation;
 
     @Id
-    // linked one-to-one in Abbreviations
     @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, unique = true)
     public String getNDB_No() {
         return NDB_No;
