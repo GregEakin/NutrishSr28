@@ -12,6 +12,7 @@ public class Abbreviations {
     private String NDB_No;  // 5-digit Nutrient Databank number that uniquely identifies a food item.
 
     @Id
+    // linked one-to-one in FoodDescription
     @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
     public String getNDB_No() {
         return NDB_No;
