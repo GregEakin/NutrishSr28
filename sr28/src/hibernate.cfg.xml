@@ -20,6 +20,7 @@
         <property name="hibernate.connection.password">1</property>
         <property name="hibernate.connection.url">jdbc:hsqldb:mem:howtodoinjava</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
+
         <mapping class="greg.info.entities.Abbreviations"/>
         <mapping class="greg.info.entities.DataDerivation"/>
         <mapping class="greg.info.entities.DataSource"/>

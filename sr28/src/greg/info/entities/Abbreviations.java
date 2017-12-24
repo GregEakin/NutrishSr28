@@ -11,7 +11,7 @@ public class Abbreviations {
     private String NDB_No;  // 5-digit Nutrient Databank number that uniquely identifies a food item.
 
     @Id
-    // linked one-to-one in FoodDescription
+    // TODO: linked one-to-one in FoodDescription
     @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
     public String getNDB_No() {
         return NDB_No;
@@ -44,6 +44,7 @@ public class Abbreviations {
     }
 
     /*
+    TODO: Add missing fields
 Water N 10.2 Water (g/100 g)
 Energ_Kcal N 10 Food energy (kcal/100 g)
 Protein N 10.2 Protein (g/100 g)
