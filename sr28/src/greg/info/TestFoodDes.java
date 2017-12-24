@@ -1,9 +1,6 @@
 package greg.info;
 
-import greg.info.entities.Abbreviations;
-import greg.info.entities.FoodDescription;
-import greg.info.entities.FoodGroup;
-import greg.info.entities.Weight;
+import greg.info.entities.*;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,12 +38,16 @@ public class TestFoodDes {
                 fileAbbreviations(session, ".\\data\\ABBREV.txt");
                 fileFoodGroup(session, ".\\data\\FD_GROUP.txt");
                 fileFoodDescription(session, ".\\data\\FOOD_DES.txt");
+                // NutrientData
+                // Footnote
                 fileWeight(session, ".\\data\\WEIGHT.txt");
+                fileLanguaL(session, ".\\data\\LANGDESC.txt");
+                fileLanguaLMap(session, ".\\data\\LANGUAL.txt");
                 transaction.commit();
             }
 
-            // DumpEntities(sessionFactory);
-            dump();
+            DumpEntities(sessionFactory);
+            // dump();
         }
     }
 
@@ -60,6 +61,7 @@ public class TestFoodDes {
                 System.out.println("executing: " + query.getQueryString());
                 for (Object o : query.list()) {
                     System.out.println("  " + o);
+                    break;
                 }
             }
         }
@@ -90,6 +92,20 @@ public class TestFoodDes {
         Path path = Paths.get(file);
         try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
             lines.forEach((line) -> lineWeight(session, line));
+        }
+    }
+
+    public static void fileLanguaL(final Session session, final String file) throws IOException {
+        Path path = Paths.get(file);
+        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
+            lines.forEach((line) -> lineLanguaL(session, line));
+        }
+    }
+
+    public static void fileLanguaLMap(final Session session, final String file) throws IOException {
+        Path path = Paths.get(file);
+        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
+            lines.forEach((line) -> lineLanguaLMap(session, line));
         }
     }
 
@@ -157,6 +173,32 @@ public class TestFoodDes {
         session.save("Weight", item);
     }
 
+    public static void lineLanguaL(final Session session, final String line) {
+
+        String[] fields = line.split("\\^", -1);
+
+        LanguaL item = new LanguaL();
+        item.setFactor_Code(fields[0].substring(1, fields[0].length() - 1));
+        item.setDescription(fields[1].substring(1, fields[1].length() - 1));
+
+        session.save("LanguaL", item);
+    }
+
+    public static void lineLanguaLMap(final Session session, final String line) {
+
+        String[] fields = line.split("\\^", -1);
+
+        String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
+        String languaLId = fields[1].substring(1, fields[1].length() - 1);
+
+        FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);
+        LanguaL languaL = session.load(LanguaL.class, languaLId);
+
+        foodDescription.getLanguages().add(languaL);
+
+        session.save("FoodDescription", foodDescription);
+    }
+
     public static void dump() {
 
         try {
@@ -173,6 +215,25 @@ public class TestFoodDes {
     }
 
     public static int sqlSelectRows(Connection con) throws SQLException {
+        try (Statement stmt = con.createStatement()) {
+
+            String sql = "SELECT * FROM LANGUAL";
+            ResultSet result = stmt.executeQuery(sql);
+
+            int count = 0;
+            while (result.next()) {
+                String x0 = result.getString("NDB_No");
+                String x1 = result.getString("Factor_Code");
+                System.out.println(x0 + ", " + x1);
+
+                count++;
+            }
+
+            return count;
+        }
+    }
+
+    public static int sqlSelectRows2(Connection con) throws SQLException {
         try (Statement stmt = con.createStatement()) {
 
             String sql = "SELECT * FROM FOOD_DES";

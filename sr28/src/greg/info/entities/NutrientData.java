@@ -9,7 +9,7 @@ import java.util.Set;
 public class NutrientData implements Serializable {
     // private String NDB_No;                  // Nutrient Databank number that uniquely identifies a food item.
     private FoodDescription foodDescription;
-    private String Nutr_No;                 // Unique 3-digit identifier code for a nutrient.
+    private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
     private Double Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
@@ -49,13 +49,14 @@ public class NutrientData implements Serializable {
     }
 
     @Id
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
-    public String getNutr_No() {
-        return Nutr_No;
+    @OneToOne
+    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+    public NutrientDefinition getNutrientDefinition() {
+        return nutrientDefinition;
     }
 
-    public void setNutr_No(String nutr_No) {
-        Nutr_No = nutr_No;
+    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
+        this.nutrientDefinition = nutrientDefinition;
     }
 
     @Column(name = "Nutr_Val", columnDefinition = "float", nullable = false)
@@ -222,7 +223,7 @@ public class NutrientData implements Serializable {
         NutrientData that = (NutrientData) o;
 
         if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null) return false;
-        if (Nutr_No != null ? !Nutr_No.equals(that.Nutr_No) : that.Nutr_No != null)
+        if (nutrientDefinition != null ? !nutrientDefinition.equals(that.nutrientDefinition) : that.nutrientDefinition != null)
             return false;
 
         return true;
@@ -231,7 +232,7 @@ public class NutrientData implements Serializable {
     public int hashCode() {
         int result;
         result = (foodDescription != null ? foodDescription.hashCode() : 0);
-        result = 31 * result + (Nutr_No != null ? Nutr_No.hashCode() : 0);
+        result = 31 * result + (nutrientDefinition != null ? nutrientDefinition.hashCode() : 0);
         return result;
     }
 }

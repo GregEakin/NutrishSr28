@@ -150,18 +150,6 @@ public class FoodDescription {
         this.CHO_Factor = CHO_Factor;
     }
 
-    private Set<LanguaL> courses = new HashSet<LanguaL>(0);
-
-    @ManyToMany
-    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
-    public Set<LanguaL> getCourses() {
-        return this.courses;
-    }
-
-    public void setCourses(Set<LanguaL> courses) {
-        this.courses = courses;
-    }
-
     private Set<Footnote> footnotes;
 
     @OneToMany(mappedBy = "foodDescription")
@@ -193,5 +181,17 @@ public class FoodDescription {
 
     public void setWeights(Set<Weight> weights) {
         this.weights = weights;
+    }
+
+    private Set<LanguaL> languages = new HashSet<LanguaL>(0);
+
+    @ManyToMany
+    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
+    public Set<LanguaL> getLanguages() {
+        return this.languages;
+    }
+
+    public void setLanguages(Set<LanguaL> courses) {
+        this.languages = courses;
     }
 }
