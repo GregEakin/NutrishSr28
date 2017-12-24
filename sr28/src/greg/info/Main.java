@@ -36,8 +36,8 @@ public class Main {
                 transaction.commit();
             }
 
-            DumpEntities(sessionFactory);
-            dump();
+            // DumpEntities(sessionFactory);
+            // dump();
         }
     }
 
@@ -62,7 +62,7 @@ public class Main {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
 
             try (Connection con = DriverManager.getConnection(
-                    "jdbc:hsqldb:mem:howtodoinjava", "SA", "1")) {
+                    "jdbc:hsqldb:hsql:nutrhis", "SA", "")) {
 
                 LanguaL.sqlSelectRows(con);
             }

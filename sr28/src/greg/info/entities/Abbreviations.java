@@ -8,11 +8,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ABBREV")
 public class Abbreviations {
-    private String NDB_No;  // 5-digit Nutrient Databank number that uniquely identifies a food item.
 
     @Id
     // TODO: linked one-to-one in FoodDescription
     @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    private String NDB_No;  // 5-digit Nutrient Databank number that uniquely identifies a food item.
+
     public String getNDB_No() {
         return NDB_No;
     }
@@ -21,9 +22,9 @@ public class Abbreviations {
         this.NDB_No = NDB_No;
     }
 
+    @Column(name = "Shrt_Desc", columnDefinition = "character(60)", nullable = false)
     private String Shrt_Desc; // A 60 60-character abbreviated description of food item.†
 
-    @Column(name = "Shrt_Desc", columnDefinition = "character(60)", nullable = false)
     public String getShrt_Desc() {
         return Shrt_Desc;
     }
@@ -32,9 +33,9 @@ public class Abbreviations {
         Shrt_Desc = shrt_Desc;
     }
 
+    @Column(name = "Water", columnDefinition = "float")
     private Double Water; // N 10.2 Water (g/100 g)
 
-    @Column(name = "Water", columnDefinition = "float")
     public Double getWater() {
         return Water;
     }
