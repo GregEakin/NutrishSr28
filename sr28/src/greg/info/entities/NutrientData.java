@@ -9,7 +9,6 @@ import java.util.Set;
 public class NutrientData implements Serializable {
 
     //  Links to the Food Description file by NDB_No
-    //  Links to the Weight file by NDB_No
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
     @Id
     @ManyToOne
@@ -81,6 +80,9 @@ public class NutrientData implements Serializable {
     @ManyToMany
     @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID")})
     private Set<DataSource> dataSources;
+
+    //  Links to the Weight file by NDB_No
+
 
     public FoodDescription getFoodDescription() {
         return foodDescription;
