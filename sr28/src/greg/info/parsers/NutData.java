@@ -59,8 +59,8 @@ public class NutData {
         if (fields[13].length() > 0) item.setLow_EB(Double.parseDouble(fields[13]));
         if (fields[14].length() > 0) item.setUp_EB(Double.parseDouble(fields[14]));
         if (fields[15].length() > 2) item.setStat_cmt(fields[15].substring(1, fields[15].length() - 1));
-        if (fields[16].length() > 2) item.setAddMod_Date(fields[16]);
-        if (fields[17].length() > 2) item.setCC(fields[17].substring(1, fields[17].length() - 1));
+        if (fields[16].length() > 0) item.setAddMod_Date(fields[16]);
+        if (fields[17].length() > 0) item.setCC(fields[17]);
 
         System.out.println(foodDescription.getNDB_No() + ", " + nutrientDefinition.getNutr_No());
         session.save(item);
