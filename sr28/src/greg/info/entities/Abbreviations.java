@@ -9,6 +9,7 @@ public class Abbreviations {
     private String NDB_No;  // 5-digit Nutrient Databank number that uniquely identifies a food item.
     private String Shrt_Desc; // A 60 60-character abbreviated description of food item.†
     private Double Water; // N 10.2 Water (g/100 g)
+    // TODO
     //    Energ_Kcal N 10 Food energy (kcal/100 g)
 //    Protein N 10.2 Protein (g/100 g)
 //    Lipid_Tot N 10.2 Total lipid (fat) (g/100 g)

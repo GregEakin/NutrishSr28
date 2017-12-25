@@ -1,9 +1,6 @@
 package greg.info.parsers;
 
-import greg.info.entities.FoodDescription;
-import greg.info.entities.NutrientData;
-import greg.info.entities.NutrientDefinition;
-import greg.info.entities.SourceCode;
+import greg.info.entities.*;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -36,9 +33,34 @@ public class NutData {
 
         item.setNum_Data_Pts(Integer.parseInt(fields[3]));
 
+        if (fields[4].length() > 0) item.setStd_Error(Double.parseDouble(fields[4]));
+
         String Src_Cd = fields[5].substring(1, fields[5].length() - 1);
         SourceCode sourceCode = session.load(SourceCode.class, Src_Cd);
         item.setSourceCode(sourceCode);
+
+        if (fields[6].length() > 2) {
+            String Deriv_Cd = fields[6].substring(1, fields[6].length() - 1);
+            DataDerivation dataDerivation = session.load(DataDerivation.class, Deriv_Cd);
+            item.setDataDerivation(dataDerivation);
+        }
+
+        if (fields[7].length() > 2) {
+            String Ref_NDB_No = fields[7].substring(1, fields[7].length() - 1);
+            FoodDescription foodDescription1 = session.load(FoodDescription.class, Ref_NDB_No);
+            item.setRefFoodDescription(foodDescription1);
+        }
+
+        if (fields[8].length() > 2) item.setAdd_Nutr_Mark(fields[8].substring(1, fields[8].length() - 1));
+        if (fields[9].length() > 0) item.setNum_Studies(Integer.parseInt(fields[9]));
+        if (fields[10].length() > 0) item.setMin(Double.parseDouble(fields[10]));
+        if (fields[11].length() > 0) item.setMax(Double.parseDouble(fields[11]));
+        if (fields[12].length() > 0) item.setDF(Integer.parseInt(fields[12]));
+        if (fields[13].length() > 0) item.setLow_EB(Double.parseDouble(fields[13]));
+        if (fields[14].length() > 0) item.setUp_EB(Double.parseDouble(fields[14]));
+        if (fields[15].length() > 2) item.setStat_cmt(fields[15].substring(1, fields[15].length() - 1));
+        if (fields[16].length() > 2) item.setAddMod_Date(fields[16]);
+        if (fields[17].length() > 2) item.setCC(fields[17].substring(1, fields[17].length() - 1));
 
         System.out.println(foodDescription.getNDB_No() + ", " + nutrientDefinition.getNutr_No());
         session.save(item);
