@@ -26,19 +26,18 @@ public class Main {
                     Abbrev.parseFile(session);
                     FdGroup.parseFile(session);
                     FoodDes.parseFile(session);
-                    // Footnote.parseFile(session);
+                    Footnote.parseFile(session);
                     SrcCd.parseFile(session);
                     DatScrLn.parseFile(session);
                     DerivCD.parseFile(session);
-                    NutData.parseFile(session);
-                    Weight.parseFile(session);
+                    NutrDef.parseFile(session);
                     DataSrc.parseFile(session);
+                    Weight.parseFile(session);
+                    NutData.parseFile(session);
                     LangDesc.parseFile(session);
                     LanguaL.parseFile(session);
-                    NutrDef.parseFile(session);
 
                     transaction.commit();
-
                 } catch (Exception ex) {
                     transaction.rollback();
                     throw ex;

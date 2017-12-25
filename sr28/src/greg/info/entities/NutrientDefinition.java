@@ -11,7 +11,7 @@ public class NutrientDefinition {
     private String Tagname;
     private String NutrDesc;
     private String Num_Dec;
-    private String SR_Order;
+    private Integer SR_Order;
     private Set<NutrientDefinition> nutrientDefinitionSet;
     private Set<FoodDescription> foodDescriptions;
 
@@ -62,11 +62,11 @@ public class NutrientDefinition {
     }
 
     @Column(name = "SR_Order", columnDefinition = "Integer", nullable = false)
-    public String getSR_Order() {
+    public Integer getSR_Order() {
         return SR_Order;
     }
 
-    public void setSR_Order(String SR_Order) {
+    public void setSR_Order(Integer SR_Order) {
         this.SR_Order = SR_Order;
     }
 

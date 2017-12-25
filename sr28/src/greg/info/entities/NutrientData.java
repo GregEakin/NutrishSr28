@@ -11,7 +11,7 @@ public class NutrientData implements Serializable {
     private FoodDescription foodDescription;        // The food item
     private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
-    private Double Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
+    private Integer Num_Data_Pts;           // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
     private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
     private DataDerivation dataDerivation;  // Deriv_Cd - Data Derivation Code giving specific information on how the value is determined.  This field is populated only for items added or updated starting with SR14.  This field may not be populated if older records were used in the calculation of the mean value.
@@ -72,11 +72,11 @@ public class NutrientData implements Serializable {
     }
 
     @Column(name = "Num_Data_Pts", columnDefinition = "integer", nullable = false)
-    public Double getNum_Data_Pts() {
+    public Integer getNum_Data_Pts() {
         return Num_Data_Pts;
     }
 
-    public void setNum_Data_Pts(Double num_Data_Pts) {
+    public void setNum_Data_Pts(Integer num_Data_Pts) {
         Num_Data_Pts = num_Data_Pts;
     }
 

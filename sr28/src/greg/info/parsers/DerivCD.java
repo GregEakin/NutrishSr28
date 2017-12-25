@@ -1,5 +1,6 @@
 package greg.info.parsers;
 
+import greg.info.entities.DataDerivation;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -21,7 +22,11 @@ public class DerivCD {
 
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
-//        Abbreviations item = parse(fields);
-//        session.save(item);
+
+        DataDerivation item = new DataDerivation();
+        item.setDeriv_Cd(fields[0].substring(1, fields[0].length() - 1));
+        item.setDeriv_Desc(fields[1].substring(1, fields[1].length() - 1));
+
+        session.save(item);
     }
 }

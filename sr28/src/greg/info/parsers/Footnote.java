@@ -5,11 +5,6 @@ import greg.info.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 // after FoodDescription
 // after NutrientDefinition
@@ -18,10 +13,12 @@ public class Footnote {
     public static final String Filename = ".\\data\\FOOTNOTE.txt";
 
     public static void parseFile(final Session session) throws IOException {
-        Path path = Paths.get(Filename);
-        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-            lines.forEach((line) -> parseLine(session, line));
-        }
+
+        // TODO
+//        Path path = Paths.get(Filename);
+//        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
+//            lines.forEach((line) -> parseLine(session, line));
+//        }
     }
 
     private static void parseLine(final Session session, final String line) {

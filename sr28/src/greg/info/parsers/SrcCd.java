@@ -1,5 +1,6 @@
 package greg.info.parsers;
 
+import greg.info.entities.SourceCode;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -21,7 +22,10 @@ public class SrcCd {
 
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
-//        Abbreviations item = parse(fields);
-//        session.save(item);
+
+        SourceCode item = new SourceCode();
+        item.setSrc_Cd(fields[0].substring(1, fields[0].length() - 1));
+        item.setSrcCd_Desc(fields[1].substring(1, fields[1].length() - 1));
+        session.save(item);
     }
 }
