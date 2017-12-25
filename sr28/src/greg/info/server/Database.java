@@ -9,7 +9,7 @@ public class Database {
 
         args = Arrays.copyOf(args, args.length + 4);
         args[args.length - 4] = "--trace";
-        args[args.length - 3] = "true";
+        args[args.length - 3] = "false";
         args[args.length - 2] = "--props";
         args[args.length - 1] = ".\\sr28\\hsqldb\\server.properties";
 
