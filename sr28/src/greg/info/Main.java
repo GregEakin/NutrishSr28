@@ -20,24 +20,29 @@ public class Main {
         StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         try (final SessionFactory sessionFactory = configuration.buildSessionFactory()) {
-
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
-                Abbrev.parseFile(session);
-                FdGroup.parseFile(session);
-                FoodDes.parseFile(session);
-                // Footnote.parseFile(session);
-                SrcCd.parseFile(session);
-                DatScrLn.parseFile(session);
-                DerivCD.parseFile(session);
-                NutData.parseFile(session);
-                Weight.parseFile(session);
-                DataSrc.parseFile(session);
-                LangDesc.parseFile(session);
-                LanguaL.parseFile(session);
-                NutrDef.parseFile(session);
+                try {
+                    Abbrev.parseFile(session);
+                    FdGroup.parseFile(session);
+                    FoodDes.parseFile(session);
+                    // Footnote.parseFile(session);
+                    SrcCd.parseFile(session);
+                    DatScrLn.parseFile(session);
+                    DerivCD.parseFile(session);
+                    NutData.parseFile(session);
+                    Weight.parseFile(session);
+                    DataSrc.parseFile(session);
+                    LangDesc.parseFile(session);
+                    LanguaL.parseFile(session);
+                    NutrDef.parseFile(session);
 
-                transaction.commit();
+                    transaction.commit();
+
+                } catch (Exception ex) {
+                    transaction.rollback();
+                    throw ex;
+                }
             }
 
             // DumpEntities(sessionFactory);

@@ -27,7 +27,7 @@ public class DataSource {
         DataSrc_ID = dataSrc_ID;
     }
 
-    @Column(name = "Authors", columnDefinition = "varchar(6)")
+    @Column(name = "Authors", columnDefinition = "varchar(255)")
     public String getAuthors() {
         return Authors;
     }
