@@ -16,7 +16,7 @@ import java.sql.DriverManager;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        Configuration configuration = new Configuration().configure("META-INF/hibernate.cfg.xml");
+        Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
         StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         try (final SessionFactory sessionFactory = configuration.buildSessionFactory()) {
@@ -70,7 +70,7 @@ public class Main {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
 
             try (Connection con = DriverManager.getConnection(
-                    "jdbc:hsqldb:hsql:nutrhis", "SA", "")) {
+                    "jdbc:hsqldb:hsql:nutrhis", "SA", "0xB5HweaDz")) {
 
                 LanguaL.sqlSelectRows(con);
             }

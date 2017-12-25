@@ -7,7 +7,7 @@
         <property name="connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
         <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
         <property name="connection.username">sa</property>
-        <property name="connection.password"></property>
+        <property name="connection.password">0xB5HweaDz</property>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
@@ -17,7 +17,7 @@
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
         <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">0xB5HweaDz</property>
         <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 

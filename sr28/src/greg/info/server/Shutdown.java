@@ -12,7 +12,7 @@ public class Shutdown {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
 
             //Creating the connection with HSQLDB
-            try (Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/nutrish", "SA", "")) {
+            try (Connection con = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/nutrish", "SA", "0xB5HweaDz")) {
                 sqlShutdown(con);
             }
         } catch (Exception e) {

@@ -13,7 +13,7 @@ public class Ddl {
     public static void main(String[] args) throws Exception {
 
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .configure("META-INF/hibernate.cfg.xml")
+                .configure("/hibernate.cfg.xml")
                 .build();
 
         Metadata metadata = new MetadataSources(serviceRegistry)
