@@ -36,7 +36,7 @@ public class Abbreviations {
     private Integer Folic_acid;//    Folic_acid N 10 Folic acid (μg/100 g)
     private Integer Food_Folate;//    Food_Folate N 10 Food folate (μg/100 g)
     private Integer Folate_DFE;//    Folate_DFE N 10 Folate (μg dietary folate equivalents/100 g)
-    private Integer Choline_Tot;//    Choline_Tot N 10 Choline, total (mg/100 g)
+    private Double Choline_Tot;//    Choline_Tot N 10.1 Choline, total (mg/100 g)
     private Double Vit_B12;//    Vit_B12 N 10.2 Vitamin B12 (μg/100 g)
     private Integer Vit_A_IU;//    Vit_A_IU N 10 Vitamin A (IU/100 g)
     private Integer Vit_A_RAE;//    Vit_A_RAE N 10 Vitamin A (μg retinol activity equivalents/100g)
@@ -55,9 +55,9 @@ public class Abbreviations {
     private Double FA_Poly;//    FA_Poly N 10.3 Polyunsaturated fatty acids (g/100 g)
     private Double Cholestrl;//    Cholestrl N 10.3 Cholesterol (mg/100 g)
     private Double GmWt_1;//    GmWt_1 N 9.2 First household weight for this item from the Weight file.‡
-    private Double GmWt_Desc1;//    GmWt_Desc1 A 120 Description of household weight number 1.
+    private String GmWt_Desc1;//    GmWt_Desc1 A 120 Description of household weight number 1.
     private Double GmWt_2;//    GmWt_2 N 9.2 Second household weight for this item from the Weight file.‡
-    private Double GmWt_Desc2;//    GmWt_Desc2 A 120 Description of household weight number 2.
+    private String GmWt_Desc2;//    GmWt_Desc2 A 120 Description of household weight number 2.
     private Integer Refuse_Pct;//    Refuse_Pct N 2 Percent refuse.
     private FoodDescription foodDescription;
 
@@ -71,7 +71,7 @@ public class Abbreviations {
         this.NDB_No = NDB_No;
     }
 
-    @Column(name = "Shrt_Desc", columnDefinition = "character(60)", nullable = false)
+    @Column(name = "Shrt_Desc", columnDefinition = "varchar(60)", nullable = false)
     public String getShrt_Desc() {
         return Shrt_Desc;
     }
@@ -125,7 +125,7 @@ public class Abbreviations {
         Ash = ash;
     }
 
-    @Column(name = "Carbohydrt", columnDefinition = "float")
+    @Column(name = "Carbohydrt", columnDefinition = "float", nullable = false)
     public Double getCarbohydrt() {
         return Carbohydrt;
     }
@@ -332,12 +332,12 @@ public class Abbreviations {
         Folate_DFE = folate_DFE;
     }
 
-    @Column(name = "Choline_Tot", columnDefinition = "integer")
-    public Integer getCholine_Tot() {
+    @Column(name = "Choline_Tot", columnDefinition = "float")
+    public Double getCholine_Tot() {
         return Choline_Tot;
     }
 
-    public void setCholine_Tot(Integer choline_Tot) {
+    public void setCholine_Tot(Double choline_Tot) {
         Choline_Tot = choline_Tot;
     }
 
@@ -503,12 +503,12 @@ public class Abbreviations {
         GmWt_1 = gmWt_1;
     }
 
-    @Column(name = "GmWt_Desc1", columnDefinition = "float")
-    public Double getGmWt_Desc1() {
+    @Column(name = "GmWt_Desc1", columnDefinition = "varchar(120)")
+    public String getGmWt_Desc1() {
         return GmWt_Desc1;
     }
 
-    public void setGmWt_Desc1(Double gmWt_Desc1) {
+    public void setGmWt_Desc1(String gmWt_Desc1) {
         GmWt_Desc1 = gmWt_Desc1;
     }
 
@@ -521,12 +521,12 @@ public class Abbreviations {
         GmWt_2 = gmWt_2;
     }
 
-    @Column(name = "GWt_Desc2", columnDefinition = "float")
-    public Double getGmWt_Desc2() {
+    @Column(name = "GWt_Desc2", columnDefinition = "varchar(120)")
+    public String getGmWt_Desc2() {
         return GmWt_Desc2;
     }
 
-    public void setGmWt_Desc2(Double gmWt_Desc2) {
+    public void setGmWt_Desc2(String gmWt_Desc2) {
         GmWt_Desc2 = gmWt_Desc2;
     }
 
