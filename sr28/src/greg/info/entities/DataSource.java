@@ -15,7 +15,7 @@ public class DataSource {
     private String Issue_State; // Issue number for journal article; State where the sponsoring organization is located.
     private String Start_Page;  // Starting page number of article/document.
     private String End_Page;    // Ending page number of article/document.
-    private Set<NutrientData> nutrients;
+    private Set<NutrientData> nutrientDataSet;
 
     @Id
     @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false, unique = true)
@@ -102,11 +102,11 @@ public class DataSource {
     //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
     @ManyToMany
     @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "DataSrc_ID")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")})
-    public Set<NutrientData> getNutrients() {
-        return nutrients;
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
     }
 
-    public void setNutrients(Set<NutrientData> nutrients) {
-        this.nutrients = nutrients;
+    public void setNutrientDataSet(Set<NutrientData> nutrients) {
+        this.nutrientDataSet = nutrients;
     }
 }

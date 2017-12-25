@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class NutData {
-    public static final String Filename = ".\\data\\NUTDATA.txt";
+    public static final String Filename = ".\\data\\NUT_DATA.txt";
 
     public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);

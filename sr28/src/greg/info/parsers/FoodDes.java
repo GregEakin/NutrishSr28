@@ -29,6 +29,12 @@ public class FoodDes {
 
         String[] fields = line.split("\\^", -1);
 
+        FoodDescription item = parseFoodDescription(session, fields);
+
+        session.save("FoodDescription", item);
+    }
+
+    private static FoodDescription parseFoodDescription(final Session session, final String[] fields) {
         FoodDescription item = new FoodDescription();
         item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
 
@@ -48,8 +54,7 @@ public class FoodDes {
         if (fields[11].length() > 0) item.setPro_Factor(Double.parseDouble(fields[11]));
         if (fields[12].length() > 0) item.setFat_Factor(Double.parseDouble(fields[12]));
         if (fields[13].length() > 0) item.setCHO_Factor(Double.parseDouble(fields[13]));
-
-        session.save("FoodDescription", item);
+        return item;
     }
 
     public static int sqlSelectRows2(Connection con) throws SQLException {

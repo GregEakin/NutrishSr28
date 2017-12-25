@@ -26,11 +26,17 @@ public class Main {
                 Abbrev.parseFile(session);
                 FdGroup.parseFile(session);
                 FoodDes.parseFile(session);
-                // NutrientData
-                // Footnote
+                // Footnote.parseFile(session);
+                SrcCd.parseFile(session);
+                DatScrLn.parseFile(session);
+                DerivCD.parseFile(session);
+                NutData.parseFile(session);
                 Weight.parseFile(session);
+                DataSrc.parseFile(session);
                 LangDesc.parseFile(session);
                 LanguaL.parseFile(session);
+                NutrDef.parseFile(session);
+
                 transaction.commit();
             }
 
