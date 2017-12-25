@@ -9,7 +9,7 @@ public class NutData {
     public static final String Filename = ".\\data\\NUT_DATA.txt";
 
     public static void parseFile(final Session session) throws IOException {
-        // TODO
+        // TODO - Null data causes a crash.
 //        Path path = Paths.get(Filename);
 //        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
 //            lines.forEach((line) -> parseLine(session, line));

@@ -32,7 +32,7 @@ public class Abbrev {
         item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
         item.setShrt_Desc(fields[1].substring(1, fields[1].length() - 1));
         if (fields[2].length() > 0) item.setWater(Double.parseDouble(fields[2]));
-        // TODO
+        // TODO -- Missing fields
         return item;
     }
 }

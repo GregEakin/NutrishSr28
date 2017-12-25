@@ -14,7 +14,7 @@ public class Footnote {
 
     public static void parseFile(final Session session) throws IOException {
 
-        // TODO
+        // TODO - Missing Primary Key
 //        Path path = Paths.get(Filename);
 //        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
 //            lines.forEach((line) -> parseLine(session, line));
