@@ -26,14 +26,14 @@ public class Main {
                     Abbrev.parseFile(session);
                     FdGroup.parseFile(session);
                     FoodDes.parseFile(session);
-                    Footnote.parseFile(session);
+                    // Footnote.parseFile(session); // TODO: Fix primary key
                     SrcCd.parseFile(session);
                     DatScrLn.parseFile(session);
                     DerivCD.parseFile(session);
                     NutrDef.parseFile(session);
                     DataSrc.parseFile(session);
                     Weight.parseFile(session);
-                    NutData.parseFile(session);
+                    // NutData.parseFile(session);  // TODO - Null data causes a crash.
                     LangDesc.parseFile(session);
                     LanguaL.parseFile(session);
 

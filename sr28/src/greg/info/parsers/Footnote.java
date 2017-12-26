@@ -5,6 +5,11 @@ import greg.info.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 // after FoodDescription
 // after NutrientDefinition
@@ -14,11 +19,10 @@ public class Footnote {
 
     public static void parseFile(final Session session) throws IOException {
 
-        // TODO - Missing Primary Key
-//        Path path = Paths.get(Filename);
-//        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-//            lines.forEach((line) -> parseLine(session, line));
-//        }
+        Path path = Paths.get(Filename);
+        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
+            lines.forEach((line) -> parseLine(session, line));
+        }
     }
 
     private static void parseLine(final Session session, final String line) {
@@ -44,7 +48,6 @@ public class Footnote {
 
         item.setFootnt_Txt(fields[4].substring(1, fields[4].length() - 1));
 
-        System.out.println(foodDescriptionId);
         return item;
     }
 }

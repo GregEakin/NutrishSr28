@@ -4,16 +4,20 @@ import greg.info.entities.*;
 import org.hibernate.Session;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class NutData {
     public static final String Filename = ".\\data\\NUT_DATA.txt";
 
     public static void parseFile(final Session session) throws IOException {
-        // TODO - Null data causes a crash.
-//        Path path = Paths.get(Filename);
-//        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
-//            lines.forEach((line) -> parseLine(session, line));
-//        }
+        Path path = Paths.get(Filename);
+        try (Stream<String> lines = Files.lines(path, StandardCharsets.ISO_8859_1)) {
+            lines.forEach((line) -> parseLine(session, line));
+        }
     }
 
     private static void parseLine(final Session session, final String line) {
@@ -62,7 +66,7 @@ public class NutData {
         if (fields[16].length() > 0) item.setAddMod_Date(fields[16]);
         if (fields[17].length() > 0) item.setCC(fields[17]);
 
-        System.out.println(foodDescription.getNDB_No() + ", " + nutrientDefinition.getNutr_No());
+        // System.out.println(foodDescription.getNDB_No() + ", " + nutrientDefinition.getNutr_No());
         session.save(item);
     }
 }
