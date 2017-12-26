@@ -8,8 +8,8 @@
         <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
         <property name="connection.username">sa</property>
         <property name="connection.password">0xB5HweaDz</property>
-        <property name="connection.hbm2ddl.auto">validate</property>
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="connection.hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">update</property>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
@@ -21,7 +21,7 @@
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password">0xB5HweaDz</property>
         <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="greg.info.flatfile.entities.Abbreviations"/>
         <mapping class="greg.info.relational.entities.DataDerivation"/>

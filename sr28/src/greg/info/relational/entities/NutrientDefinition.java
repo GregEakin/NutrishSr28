@@ -1,9 +1,7 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "NUTR_DEF")
@@ -14,6 +12,7 @@ public class NutrientDefinition {
     private String NutrDesc;
     private String Num_Dec;
     private Integer SR_Order;
+    private Set<NutrientData> nutrientDataSet;
 //    private Set<NutrientDefinition> nutrientDefinitionSet;
 //    private Set<FoodDescription> foodDescriptions;
 
@@ -74,7 +73,16 @@ public class NutrientDefinition {
         this.SR_Order = SR_Order;
     }
 
-//    //  Links to the Nutrient Data file by Nutr_No
+    //  Links to the Nutrient Data file by Nutr_No
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
+    }
+
+    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
+        this.nutrientDataSet = nutrientDataSet;
+    }
+
 //    @OneToMany
 //    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
 //    public Set<NutrientDefinition> getNutrientDefinitionSet() {

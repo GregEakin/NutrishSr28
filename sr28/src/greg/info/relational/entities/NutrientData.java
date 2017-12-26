@@ -1,9 +1,6 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,9 +9,8 @@ public class NutrientData implements Serializable {
 
     private String NDB_No;
     private String Nutr_No;
-
-    //    private FoodDescription foodDescription;        // The food item
-//    private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
+    private FoodDescription foodDescription;        // The food item
+    private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
     private Integer Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
@@ -49,7 +45,7 @@ public class NutrientData implements Serializable {
     //  Links to the Weight file by NDB_No
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -59,7 +55,7 @@ public class NutrientData implements Serializable {
     }
 
     @Id
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, insertable = false, updatable = false)
     public String getNutr_No() {
         return Nutr_No;
     }
@@ -68,27 +64,25 @@ public class NutrientData implements Serializable {
         Nutr_No = nutr_No;
     }
 
-//    @Id
-//    @ManyToOne
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-//    public FoodDescription getFoodDescription() {
-//        return foodDescription;
-//    }
-//
-//    public void setFoodDescription(FoodDescription foodDescription) {
-//        this.foodDescription = foodDescription;
-//    }
-//
-//    @Id
-//    @ManyToOne
-//    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
-//    public NutrientDefinition getNutrientDefinition() {
-//        return nutrientDefinition;
-//    }
-//
-//    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
-//        this.nutrientDefinition = nutrientDefinition;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NDB_No")
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Nutr_No")
+    public NutrientDefinition getNutrientDefinition() {
+        return nutrientDefinition;
+    }
+
+    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
+        this.nutrientDefinition = nutrientDefinition;
+    }
 
     @Column(name = "Nutr_Val", columnDefinition = "float", nullable = false)
     public Double getNutr_Val() {

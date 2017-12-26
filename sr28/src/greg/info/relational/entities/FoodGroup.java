@@ -1,15 +1,14 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name="FD_GROUP")
+@Table(name = "FD_GROUP")
 public class FoodGroup {
     private String FdGrp_Cd;
     private String FdGrp_Desc;
+    private Set<FoodDescription> foodDescriptionSet;
 
     //  Links to the Food Description file by FdGrp_Cd
 
@@ -30,5 +29,14 @@ public class FoodGroup {
 
     public void setFdGrp_Desc(String fdGrp_Desc) {
         FdGrp_Desc = fdGrp_Desc;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodGroup")
+    public Set<FoodDescription> getFoodDescriptionSet() {
+        return foodDescriptionSet;
+    }
+
+    public void setFoodDescriptionSet(Set<FoodDescription> foodDescriptionSet) {
+        this.foodDescriptionSet = foodDescriptionSet;
     }
 }

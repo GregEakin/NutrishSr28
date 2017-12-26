@@ -1,6 +1,8 @@
 package greg.info.relational.parsers;
 
+import greg.info.relational.entities.FoodDescription;
 import greg.info.relational.entities.NutrientData;
+import greg.info.relational.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -25,15 +27,15 @@ public class NutData {
 
         NutrientData item = new NutrientData();
 
-        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
-        item.setNutr_No(fields[1].substring(1, fields[1].length() - 1));
-//        String NDB_No = fields[0].substring(1, fields[0].length() - 1);
-//        FoodDescription foodDescription = session.load(FoodDescription.class, NDB_No);
-//        item.setFoodDescription(foodDescription);
-//
-//        String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
-//        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
-//        item.setNutrientDefinition(nutrientDefinition);
+        // item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
+        String NDB_No = fields[0].substring(1, fields[0].length() - 1);
+        FoodDescription foodDescription = session.load(FoodDescription.class, NDB_No);
+        item.setFoodDescription(foodDescription);
+
+        //item.setNutr_No(fields[1].substring(1, fields[1].length() - 1));
+        String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
+        item.setNutrientDefinition(nutrientDefinition);
 
         item.setNutr_Val(Double.parseDouble(fields[2]));
 

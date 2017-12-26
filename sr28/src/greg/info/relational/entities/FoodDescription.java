@@ -1,16 +1,15 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "FOOD_DES")
 public class FoodDescription {
     private String NDB_No;
     private String FdGrp_Cd;
-    // private FoodGroup foodGroup;    // FdGrp_Cd
+    private FoodGroup foodGroup;    // FdGrp_Cd
     private String Long_Desc;
     private String Shrt_Desc;
     private String ComName;
@@ -23,12 +22,11 @@ public class FoodDescription {
     private Double Pro_Factor;
     private Double Fat_Factor;
     private Double CHO_Factor;
-//    private Set<LanguaL> languages = new HashSet<>(0);
+    //    private Set<LanguaL> languages = new HashSet<>(0);
 //    private Set<NutrientDefinition> nutrientDefinitions = new HashSet<>(0);
 //    private Set<Footnote> footnotes = new HashSet<>(0);
-//    private Set<NutrientData> nutrientData = new HashSet<>(0);
+    private Set<NutrientData> nutrientData = new HashSet<>(0);
 //    private Set<Weight> weights = new HashSet<>(0);
-//    private Abbreviations abbreviation;
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
@@ -46,7 +44,7 @@ public class FoodDescription {
         this.NDB_No = nDB_No;
     }
 
-    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false, insertable = false, updatable = false)
     public String getFdGrp_Cd() {
         return FdGrp_Cd;
     }
@@ -55,15 +53,15 @@ public class FoodDescription {
         FdGrp_Cd = fdGrp_Cd;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
-//    public FoodGroup getFoodGroup() {
-//        return foodGroup;
-//    }
-//
-//    public void setFoodGroup(FoodGroup foodGroup) {
-//        this.foodGroup = foodGroup;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FdGrp_Cd")
+    public FoodGroup getFoodGroup() {
+        return foodGroup;
+    }
+
+    public void setFoodGroup(FoodGroup foodGroup) {
+        this.foodGroup = foodGroup;
+    }
 
     @Column(name = "Long_Desc", columnDefinition = "varchar(200)", nullable = false)
     public String getLong_Desc() {
@@ -181,16 +179,16 @@ public class FoodDescription {
 //    public void setFootnotes(Set<Footnote> footnotes) {
 //        this.footnotes = footnotes;
 //    }
-//
-//    @OneToMany(mappedBy = "foodDescription")
-//    public Set<NutrientData> getNutrientData() {
-//        return nutrientData;
-//    }
-//
-//    public void setNutrientData(Set<NutrientData> nutrientData) {
-//        this.nutrientData = nutrientData;
-//    }
-//
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    public Set<NutrientData> getNutrientData() {
+        return nutrientData;
+    }
+
+    public void setNutrientData(Set<NutrientData> nutrientData) {
+        this.nutrientData = nutrientData;
+    }
+
 //    @OneToMany(mappedBy = "foodDescription")
 //    public Set<Weight> getWeights() {
 //        return weights;
@@ -218,15 +216,5 @@ public class FoodDescription {
 //
 //    public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
 //        this.nutrientDefinitions = nutrients;
-//    }
-//
-//    @OneToOne
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
-//    public Abbreviations getAbbreviation() {
-//        return abbreviation;
-//    }
-//
-//    public void setAbbreviation(Abbreviations abbreviation) {
-//        this.abbreviation = abbreviation;
 //    }
 }
