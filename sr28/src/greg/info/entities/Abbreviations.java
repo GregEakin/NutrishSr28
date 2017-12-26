@@ -395,7 +395,7 @@ public class Abbreviations {
         Beta_Carot = beta_Carot;
     }
 
-    @Column(name = "BetaCrypt", columnDefinition = "integer")
+    @Column(name = "Beta_Crypt", columnDefinition = "integer")
     public Integer getBeta_Crypt() {
         return Beta_Crypt;
     }
@@ -413,7 +413,7 @@ public class Abbreviations {
         Lycopene = lycopene;
     }
 
-    @Column(name = "Lut_Zea", columnDefinition = "integer")
+    @Column(name = "Lut+Zea", columnDefinition = "integer")
     public Integer getLut_Zea() {
         return Lut_Zea;
     }

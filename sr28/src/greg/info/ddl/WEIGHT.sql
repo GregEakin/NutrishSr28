@@ -1,0 +1,16 @@
+-- This file contains the weight in grams of a number of common measures for each food item.
+CREATE TABLE WEIGHT
+(
+  NDB_NO       CHAR(5)     NOT NULL,
+  SEQ          CHAR(2)     NOT NULL,
+  AMOUNT       DOUBLE      NOT NULL,
+  MSRE_DESC    VARCHAR(84) NOT NULL,
+  GM_WGT       DOUBLE      NOT NULL,
+  NUM_DATA_PTS INTEGER,
+  STD_DEV      DOUBLE,
+  CONSTRAINT SYS_PK_17474 PRIMARY KEY (NDB_NO, SEQ),
+  CONSTRAINT FKP5SFYB791M2GF1JXJPSRGI6JR FOREIGN KEY (NDB_NO) REFERENCES FOOD_DES (NDB_NO),
+  CONSTRAINT FXP43DAS3234DDWE33XMDDE13CR FOREIGN KEY (NDB_NO) REFERENCES NUT_DATA (NDB_NO)
+  --  Links to Food Description file by NDB_No
+  --  Links to Nutrient Data file by NDB_No
+)
