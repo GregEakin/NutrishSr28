@@ -413,7 +413,7 @@ public class Abbreviations {
         Lycopene = lycopene;
     }
 
-    @Column(name = "Lut+Zea", columnDefinition = "integer")
+    @Column(name = "Lut_Zea", columnDefinition = "integer")
     public Integer getLut_Zea() {
         return Lut_Zea;
     }
