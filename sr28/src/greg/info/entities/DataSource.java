@@ -1,7 +1,9 @@
 package greg.info.entities;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "DATA_SRC")
@@ -15,10 +17,10 @@ public class DataSource {
     private String Issue_State; // Issue number for journal article; State where the sponsoring organization is located.
     private String Start_Page;  // Starting page number of article/document.
     private String End_Page;    // Ending page number of article/document.
-    private Set<NutrientData> nutrientDataSet;
+    //private Set<NutrientData> nutrientDataSet;
 
     @Id
-    @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false, unique = true)
+    @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)
     public String getDataSrc_ID() {
         return DataSrc_ID;
     }
@@ -99,14 +101,14 @@ public class DataSource {
         End_Page = end_Page;
     }
 
-    //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
-    @ManyToMany
-    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "DataSrc_ID")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")})
-    public Set<NutrientData> getNutrientDataSet() {
-        return nutrientDataSet;
-    }
-
-    public void setNutrientDataSet(Set<NutrientData> nutrients) {
-        this.nutrientDataSet = nutrients;
-    }
+//    //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
+//    @ManyToMany
+//    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "DataSrc_ID")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")})
+//    public Set<NutrientData> getNutrientDataSet() {
+//        return nutrientDataSet;
+//    }
+//
+//    public void setNutrientDataSet(Set<NutrientData> nutrients) {
+//        this.nutrientDataSet = nutrients;
+//    }
 }

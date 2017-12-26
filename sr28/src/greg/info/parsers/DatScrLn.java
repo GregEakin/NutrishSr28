@@ -1,6 +1,6 @@
 package greg.info.parsers;
 
-import greg.info.entities.DataSource;
+import greg.info.entities.DataSourceLink;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -29,8 +29,14 @@ public class DatScrLn {
         String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
         String DataSrc_ID = fields[2].substring(1, fields[2].length() - 1);
 
-        DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
-        // TODO - Compound keys
+        DataSourceLink item = new DataSourceLink();
+
+        item.setNDB_No(NDB_No);
+        item.setNutr_No(Nutr_No);
+        item.setDataSrc_ID(DataSrc_ID);
+        session.save(item);
+
+//        DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
 //        NutrientData.NutrientDataKey nutrientDataKey = new NutrientData.NutrientDataKey(NDB_No, Nutr_No);
 //        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 //

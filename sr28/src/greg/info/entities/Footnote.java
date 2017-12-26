@@ -1,35 +1,55 @@
 package greg.info.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "FOOTNOTE")
-public class Footnote implements Serializable {
-    private FoodDescription foodDescription;    // 5-digit Nutrient Databank number that uniquely identifies a food item.
+public class Footnote {
+
+    private Integer Id;
+
+    private String NDB_No;
+    //private FoodDescription foodDescription;    // 5-digit Nutrient Databank number that uniquely identifies a food item.
     private String Footnt_No;                   // Sequence number.
     private String Footnt_Typ;                  // Type of footnote:
-    private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
+    private String Nutr_No;
+    //private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
     private String Footnt_Txt;                  // Footnote text.
-    private Set<NutrientData> nutrientDataSet;
+    //private Set<NutrientData> nutrientDataSet;
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
     //  Links to the Nutrient Definition file by Nutr_No, when applicable
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public FoodDescription getFoodDescription() {
-        return foodDescription;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId() {
+        return Id;
     }
 
-    public void setFoodDescription(FoodDescription foodDescription) {
-        this.foodDescription = foodDescription;
+    public void setId(Integer id) {
+        this.Id = id;
     }
 
-    @Id
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public String getNDB_No() {
+        return NDB_No;
+    }
+
+    public void setNDB_No(String nDB_No) {
+        this.NDB_No = nDB_No;
+    }
+
+//    @ManyToOne
+//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+//    public FoodDescription getFoodDescription() {
+//        return foodDescription;
+//    }
+//
+//    public void setFoodDescription(FoodDescription foodDescription) {
+//        this.foodDescription = foodDescription;
+//    }
+
     @Column(name = "Footnt_No", columnDefinition = "character(4)", nullable = false)
     public String getFootnt_No() {
         return Footnt_No;
@@ -49,15 +69,24 @@ public class Footnote implements Serializable {
     }
 
     // NutrientDefinition
-    @OneToOne
-    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
-    public NutrientDefinition getNutrientDefinition() {
-        return nutrientDefinition;
+    @Column(name = "Nutr_No", columnDefinition = "character(3)")
+    public String getNutr_No() {
+        return Nutr_No;
     }
 
-    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
-        this.nutrientDefinition = nutrientDefinition;
+    public void setNutr_No(String nutr_No) {
+        Nutr_No = nutr_No;
     }
+
+//    @OneToOne
+//    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
+//    public NutrientDefinition getNutrientDefinition() {
+//        return nutrientDefinition;
+//    }
+//
+//    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
+//        this.nutrientDefinition = nutrientDefinition;
+//    }
 
     @Column(name = "Footnt_Txt", columnDefinition = "varchar(200)", nullable = false)
     public String getFootnt_Txt() {
@@ -68,37 +97,16 @@ public class Footnote implements Serializable {
         Footnt_Txt = footnt_Txt;
     }
 
-    @OneToMany
-    @JoinColumns({
-            @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false),
-            @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
-    })
-    public Set<NutrientData> getNutrientDataSet() {
-        return nutrientDataSet;
-    }
-
-    public void setNutrientDataSet(Set<NutrientData> nutrients) {
-        this.nutrientDataSet = nutrients;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Footnote that = (Footnote) o;
-
-        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null)
-            return false;
-        if (Footnt_No != null ? !Footnt_No.equals(that.Footnt_No) : that.Footnt_No != null)
-            return false;
-
-        return true;
-    }
-
-    public int hashCode() {
-        int result;
-        result = (foodDescription != null ? foodDescription.hashCode() : 0);
-        result = 31 * result + (Footnt_No != null ? Footnt_No.hashCode() : 0);
-        return result;
-    }
+//    @OneToMany
+//    @JoinColumns({
+//            @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false),
+//            @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+//    })
+//    public Set<NutrientData> getNutrientDataSet() {
+//        return nutrientDataSet;
+//    }
+//
+//    public void setNutrientDataSet(Set<NutrientData> nutrients) {
+//        this.nutrientDataSet = nutrients;
+//    }
 }

@@ -1,14 +1,16 @@
 package greg.info.entities;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "FOOD_DES")
 public class FoodDescription {
     private String NDB_No;
-    private FoodGroup foodGroup;    // FdGrp_Cd
+    private String FdGrp_Cd;
+    // private FoodGroup foodGroup;    // FdGrp_Cd
     private String Long_Desc;
     private String Shrt_Desc;
     private String ComName;
@@ -21,15 +23,21 @@ public class FoodDescription {
     private Double Pro_Factor;
     private Double Fat_Factor;
     private Double CHO_Factor;
-    private Set<LanguaL> languages = new HashSet<>(0);
-    private Set<NutrientDefinition> nutrientDefinitions = new HashSet<>(0);
-    private Set<Footnote> footnotes = new HashSet<>(0);
-    private Set<NutrientData> nutrientData = new HashSet<>(0);
-    private Set<Weight> weights = new HashSet<>(0);
-    private Abbreviations abbreviation;
+//    private Set<LanguaL> languages = new HashSet<>(0);
+//    private Set<NutrientDefinition> nutrientDefinitions = new HashSet<>(0);
+//    private Set<Footnote> footnotes = new HashSet<>(0);
+//    private Set<NutrientData> nutrientData = new HashSet<>(0);
+//    private Set<Weight> weights = new HashSet<>(0);
+//    private Abbreviations abbreviation;
+
+    //  Links to the Food Group Description file by the FdGrp_Cd field
+    //  Links to the Nutrient Data file by the NDB_No field
+    //  Links to the Weight file by the NDB_No field
+    //  Links to the Footnote file by the NDB_No field
+    //  Links to the LanguaL Factor file by the NDB_No field
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, unique = true)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -38,15 +46,24 @@ public class FoodDescription {
         this.NDB_No = nDB_No;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
-    public FoodGroup getFoodGroup() {
-        return foodGroup;
+    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+    public String getFdGrp_Cd() {
+        return FdGrp_Cd;
     }
 
-    public void setFoodGroup(FoodGroup foodGroup) {
-        this.foodGroup = foodGroup;
+    public void setFdGrp_Cd(String fdGrp_Cd) {
+        FdGrp_Cd = fdGrp_Cd;
     }
+
+//    @ManyToOne
+//    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+//    public FoodGroup getFoodGroup() {
+//        return foodGroup;
+//    }
+//
+//    public void setFoodGroup(FoodGroup foodGroup) {
+//        this.foodGroup = foodGroup;
+//    }
 
     @Column(name = "Long_Desc", columnDefinition = "varchar(200)", nullable = false)
     public String getLong_Desc() {
@@ -156,60 +173,60 @@ public class FoodDescription {
         this.CHO_Factor = CHO_Factor;
     }
 
-    @OneToMany(mappedBy = "foodDescription")
-    public Set<Footnote> getFootnotes() {
-        return footnotes;
-    }
-
-    public void setFootnotes(Set<Footnote> footnotes) {
-        this.footnotes = footnotes;
-    }
-
-    @OneToMany(mappedBy = "foodDescription")
-    public Set<NutrientData> getNutrientData() {
-        return nutrientData;
-    }
-
-    public void setNutrientData(Set<NutrientData> nutrientData) {
-        this.nutrientData = nutrientData;
-    }
-
-    @OneToMany(mappedBy = "foodDescription")
-    public Set<Weight> getWeights() {
-        return weights;
-    }
-
-    public void setWeights(Set<Weight> weights) {
-        this.weights = weights;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
-    public Set<LanguaL> getLanguages() {
-        return this.languages;
-    }
-
-    public void setLanguages(Set<LanguaL> courses) {
-        this.languages = courses;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
-    public Set<NutrientDefinition> getNutrientDefinitions() {
-        return nutrientDefinitions;
-    }
-
-    public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
-        this.nutrientDefinitions = nutrients;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
-    public Abbreviations getAbbreviation() {
-        return abbreviation;
-    }
-
-    public void setAbbreviation(Abbreviations abbreviation) {
-        this.abbreviation = abbreviation;
-    }
+//    @OneToMany(mappedBy = "foodDescription")
+//    public Set<Footnote> getFootnotes() {
+//        return footnotes;
+//    }
+//
+//    public void setFootnotes(Set<Footnote> footnotes) {
+//        this.footnotes = footnotes;
+//    }
+//
+//    @OneToMany(mappedBy = "foodDescription")
+//    public Set<NutrientData> getNutrientData() {
+//        return nutrientData;
+//    }
+//
+//    public void setNutrientData(Set<NutrientData> nutrientData) {
+//        this.nutrientData = nutrientData;
+//    }
+//
+//    @OneToMany(mappedBy = "foodDescription")
+//    public Set<Weight> getWeights() {
+//        return weights;
+//    }
+//
+//    public void setWeights(Set<Weight> weights) {
+//        this.weights = weights;
+//    }
+//
+//    @ManyToMany
+//    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
+//    public Set<LanguaL> getLanguages() {
+//        return this.languages;
+//    }
+//
+//    public void setLanguages(Set<LanguaL> courses) {
+//        this.languages = courses;
+//    }
+//
+//    @ManyToMany
+//    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
+//    public Set<NutrientDefinition> getNutrientDefinitions() {
+//        return nutrientDefinitions;
+//    }
+//
+//    public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
+//        this.nutrientDefinitions = nutrients;
+//    }
+//
+//    @OneToOne
+//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
+//    public Abbreviations getAbbreviation() {
+//        return abbreviation;
+//    }
+//
+//    public void setAbbreviation(Abbreviations abbreviation) {
+//        this.abbreviation = abbreviation;
+//    }
 }

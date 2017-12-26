@@ -1,6 +1,6 @@
 package greg.info.parsers;
 
-import greg.info.entities.LanguaL;
+import greg.info.entities.LanguaLDescription;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -24,11 +24,11 @@ public class LangDesc {
 
         String[] fields = line.split("\\^", -1);
 
-        greg.info.entities.LanguaL item = new LanguaL();
+        LanguaLDescription item = new LanguaLDescription();
         item.setFactor_Code(fields[0].substring(1, fields[0].length() - 1));
         item.setDescription(fields[1].substring(1, fields[1].length() - 1));
 
-        session.save("LanguaL", item);
+        session.save(item);
     }
 
 }

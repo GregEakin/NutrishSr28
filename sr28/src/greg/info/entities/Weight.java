@@ -1,8 +1,10 @@
 package greg.info.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Set;
 
 /*
     Weight File  (file name = WEIGHT). This file (Table 12) contains the weight in grams of a number of common measures for each food item.
@@ -12,28 +14,40 @@ import java.util.Set;
 @Table(name = "WEIGHT")
 public class Weight implements Serializable {
 
-    private FoodDescription foodDescription;
+    private String NDB_No;
+    // private FoodDescription foodDescription;
     private String Seq;
     private Double Amount;
     private String Msre_Desc;
     private Double Gm_Wgt;
     private Integer Num_Data_Pts;
     private Double Std_Dev;
-    private Set<NutrientData> nutrientData;
+    // private Set<NutrientData> nutrientData;
 
     //  Links to Food Description file by NDB_No
     //  Links to Nutrient Data file by NDB_No
+
     // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
     @Id
-    @ManyToOne
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public FoodDescription getFoodDescription() {
-        return foodDescription;
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    public String getNDB_No() {
+        return NDB_No;
     }
 
-    public void setFoodDescription(FoodDescription foodDescription) {
-        this.foodDescription = foodDescription;
+    public void setNDB_No(String nDB_No) {
+        this.NDB_No = nDB_No;
     }
+
+//    @Id
+//    @ManyToOne
+//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+//    public FoodDescription getFoodDescription() {
+//        return foodDescription;
+//    }
+//
+//    public void setFoodDescription(FoodDescription foodDescription) {
+//        this.foodDescription = foodDescription;
+//    }
 
     // Seq A 2* N Sequence number.
     @Id
@@ -96,15 +110,15 @@ public class Weight implements Serializable {
         Std_Dev = std_Dev;
     }
 
-    @ManyToMany
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    public Set<NutrientData> getNutrientData() {
-        return nutrientData;
-    }
-
-    public void setNutrientData(Set<NutrientData> nutrientData) {
-        this.nutrientData = nutrientData;
-    }
+//    @ManyToMany
+//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+//    public Set<NutrientData> getNutrientData() {
+//        return nutrientData;
+//    }
+//
+//    public void setNutrientData(Set<NutrientData> nutrientData) {
+//        this.nutrientData = nutrientData;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -113,7 +127,7 @@ public class Weight implements Serializable {
 
         Weight that = (Weight) o;
 
-        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null)
+        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null)
             return false;
         if (Seq != null ? !Seq.equals(that.Seq) : that.Seq != null)
             return false;
@@ -124,7 +138,7 @@ public class Weight implements Serializable {
     @Override
     public int hashCode() {
         int result;
-        result = (foodDescription != null ? foodDescription.hashCode() : 0);
+        result = (NDB_No != null ? NDB_No.hashCode() : 0);
         result = 31 * result + (Seq != null ? Seq.hashCode() : 0);
         return result;
     }

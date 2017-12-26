@@ -24,18 +24,20 @@ public class Main {
                 Transaction transaction = session.beginTransaction();
                 try {
                     Abbrev.parseFile(session);
+
                     FdGroup.parseFile(session);
-                    FoodDes.parseFile(session);
-                    // Footnote.parseFile(session); // TODO: Fix primary key
                     SrcCd.parseFile(session);
-                    DatScrLn.parseFile(session);
                     DerivCD.parseFile(session);
-                    NutrDef.parseFile(session);
-                    DataSrc.parseFile(session);
-                    Weight.parseFile(session);
-                    // NutData.parseFile(session);  // TODO - Null data causes a crash.
                     LangDesc.parseFile(session);
+                    DataSrc.parseFile(session);
+
+                    NutrDef.parseFile(session);
+                    FoodDes.parseFile(session);
                     LanguaL.parseFile(session);
+                    Weight.parseFile(session);
+                    DatScrLn.parseFile(session);
+                    NutData.parseFile(session);
+                    Footnote.parseFile(session);
 
                     transaction.commit();
                 } catch (Exception ex) {

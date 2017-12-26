@@ -11,6 +11,8 @@ public class SourceCode {
     private String Src_Cd;
     private String SrcCd_Desc;
 
+    //  Links to the Nutrient Data file by Src_Cd
+
     @Id
     @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
     public String getSrc_Cd() {

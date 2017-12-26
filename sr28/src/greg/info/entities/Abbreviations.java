@@ -1,6 +1,9 @@
 package greg.info.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "ABBREV")
@@ -59,7 +62,7 @@ public class Abbreviations {
     private Double GmWt_2;//    GmWt_2 N 9.2 Second household weight for this item from the Weight file.‡
     private String GmWt_Desc2;//    GmWt_Desc2 A 120 Description of household weight number 2.
     private Integer Refuse_Pct;//    Refuse_Pct N 2 Percent refuse.
-    private FoodDescription foodDescription;
+    // private FoodDescription foodDescription;
 
     @Id
     @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
@@ -539,13 +542,13 @@ public class Abbreviations {
         Refuse_Pct = refuse_Pct;
     }
 
-    @OneToOne
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
-    public FoodDescription getFoodDescription() {
-        return foodDescription;
-    }
-
-    public void setFoodDescription(FoodDescription foodDescription) {
-        this.foodDescription = foodDescription;
-    }
+//    @OneToOne
+//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
+//    public FoodDescription getFoodDescription() {
+//        return foodDescription;
+//    }
+//
+//    public void setFoodDescription(FoodDescription foodDescription) {
+//        this.foodDescription = foodDescription;
+//    }
 }

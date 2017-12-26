@@ -1,7 +1,9 @@
 package greg.info.entities;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "NUTR_DEF")
@@ -12,11 +14,13 @@ public class NutrientDefinition {
     private String NutrDesc;
     private String Num_Dec;
     private Integer SR_Order;
-    private Set<NutrientDefinition> nutrientDefinitionSet;
-    private Set<FoodDescription> foodDescriptions;
+//    private Set<NutrientDefinition> nutrientDefinitionSet;
+//    private Set<FoodDescription> foodDescriptions;
+
+    //  Links to the Nutrient Data file by Nutr_No
 
     @Id
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, unique = true)
+    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
     public String getNutr_No() {
         return Nutr_No;
     }
@@ -70,24 +74,24 @@ public class NutrientDefinition {
         this.SR_Order = SR_Order;
     }
 
-    //  Links to the Nutrient Data file by Nutr_No
-    @OneToMany
-    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
-    public Set<NutrientDefinition> getNutrientDefinitionSet() {
-        return nutrientDefinitionSet;
-    }
-
-    public void setNutrientDefinitionSet(Set<NutrientDefinition> nutrientDefinitionSet) {
-        this.nutrientDefinitionSet = nutrientDefinitionSet;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
-    public Set<FoodDescription> getFoodDescriptions() {
-        return foodDescriptions;
-    }
-
-    public void setFoodDescriptions(Set<FoodDescription> nutrients) {
-        this.foodDescriptions = nutrients;
-    }
+//    //  Links to the Nutrient Data file by Nutr_No
+//    @OneToMany
+//    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
+//    public Set<NutrientDefinition> getNutrientDefinitionSet() {
+//        return nutrientDefinitionSet;
+//    }
+//
+//    public void setNutrientDefinitionSet(Set<NutrientDefinition> nutrientDefinitionSet) {
+//        this.nutrientDefinitionSet = nutrientDefinitionSet;
+//    }
+//
+//    @ManyToMany
+//    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
+//    public Set<FoodDescription> getFoodDescriptions() {
+//        return foodDescriptions;
+//    }
+//
+//    public void setFoodDescriptions(Set<FoodDescription> nutrients) {
+//        this.foodDescriptions = nutrients;
+//    }
 }

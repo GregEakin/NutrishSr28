@@ -1,7 +1,6 @@
 package greg.info.parsers;
 
 import greg.info.entities.FoodDescription;
-import greg.info.entities.FoodGroup;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -31,16 +30,19 @@ public class FoodDes {
 
         FoodDescription item = parseFoodDescription(session, fields);
 
-        session.save("FoodDescription", item);
+        session.save(item);
     }
 
     private static FoodDescription parseFoodDescription(final Session session, final String[] fields) {
-        FoodDescription item = new FoodDescription();
-        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
 
-        String foodGroupId = fields[1].substring(1, fields[1].length() - 1);
-        FoodGroup foodGroup = session.load(FoodGroup.class, foodGroupId);
-        item.setFoodGroup(foodGroup);
+        FoodDescription item = new FoodDescription();
+
+        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
+        item.setFdGrp_Cd(fields[1].substring(1, fields[1].length() - 1));
+
+//        String foodGroupId = fields[1].substring(1, fields[1].length() - 1);
+//        FoodGroup foodGroup = session.load(FoodGroup.class, foodGroupId);
+//        item.setFoodGroup(foodGroup);
 
         item.setLong_Desc(fields[2].substring(1, fields[2].length() - 1));
         item.setShrt_Desc(fields[3].substring(1, fields[3].length() - 1));

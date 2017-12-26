@@ -11,8 +11,10 @@ public class FoodGroup {
     private String FdGrp_Cd;
     private String FdGrp_Desc;
 
+    //  Links to the Food Description file by FdGrp_Cd
+
     @Id
-    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false, unique = true)
+    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
     public String getFdGrp_Cd() {
         return FdGrp_Cd;
     }

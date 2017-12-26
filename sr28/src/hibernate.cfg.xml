@@ -24,10 +24,12 @@
         <mapping class="greg.info.entities.Abbreviations"/>
         <mapping class="greg.info.entities.DataDerivation"/>
         <mapping class="greg.info.entities.DataSource"/>
+        <mapping class="greg.info.entities.DataSourceLink"/>
         <mapping class="greg.info.entities.FoodDescription"/>
         <mapping class="greg.info.entities.FoodGroup"/>
         <mapping class="greg.info.entities.Footnote"/>
         <mapping class="greg.info.entities.LanguaL"/>
+        <mapping class="greg.info.entities.LanguaLDescription"/>
         <mapping class="greg.info.entities.NutrientData"/>
         <mapping class="greg.info.entities.NutrientDefinition"/>
         <mapping class="greg.info.entities.SourceCode"/>

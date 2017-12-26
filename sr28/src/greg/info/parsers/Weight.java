@@ -1,6 +1,5 @@
 package greg.info.parsers;
 
-import greg.info.entities.FoodDescription;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -27,10 +26,11 @@ public class Weight {
 
         greg.info.entities.Weight item = new greg.info.entities.Weight();
 
-        // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
-        String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
-        FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);
-        item.setFoodDescription(foodDescription);
+        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
+//        // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
+//        String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
+//        FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);
+//        item.setFoodDescription(foodDescription);
 
         // Seq A 2* N Sequence number.
         item.setSeq(fields[1]);
@@ -51,6 +51,6 @@ public class Weight {
         // Std_Dev N 7.3 Y Standard deviation.
         if (fields[6].length() > 0) item.setStd_Dev(Double.parseDouble(fields[6]));
 
-        session.save("Weight", item);
+        session.save(item);
     }
 }

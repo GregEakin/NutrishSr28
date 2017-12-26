@@ -1,6 +1,5 @@
 package greg.info.parsers;
 
-import greg.info.entities.FoodDescription;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -28,15 +27,16 @@ public class LanguaL {
 
         String[] fields = line.split("\\^", -1);
 
-        String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
-        String languaLId = fields[1].substring(1, fields[1].length() - 1);
+        greg.info.entities.LanguaL item = new greg.info.entities.LanguaL();
 
-        FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);
-        greg.info.entities.LanguaL languaL = session.load(greg.info.entities.LanguaL.class, languaLId);
+        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
+        item.setFactor_Code(fields[1].substring(1, fields[1].length() - 1));
 
-        foodDescription.getLanguages().add(languaL);
+//        FoodDescription item = session.load(FoodDescription.class, foodDescriptionId);
+//        greg.info.entities.LanguaL languaL = session.load(greg.info.entities.LanguaL.class, languaLId);
+//        item.getLanguages().add(languaL);
 
-        session.save("FoodDescription", foodDescription);
+        session.save(item);
     }
 
     public static int sqlSelectRows(Connection con) throws SQLException {

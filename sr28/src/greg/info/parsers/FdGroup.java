@@ -28,6 +28,6 @@ public class FdGroup {
         item.setFdGrp_Cd(fields[0].substring(1, fields[0].length() - 1));
         item.setFdGrp_Desc(fields[1].substring(1, fields[1].length() - 1));
 
-        session.save("FoodGroup", item);
+        session.save(item);
     }
 }
