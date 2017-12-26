@@ -23,18 +23,18 @@
         <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
         <property name="hibernate.hbm2ddl.auto">validate</property>
 
-        <mapping class="greg.info.entities.Abbreviations"/>
-        <mapping class="greg.info.entities.DataDerivation"/>
-        <mapping class="greg.info.entities.DataSource"/>
-        <mapping class="greg.info.entities.DataSourceLink"/>
-        <mapping class="greg.info.entities.FoodDescription"/>
-        <mapping class="greg.info.entities.FoodGroup"/>
-        <mapping class="greg.info.entities.Footnote"/>
-        <mapping class="greg.info.entities.LanguaL"/>
-        <mapping class="greg.info.entities.LanguaLDescription"/>
-        <mapping class="greg.info.entities.NutrientData"/>
-        <mapping class="greg.info.entities.NutrientDefinition"/>
-        <mapping class="greg.info.entities.SourceCode"/>
-        <mapping class="greg.info.entities.Weight"/>
+        <mapping class="greg.info.flatfile.entities.Abbreviations"/>
+        <mapping class="greg.info.relational.entities.DataDerivation"/>
+        <mapping class="greg.info.relational.entities.DataSource"/>
+        <mapping class="greg.info.relational.entities.DataSourceLink"/>
+        <mapping class="greg.info.relational.entities.FoodDescription"/>
+        <mapping class="greg.info.relational.entities.FoodGroup"/>
+        <mapping class="greg.info.relational.entities.Footnote"/>
+        <mapping class="greg.info.relational.entities.LanguaL"/>
+        <mapping class="greg.info.relational.entities.LanguaLDescription"/>
+        <mapping class="greg.info.relational.entities.NutrientData"/>
+        <mapping class="greg.info.relational.entities.NutrientDefinition"/>
+        <mapping class="greg.info.relational.entities.SourceCode"/>
+        <mapping class="greg.info.relational.entities.Weight"/>
     </session-factory>
 </hibernate-configuration>

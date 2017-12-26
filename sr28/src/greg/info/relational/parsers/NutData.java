@@ -1,6 +1,6 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
-import greg.info.entities.NutrientData;
+import greg.info.relational.entities.NutrientData;
 import org.hibernate.Session;
 
 import java.io.IOException;

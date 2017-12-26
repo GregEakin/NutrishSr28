@@ -1,4 +1,4 @@
-package greg.info.entities;
+package greg.info.flatfile.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

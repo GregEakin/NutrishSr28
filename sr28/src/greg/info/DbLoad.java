@@ -1,6 +1,6 @@
 package greg.info;
 
-import greg.info.parsers.*;
+import greg.info.relational.parsers.*;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,8 +23,6 @@ public class DbLoad {
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
                 try {
-                    Abbrev.parseFile(session);
-
                     FdGroup.parseFile(session);
                     SrcCd.parseFile(session);
                     DerivCD.parseFile(session);

@@ -1,4 +1,4 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
 import org.hibernate.Session;
 
@@ -24,7 +24,7 @@ public class Weight {
 
         String[] fields = line.split("\\^", -1);
 
-        greg.info.entities.Weight item = new greg.info.entities.Weight();
+        greg.info.relational.entities.Weight item = new greg.info.relational.entities.Weight();
 
         item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
 //        // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.

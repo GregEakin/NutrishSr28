@@ -1,6 +1,6 @@
-package greg.info.parsers;
+package greg.info.flatfile.parsers;
 
-import greg.info.entities.Abbreviations;
+import greg.info.flatfile.entities.Abbreviations;
 import org.hibernate.Session;
 
 import java.io.IOException;

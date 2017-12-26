@@ -1,4 +1,4 @@
-package greg.info.entities;
+package greg.info.relational.entities;
 
 import javax.persistence.*;
 

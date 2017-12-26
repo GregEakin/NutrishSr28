@@ -1,4 +1,4 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
 import org.hibernate.Session;
 
@@ -25,12 +25,12 @@ public class Footnote {
 
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
-        greg.info.entities.Footnote item = parseFootnote(session, fields);
+        greg.info.relational.entities.Footnote item = parseFootnote(session, fields);
         session.save(item);
     }
 
-    private static greg.info.entities.Footnote parseFootnote(final Session session, final String[] fields) {
-        greg.info.entities.Footnote item = new greg.info.entities.Footnote();
+    private static greg.info.relational.entities.Footnote parseFootnote(final Session session, final String[] fields) {
+        greg.info.relational.entities.Footnote item = new greg.info.relational.entities.Footnote();
 
         item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
 //        String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);

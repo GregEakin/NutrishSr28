@@ -1,4 +1,4 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
 import org.hibernate.Session;
 
@@ -27,13 +27,13 @@ public class LanguaL {
 
         String[] fields = line.split("\\^", -1);
 
-        greg.info.entities.LanguaL item = new greg.info.entities.LanguaL();
+        greg.info.relational.entities.LanguaL item = new greg.info.relational.entities.LanguaL();
 
         item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
         item.setFactor_Code(fields[1].substring(1, fields[1].length() - 1));
 
 //        FoodDescription item = session.load(FoodDescription.class, foodDescriptionId);
-//        greg.info.entities.LanguaL languaL = session.load(greg.info.entities.LanguaL.class, languaLId);
+//        greg.info.relational.entities.LanguaL languaL = session.load(greg.info.relational.entities.LanguaL.class, languaLId);
 //        item.getLanguages().add(languaL);
 
         session.save(item);

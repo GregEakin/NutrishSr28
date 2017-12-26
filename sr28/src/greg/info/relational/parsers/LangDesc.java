@@ -1,6 +1,6 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
-import greg.info.entities.FoodGroup;
+import greg.info.relational.entities.LanguaLDescription;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class FdGroup {
-    public static final String Filename = ".\\data\\FD_GROUP.txt";
+public class LangDesc {
+    public static final String Filename = ".\\data\\LANGDESC.txt";
 
     public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
@@ -24,10 +24,11 @@ public class FdGroup {
 
         String[] fields = line.split("\\^", -1);
 
-        FoodGroup item = new FoodGroup();
-        item.setFdGrp_Cd(fields[0].substring(1, fields[0].length() - 1));
-        item.setFdGrp_Desc(fields[1].substring(1, fields[1].length() - 1));
+        LanguaLDescription item = new LanguaLDescription();
+        item.setFactor_Code(fields[0].substring(1, fields[0].length() - 1));
+        item.setDescription(fields[1].substring(1, fields[1].length() - 1));
 
         session.save(item);
     }
+
 }

@@ -1,6 +1,6 @@
-package greg.info.parsers;
+package greg.info.relational.parsers;
 
-import greg.info.entities.LanguaLDescription;
+import greg.info.relational.entities.SourceCode;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class LangDesc {
-    public static final String Filename = ".\\data\\LANGDESC.txt";
+public class SrcCd {
+    public static final String Filename = ".\\data\\SRC_CD.txt";
 
     public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
@@ -21,14 +21,11 @@ public class LangDesc {
     }
 
     private static void parseLine(final Session session, final String line) {
-
         String[] fields = line.split("\\^", -1);
 
-        LanguaLDescription item = new LanguaLDescription();
-        item.setFactor_Code(fields[0].substring(1, fields[0].length() - 1));
-        item.setDescription(fields[1].substring(1, fields[1].length() - 1));
-
+        SourceCode item = new SourceCode();
+        item.setSrc_Cd(fields[0].substring(1, fields[0].length() - 1));
+        item.setSrcCd_Desc(fields[1].substring(1, fields[1].length() - 1));
         session.save(item);
     }
-
 }
