@@ -13,7 +13,7 @@ import javax.persistence.metamodel.EntityType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Main {
+public class DbLoad {
     public static void main(String[] args) throws Exception {
 
         Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
