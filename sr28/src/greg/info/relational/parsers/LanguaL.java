@@ -29,17 +29,14 @@ public class LanguaL {
 
         String[] fields = line.split("\\^", -1);
 
-        greg.info.relational.entities.LanguaL item = new greg.info.relational.entities.LanguaL();
-
         String NDB_no = fields[0].substring(1, fields[0].length() - 1);
         FoodDescription foodDescription = session.load(FoodDescription.class, NDB_no);
-        item.setFoodDescription(foodDescription);
 
         String factor_code = fields[1].substring(1, fields[1].length() - 1);
         LanguaLDescription languaLDescription = session.load(LanguaLDescription.class, factor_code);
-        item.setLanguaLDescription(languaLDescription);
 
-        session.save(item);
+        foodDescription.getLanguaLDescriptions().add(languaLDescription);
+        session.save(foodDescription);
     }
 
     public static int sqlSelectRows(Connection con) throws SQLException {

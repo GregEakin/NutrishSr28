@@ -1,17 +1,18 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "LANGDESC")
 public class LanguaLDescription {
-    //  Links to the LanguaL Factor file by the Factor_Code field
 
     private String Factor_Code;
     private String Description;
+    private Set<FoodDescription> foodDescriptionSet = new HashSet<>(0);
+
+    //  Links to the LanguaL Factor file by the Factor_Code field
 
     @Id
     @Column(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)
@@ -30,5 +31,14 @@ public class LanguaLDescription {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    @ManyToMany(mappedBy = "languaLDescriptions")
+    public Set<FoodDescription> getFoodDescriptionSet() {
+        return foodDescriptionSet;
+    }
+
+    public void setFoodDescriptionSet(Set<FoodDescription> foodDescriptionSet) {
+        this.foodDescriptionSet = foodDescriptionSet;
     }
 }

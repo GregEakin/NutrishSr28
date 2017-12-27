@@ -30,7 +30,6 @@
         <mapping class="greg.info.relational.entities.FoodDescription"/>
         <mapping class="greg.info.relational.entities.FoodGroup"/>
         <mapping class="greg.info.relational.entities.Footnote"/>
-        <mapping class="greg.info.relational.entities.LanguaL"/>
         <mapping class="greg.info.relational.entities.LanguaLDescription"/>
         <mapping class="greg.info.relational.entities.NutrientData"/>
         <mapping class="greg.info.relational.entities.NutrientDefinition"/>

@@ -24,8 +24,10 @@ public class FoodDescription {
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Weight> weightSet = new HashSet<>(0);
     private Set<Footnote> footnoteSet = new HashSet<>(0);
-    // private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
+    private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
+
     // private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
+    // private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
@@ -161,15 +163,6 @@ public class FoodDescription {
         this.CHO_Factor = CHO_Factor;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
-    public Set<Footnote> getFootnoteSet() {
-        return footnoteSet;
-    }
-
-    public void setFootnoteSet(Set<Footnote> footnoteSet) {
-        this.footnoteSet = footnoteSet;
-    }
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.foodDescription")
     public Set<NutrientData> getNutrientDataSet() {
         return nutrientDataSet;
@@ -188,23 +181,26 @@ public class FoodDescription {
         this.weightSet = weightSet;
     }
 
-//    @ManyToMany(mappedBy = "Factor_Code")
-//    //@JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
-//    public Set<LanguaLDescription> getLanguaLDescriptions() {
-//        return this.languaLDescriptions;
-//    }
-//
-//    public void setLanguaLDescriptions(Set<LanguaLDescription> languaLDescriptions) {
-//        this.languaLDescriptions = languaLDescriptions;
-//    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    public Set<Footnote> getFootnoteSet() {
+        return footnoteSet;
+    }
 
-//    @ManyToMany
-//    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
-//    public Set<NutrientDefinition> getNutrientDefinitions() {
-//        return nutrientDefinitions;
-//    }
-//
-//    public void setNutrientDefinitions(Set<NutrientDefinition> nutrients) {
-//        this.nutrientDefinitions = nutrients;
-//    }
+    public void setFootnoteSet(Set<Footnote> footnoteSet) {
+        this.footnoteSet = footnoteSet;
+    }
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "LanguaL",
+            joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)}
+    )
+    public Set<LanguaLDescription> getLanguaLDescriptions() {
+        return languaLDescriptions;
+    }
+
+    public void setLanguaLDescriptions(Set<LanguaLDescription> languaLDescriptions) {
+        this.languaLDescriptions = languaLDescriptions;
+    }
 }
