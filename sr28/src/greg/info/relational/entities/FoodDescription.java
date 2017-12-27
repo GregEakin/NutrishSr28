@@ -22,11 +22,11 @@ public class FoodDescription {
     private Double Pro_Factor;
     private Double Fat_Factor;
     private Double CHO_Factor;
-    //    private Set<LanguaL> languages = new HashSet<>(0);
-//    private Set<NutrientDefinition> nutrientDefinitions = new HashSet<>(0);
-//    private Set<Footnote> footnotes = new HashSet<>(0);
-    private Set<NutrientData> nutrientData = new HashSet<>(0);
-//    private Set<Weight> weights = new HashSet<>(0);
+    //    private Set<LanguaL> languaLSet = new HashSet<>(0);
+    //    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
+    //    private Set<Footnote> footnoteSet = new HashSet<>(0);
+    private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+    private Set<Weight> weightSet = new HashSet<>(0);
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
@@ -181,23 +181,23 @@ public class FoodDescription {
 //    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
-    public Set<NutrientData> getNutrientData() {
-        return nutrientData;
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
     }
 
-    public void setNutrientData(Set<NutrientData> nutrientData) {
-        this.nutrientData = nutrientData;
+    public void setNutrientDataSet(Set<NutrientData> nutrientData) {
+        this.nutrientDataSet = nutrientData;
     }
 
-//    @OneToMany(mappedBy = "foodDescription")
-//    public Set<Weight> getWeights() {
-//        return weights;
-//    }
-//
-//    public void setWeights(Set<Weight> weights) {
-//        this.weights = weights;
-//    }
-//
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    public Set<Weight> getWeightSet() {
+        return weightSet;
+    }
+
+    public void setWeightSet(Set<Weight> weightSet) {
+        this.weightSet = weightSet;
+    }
+
 //    @ManyToMany
 //    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
 //    public Set<LanguaL> getLanguages() {

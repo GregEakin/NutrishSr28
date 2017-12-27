@@ -30,9 +30,9 @@ public class NutrientData implements Serializable {
     private String Stat_cmt;                // Statistical comments.
     private String AddMod_Date;             // Indicates when a value was either added to the database or last modified.
     private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
-    //private Set<DataSource> dataSourceSet;
-    // private Set<Weight> weightSet;
-    // private Set<Footnote> footnoteSet;
+    //private Set<DataSource> dataSourceSet = new HashSet<>(0);
+    // private Set<Weight> weightSet = new HashSet<>(0);
+    // private Set<Footnote> footnoteSet = new HashSet<>(0);
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No

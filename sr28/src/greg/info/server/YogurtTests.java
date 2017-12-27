@@ -3,6 +3,7 @@ package greg.info.server;
 import greg.info.relational.entities.FoodDescription;
 import greg.info.relational.entities.NutrientData;
 import greg.info.relational.entities.NutrientDefinition;
+import greg.info.relational.entities.Weight;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,7 +38,7 @@ public class YogurtTests {
                     System.out.println(foodDescription.getNDB_No()
                             + ", " + foodDescription.getLong_Desc());
 
-                    Set<NutrientData> nutrientDataSet = foodDescription.getNutrientData();
+                    Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
                     for (NutrientData nutrientData : nutrientDataSet) {
                         System.out.print("    " + nutrientData.getNutr_No()
                                 + ", " + nutrientData.getNutr_Val());
@@ -46,6 +47,11 @@ public class YogurtTests {
                         System.out.println(", " + nutrientDefinition.getTagname()
                                 + ", " + nutrientDefinition.getNutrDesc()
                                 + ", " + nutrientDefinition.getUnits());
+                    }
+
+                    Set<Weight> weightSet = foodDescription.getWeightSet();
+                    for (Weight weight : weightSet) {
+                        System.out.println(weight.getAmount());
                     }
                 } catch (Exception ex) {
                     transaction.rollback();

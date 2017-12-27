@@ -1,9 +1,6 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /*
@@ -15,21 +12,21 @@ import java.io.Serializable;
 public class Weight implements Serializable {
 
     private String NDB_No;
-    // private FoodDescription foodDescription;
+    private FoodDescription foodDescription;
     private String Seq;
     private Double Amount;
     private String Msre_Desc;
     private Double Gm_Wgt;
     private Integer Num_Data_Pts;
     private Double Std_Dev;
-    // private Set<NutrientData> nutrientData;
+    // private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to Food Description file by NDB_No
     //  Links to Nutrient Data file by NDB_No
 
     // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -38,16 +35,15 @@ public class Weight implements Serializable {
         this.NDB_No = nDB_No;
     }
 
-//    @Id
-//    @ManyToOne
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-//    public FoodDescription getFoodDescription() {
-//        return foodDescription;
-//    }
-//
-//    public void setFoodDescription(FoodDescription foodDescription) {
-//        this.foodDescription = foodDescription;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NDB_No")
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
+    }
 
     // Seq A 2* N Sequence number.
     @Id
@@ -110,14 +106,13 @@ public class Weight implements Serializable {
         Std_Dev = std_Dev;
     }
 
-//    @ManyToMany
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-//    public Set<NutrientData> getNutrientData() {
-//        return nutrientData;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+//    public Set<NutrientData> getNutrientDataSet() {
+//        return nutrientDataSet;
 //    }
 //
-//    public void setNutrientData(Set<NutrientData> nutrientData) {
-//        this.nutrientData = nutrientData;
+//    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
+//        this.nutrientDataSet = nutrientDataSet;
 //    }
 
     @Override

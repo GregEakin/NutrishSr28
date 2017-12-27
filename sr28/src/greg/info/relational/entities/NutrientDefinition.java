@@ -1,6 +1,7 @@
 package greg.info.relational.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,9 +13,9 @@ public class NutrientDefinition {
     private String NutrDesc;
     private String Num_Dec;
     private Integer SR_Order;
-    private Set<NutrientData> nutrientDataSet;
-//    private Set<NutrientDefinition> nutrientDefinitionSet;
-//    private Set<FoodDescription> foodDescriptions;
+    private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+//    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
+//    private Set<FoodDescription> foodDescriptions = new HashSet<>(0);
 
     //  Links to the Nutrient Data file by Nutr_No
 

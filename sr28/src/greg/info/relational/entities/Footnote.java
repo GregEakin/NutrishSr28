@@ -15,7 +15,7 @@ public class Footnote {
     private String Nutr_No;
     //private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
     private String Footnt_Txt;                  // Footnote text.
-    //private Set<NutrientData> nutrientDataSet;
+    //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No

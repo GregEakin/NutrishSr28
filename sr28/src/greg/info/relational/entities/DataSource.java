@@ -17,7 +17,7 @@ public class DataSource {
     private String Issue_State; // Issue number for journal article; State where the sponsoring organization is located.
     private String Start_Page;  // Starting page number of article/document.
     private String End_Page;    // Ending page number of article/document.
-    //private Set<NutrientData> nutrientDataSet;
+    //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     @Id
     @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)

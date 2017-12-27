@@ -1,6 +1,7 @@
 package greg.info.relational.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -8,7 +9,7 @@ import java.util.Set;
 public class FoodGroup {
     private String FdGrp_Cd;
     private String FdGrp_Desc;
-    private Set<FoodDescription> foodDescriptionSet;
+    private Set<FoodDescription> foodDescriptionSet = new HashSet<>(0);
 
     //  Links to the Food Description file by FdGrp_Cd
 

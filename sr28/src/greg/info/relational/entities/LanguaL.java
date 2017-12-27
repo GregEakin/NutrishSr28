@@ -13,7 +13,7 @@ public class LanguaL implements Serializable {
     private String NDB_No;
     private String Factor_Code;
     // private String Description;
-    // private Set<FoodDescription> foodDescriptionSet;
+    // private Set<FoodDescription> foodDescriptionSet = new HashSet<>(0);
 
     //  Links to the Food Description file by the NDB_No field
     //  Links to LanguaL Factors Description file by the Factor_Code field
