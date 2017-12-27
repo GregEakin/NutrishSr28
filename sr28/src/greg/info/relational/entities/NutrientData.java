@@ -10,11 +10,11 @@ public class NutrientData {
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
     private Integer Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
-    private String Src_Cd;
+    // private String Src_Cd;
     private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
-    private String Deriv_Cd;
+    // private String Deriv_Cd;
     private DataDerivation dataDerivation;  // Deriv_Cd - Data Derivation Code giving specific information on how the value is determined.  This field is populated only for items added or updated starting with SR14.  This field may not be populated if older records were used in the calculation of the mean value.
-    private String Ref_NDB_No;
+    // private String Ref_NDB_No;
     private FoodDescription refFoodDescription;        // The item used to calculate a missing value. Populated only for items added or updated starting with SR14.
     private String Add_Nutr_Mark;           // Indicates a vitamin or mineral added for fortification or enrichment. This field is populated for ready-toeat breakfast cereals and many brand-name hot cereals in food group 08.
     private Integer Num_Studies;            // Number of studies.
@@ -77,17 +77,17 @@ public class NutrientData {
         Std_Error = std_Error;
     }
 
-    @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false, insertable = false, updatable = false)
-    public String getSrc_Cd() {
-        return Src_Cd;
-    }
-
-    public void setSrc_Cd(String src_Cd) {
-        Src_Cd = src_Cd;
-    }
+//    @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false, insertable = false, updatable = false)
+//    public String getSrc_Cd() {
+//        return Src_Cd;
+//    }
+//
+//    public void setSrc_Cd(String src_Cd) {
+//        Src_Cd = src_Cd;
+//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Src_Cd")
+    @JoinColumn(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
     public SourceCode getSourceCode() {
         return sourceCode;
     }
@@ -96,17 +96,17 @@ public class NutrientData {
         this.sourceCode = sourceCode;
     }
 
-    @Column(name = "Deriv_Cd", columnDefinition = "character(4)", insertable = false, updatable = false)
-    public String getDeriv_Cd() {
-        return Deriv_Cd;
-    }
-
-    public void setDeriv_Cd(String deriv_Cd) {
-        Deriv_Cd = deriv_Cd;
-    }
+//    @Column(name = "Deriv_Cd", columnDefinition = "character(4)", insertable = false, updatable = false)
+//    public String getDeriv_Cd() {
+//        return Deriv_Cd;
+//    }
+//
+//    public void setDeriv_Cd(String deriv_Cd) {
+//        Deriv_Cd = deriv_Cd;
+//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Deriv_Cd")
+    @JoinColumn(name = "Deriv_Cd", columnDefinition = "character(4)")
     public DataDerivation getDataDerivation() {
         return dataDerivation;
     }
@@ -115,17 +115,17 @@ public class NutrientData {
         this.dataDerivation = dataDerivation;
     }
 
-    @Column(name = "Ref_NDB_No", columnDefinition = "character(5)", insertable = false, updatable = false)
-    public String getRef_NDB_No() {
-        return Ref_NDB_No;
-    }
-
-    public void setRef_NDB_No(String ref_NDB_No) {
-        Ref_NDB_No = ref_NDB_No;
-    }
+//    @Column(name = "Ref_NDB_No", columnDefinition = "character(5)", insertable = false, updatable = false)
+//    public String getRef_NDB_No() {
+//        return Ref_NDB_No;
+//    }
+//
+//    public void setRef_NDB_No(String ref_NDB_No) {
+//        Ref_NDB_No = ref_NDB_No;
+//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Ref_NDB_No")
+    @JoinColumn(name = "Ref_NDB_No", columnDefinition = "character(5)")
     public FoodDescription getRefFoodDescription() {
         return refFoodDescription;
     }

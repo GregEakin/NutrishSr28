@@ -95,7 +95,7 @@ public class NutrientDefinition {
         this.footnoteSet = footnoteSet;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
     public Set<DataSourceLink> getDataSourceLinkSet() {
         return dataSourceLinkSet;
     }

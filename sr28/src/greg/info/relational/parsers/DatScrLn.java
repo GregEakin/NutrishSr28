@@ -34,8 +34,7 @@ public class DatScrLn {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
 
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
-        item.setNutrientData(nutrientData);
+        item.setNutrientDataKey(nutrientDataKey);
 
         String DataSrc_ID = fields[2].substring(1, fields[2].length() - 1);
         DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
