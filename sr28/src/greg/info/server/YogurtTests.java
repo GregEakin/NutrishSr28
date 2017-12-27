@@ -31,7 +31,7 @@ public class YogurtTests {
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
                 try {
-                    FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+                    FoodDescription foodDescription = session.load(FoodDescription.class, "02068");
                     System.out.println(foodDescription.getNDB_No()
                             + ", " + foodDescription.getLong_Desc());
 
@@ -47,16 +47,22 @@ public class YogurtTests {
 
                         SourceCode sourceCode = nutrientData.getSourceCode();
                         System.out.println("   Source: " + sourceCode.getSrcCd_Desc());
+
+                        DataDerivation dataDerivationSet = nutrientData.getDataDerivation();
+                        System.out.println("   DataDerivation: " + dataDerivationSet.getDeriv_Desc());
                     }
 
                     Set<Weight> weightSet = foodDescription.getWeightSet();
                     for (Weight weight : weightSet) {
-                        System.out.println("    Weight: " + weight.getAmount());
+                        System.out.println("    Weight: " + weight.getAmount()
+                                + " " + weight.getGm_Wgt()
+                                + " " + weight.getMsre_Desc());
                     }
 
                     Set<Footnote> footnoteSet = foodDescription.getFootnoteSet();
                     for (Footnote footnote : footnoteSet) {
-                        System.out.println("    Footnote: " + footnote.getId());
+                        System.out.println("    Footnote: " + footnote.getId()
+                                + " " + footnote.getFootnt_Txt());
                     }
                 } catch (Exception ex) {
                     transaction.rollback();

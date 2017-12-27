@@ -1,9 +1,6 @@
 package greg.info.relational.parsers;
 
-import greg.info.relational.entities.FoodDescription;
-import greg.info.relational.entities.NutrientData;
-import greg.info.relational.entities.NutrientDefinition;
-import greg.info.relational.entities.SourceCode;
+import greg.info.relational.entities.*;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -28,12 +25,10 @@ public class NutData {
 
         NutrientData item = new NutrientData();
 
-        // item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
         String NDB_No = fields[0].substring(1, fields[0].length() - 1);
         FoodDescription foodDescription = session.load(FoodDescription.class, NDB_No);
         item.setFoodDescription(foodDescription);
 
-        //item.setNutr_No(fields[1].substring(1, fields[1].length() - 1));
         String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
         item.setNutrientDefinition(nutrientDefinition);
@@ -44,24 +39,21 @@ public class NutData {
 
         if (fields[4].length() > 0) item.setStd_Error(Double.parseDouble(fields[4]));
 
-        //item.setSrc_Cd(fields[5].substring(1, fields[5].length() - 1));
         String Src_Cd = fields[5].substring(1, fields[5].length() - 1);
         SourceCode sourceCode = session.load(SourceCode.class, Src_Cd);
         item.setSourceCode(sourceCode);
 
-        if (fields[6].length() > 2) item.setDeriv_Cd(fields[6].substring(1, fields[6].length() - 1));
-//        if (fields[6].length() > 2) {
-//            String Deriv_Cd = fields[6].substring(1, fields[6].length() - 1);
-//            DataDerivation dataDerivation = session.load(DataDerivation.class, Deriv_Cd);
-//            item.setDataDerivation(dataDerivation);
-//        }
+        if (fields[6].length() > 2) {
+            String Deriv_Cd = fields[6].substring(1, fields[6].length() - 1);
+            DataDerivation dataDerivation = session.load(DataDerivation.class, Deriv_Cd);
+            item.setDataDerivation(dataDerivation);
+        }
 
-        if (fields[7].length() > 2) item.setRef_NDB_No(fields[7].substring(1, fields[7].length() - 1));
-//        if (fields[7].length() > 2) {
-//            String Ref_NDB_No = fields[7].substring(1, fields[7].length() - 1);
-//            FoodDescription foodDescription1 = session.load(FoodDescription.class, Ref_NDB_No);
-//            item.setRefFoodDescription(foodDescription1);
-//        }
+        if (fields[7].length() > 2) {
+            String Ref_NDB_No = fields[7].substring(1, fields[7].length() - 1);
+            FoodDescription foodDescription1 = session.load(FoodDescription.class, Ref_NDB_No);
+            item.setRefFoodDescription(foodDescription1);
+        }
 
         if (fields[8].length() > 2) item.setAdd_Nutr_Mark(fields[8].substring(1, fields[8].length() - 1));
         if (fields[9].length() > 0) item.setNum_Studies(Integer.parseInt(fields[9]));
@@ -74,7 +66,6 @@ public class NutData {
         if (fields[16].length() > 0) item.setAddMod_Date(fields[16]);
         if (fields[17].length() > 0) item.setCC(fields[17]);
 
-        // System.out.println(foodDescription.getNDB_No() + ", " + nutrientDefinition.getNutr_No());
         session.save(item);
     }
 }

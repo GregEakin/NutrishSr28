@@ -1,6 +1,8 @@
 package greg.info.relational.parsers;
 
+import greg.info.relational.entities.DataSource;
 import greg.info.relational.entities.DataSourceLink;
+import greg.info.relational.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -25,24 +27,19 @@ public class DatScrLn {
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
 
-        String NDB_No = fields[0].substring(1, fields[0].length() - 1);
-        String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
-        String DataSrc_ID = fields[2].substring(1, fields[2].length() - 1);
-
         DataSourceLink item = new DataSourceLink();
 
+        String NDB_No = fields[0].substring(1, fields[0].length() - 1);
         item.setNDB_No(NDB_No);
-        item.setNutr_No(Nutr_No);
-        item.setDataSrc_ID(DataSrc_ID);
-        session.save(item);
 
-//        DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
-//        NutrientData.NutrientDataKey nutrientDataKey = new NutrientData.NutrientDataKey(NDB_No, Nutr_No);
-//        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
-//
-//        dataSource.getNutrientDataSet().add(nutrientData);
-//        nutrientData.getDataSourceSet().add(dataSource);
-//        session.save(dataSource);
-//        session.save(nutrientData);
+        String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
+        item.setNutrientDefinition(nutrientDefinition);
+
+        String DataSrc_ID = fields[2].substring(1, fields[2].length() - 1);
+        DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
+        item.setDataSource(dataSource);
+
+        session.save(item);
     }
 }

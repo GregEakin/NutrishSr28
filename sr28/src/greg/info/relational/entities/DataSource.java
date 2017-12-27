@@ -1,9 +1,8 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "DATA_SRC")
@@ -17,7 +16,11 @@ public class DataSource {
     private String Issue_State; // Issue number for journal article; State where the sponsoring organization is located.
     private String Start_Page;  // Starting page number of article/document.
     private String End_Page;    // Ending page number of article/document.
+
+    private Set<DataSourceLink> dataSourceLinkSet = new HashSet<>(0);
     //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+
+    //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
 
     @Id
     @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)
@@ -101,7 +104,15 @@ public class DataSource {
         End_Page = end_Page;
     }
 
-//    //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dataSource")
+    public Set<DataSourceLink> getDataSourceLinkSet() {
+        return dataSourceLinkSet;
+    }
+
+    public void setDataSourceLinkSet(Set<DataSourceLink> dataSourceLinkSet) {
+        this.dataSourceLinkSet = dataSourceLinkSet;
+    }
+
 //    @ManyToMany
 //    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "DataSrc_ID")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")})
 //    public Set<NutrientData> getNutrientDataSet() {

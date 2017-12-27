@@ -22,11 +22,11 @@ public class FoodDescription {
     private Double Pro_Factor;
     private Double Fat_Factor;
     private Double CHO_Factor;
-    //    private Set<LanguaL> languaLSet = new HashSet<>(0);
-    //    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
-    private Set<Footnote> footnoteSet = new HashSet<>(0);
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Weight> weightSet = new HashSet<>(0);
+    private Set<Footnote> footnoteSet = new HashSet<>(0);
+    // private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
+    // private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
@@ -198,16 +198,16 @@ public class FoodDescription {
         this.weightSet = weightSet;
     }
 
-//    @ManyToMany
-//    @JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
-//    public Set<LanguaL> getLanguages() {
-//        return this.languages;
+//    @ManyToMany(mappedBy = "Factor_Code")
+//    //@JoinTable(name = "LANGUAL", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Factor_Code")})
+//    public Set<LanguaLDescription> getLanguaLDescriptions() {
+//        return this.languaLDescriptions;
 //    }
 //
-//    public void setLanguages(Set<LanguaL> courses) {
-//        this.languages = courses;
+//    public void setLanguaLDescriptions(Set<LanguaLDescription> languaLDescriptions) {
+//        this.languaLDescriptions = languaLDescriptions;
 //    }
-//
+
 //    @ManyToMany
 //    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No")})
 //    public Set<NutrientDefinition> getNutrientDefinitions() {

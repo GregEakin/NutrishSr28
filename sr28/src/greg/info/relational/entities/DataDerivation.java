@@ -1,16 +1,15 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "DERIV_CD")
 public class DataDerivation {
     private String Deriv_Cd;
     private String Deriv_Desc;
-    // private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+    private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to the Nutrient Data file by Deriv_Cd
 
@@ -33,13 +32,12 @@ public class DataDerivation {
         Deriv_Desc = deriv_Desc;
     }
 
-//    @OneToMany
-//    @JoinColumn(name = "Deriv_Cd", columnDefinition = "character(4)")
-//    public Set<NutrientData> getNutrientDataSet() {
-//        return nutrientDataSet;
-//    }
-//
-//    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
-//        this.nutrientDataSet = nutrientDataSet;
-//    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dataDerivation")
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
+    }
+
+    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
+        this.nutrientDataSet = nutrientDataSet;
+    }
 }
