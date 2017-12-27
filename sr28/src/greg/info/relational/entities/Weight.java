@@ -85,7 +85,7 @@ public class Weight implements Serializable {
         Std_Dev = std_Dev;
     }
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
 //    public Set<NutrientData> getNutrientDataSet() {
 //        return nutrientDataSet;
 //    }

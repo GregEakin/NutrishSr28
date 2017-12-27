@@ -1,6 +1,7 @@
 package greg.info;
 
-import greg.info.relational.parsers.*;
+import greg.info.relational.parsers.Footnote;
+import greg.info.relational.parsers.LanguaL;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,18 +24,18 @@ public class DbLoad {
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
                 try {
-                    FdGroup.parseFile(session);
-                    SrcCd.parseFile(session);
-                    DerivCD.parseFile(session);
-                    LangDesc.parseFile(session);
-                    DataSrc.parseFile(session);
-
-                    NutrDef.parseFile(session);
-                    FoodDes.parseFile(session);
-                    LanguaL.parseFile(session);
-                    Weight.parseFile(session);
-                    DatScrLn.parseFile(session);
-                    NutData.parseFile(session);
+//                    FdGroup.parseFile(session);
+//                    SrcCd.parseFile(session);
+//                    DerivCD.parseFile(session);
+//                    LangDesc.parseFile(session);
+//                    DataSrc.parseFile(session);
+//
+//                    NutrDef.parseFile(session);
+//                    FoodDes.parseFile(session);
+//                    LanguaL.parseFile(session);
+//                    Weight.parseFile(session);
+//                    DatScrLn.parseFile(session);
+//                    NutData.parseFile(session);
                     Footnote.parseFile(session);
 
                     transaction.commit();

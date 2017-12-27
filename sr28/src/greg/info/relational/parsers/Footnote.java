@@ -28,8 +28,19 @@ public class Footnote {
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
         greg.info.relational.entities.Footnote item = parseFootnote(session, fields);
-        session.save(item);
+
+        if (item != null)
+            session.save(item);
     }
+
+//    private static final NutrientDefinition singleton = new NutrientDefinition();
+//     static  {
+//         singleton.setNutr_No("");
+//         singleton.setUnits("");
+//         singleton.setNutrDesc("");
+//         singleton.setNum_Dec("");
+//         singleton.setSR_Order(0);
+//    }
 
     private static greg.info.relational.entities.Footnote parseFootnote(final Session session, final String[] fields) {
         greg.info.relational.entities.Footnote item = new greg.info.relational.entities.Footnote();
@@ -42,9 +53,11 @@ public class Footnote {
 
         item.setFootnt_Typ(fields[2].substring(1, fields[2].length() - 1));
 
-        String nutr_no = fields[3].substring(1, fields[3].length() - 1);
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, nutr_no);
-        item.setNutrientDefinition(nutrientDefinition);
+        if (fields[3].length() > 2) {
+            String Nutr_No = fields[3].substring(1, fields[3].length() - 1);
+            NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
+            item.setNutrientDefinition(nutrientDefinition);
+        }
 
         item.setFootnt_Txt(fields[4].substring(1, fields[4].length() - 1));
 

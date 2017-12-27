@@ -16,7 +16,6 @@ public class NutrientDefinition {
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Footnote> footnoteSet = new HashSet<>(0);
     private Set<DataSourceLink> dataSourceLinkSet = new HashSet<>(0);
-//    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
 //    private Set<FoodDescription> foodDescriptions = new HashSet<>(0);
 
     //  Links to the Nutrient Data file by Nutr_No
@@ -104,16 +103,6 @@ public class NutrientDefinition {
         this.dataSourceLinkSet = dataSourceLinkSet;
     }
 
-//    @OneToMany
-//    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
-//    public Set<NutrientDefinition> getNutrientDefinitionSet() {
-//        return nutrientDefinitionSet;
-//    }
-//
-//    public void setNutrientDefinitionSet(Set<NutrientDefinition> nutrientDefinitionSet) {
-//        this.nutrientDefinitionSet = nutrientDefinitionSet;
-//    }
-//
 //    @ManyToMany
 //    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
 //    public Set<FoodDescription> getFoodDescriptions() {

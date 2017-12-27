@@ -8,8 +8,7 @@ import java.util.Set;
 @Table(name = "FOOD_DES")
 public class FoodDescription {
     private String NDB_No;
-    private String FdGrp_Cd;
-    private FoodGroup foodGroup;    // FdGrp_Cd
+    private FoodGroup foodGroup;
     private String Long_Desc;
     private String Shrt_Desc;
     private String ComName;
@@ -44,17 +43,8 @@ public class FoodDescription {
         this.NDB_No = nDB_No;
     }
 
-    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false, insertable = false, updatable = false)
-    public String getFdGrp_Cd() {
-        return FdGrp_Cd;
-    }
-
-    public void setFdGrp_Cd(String fdGrp_Cd) {
-        FdGrp_Cd = fdGrp_Cd;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FdGrp_Cd")
+    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
     public FoodGroup getFoodGroup() {
         return foodGroup;
     }

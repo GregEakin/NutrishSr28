@@ -53,7 +53,7 @@ public class NutData {
         if (fields[7].length() > 2) {
             String Ref_NDB_No = fields[7].substring(1, fields[7].length() - 1);
             FoodDescription foodDescription1 = session.load(FoodDescription.class, Ref_NDB_No);
-            item.setRefFoodDescription(foodDescription1);
+            item.setFoodDescription(foodDescription1);
         }
 
         if (fields[8].length() > 2) item.setAdd_Nutr_Mark(fields[8].substring(1, fields[8].length() - 1));

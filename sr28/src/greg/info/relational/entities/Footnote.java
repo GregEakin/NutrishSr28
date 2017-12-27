@@ -6,16 +6,12 @@ import javax.persistence.*;
 @Table(name = "FOOTNOTE")
 public class Footnote {
 
-    private Integer Id;
-
-    private String NDB_No;
-    private FoodDescription foodDescription;    // 5-digit Nutrient Databank number that uniquely identifies a food item.
-    private String Footnt_No;                   // Sequence number.
+    private int id;
+    private FoodDescription foodDescription;        // The food item
+    private String Footnt_No;                       // Sequence number.
     private String Footnt_Typ;                  // Type of footnote:
-    private String Nutr_No;
-    private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
+    private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
     private String Footnt_Txt;                  // Footnote text.
-    //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -23,25 +19,16 @@ public class Footnote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getId() {
-        return Id;
+    public int getId() {
+        return id;
     }
 
-    public void setId(Integer id) {
-        this.Id = id;
-    }
-
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
-    public String getNDB_No() {
-        return NDB_No;
-    }
-
-    public void setNDB_No(String nDB_No) {
-        this.NDB_No = nDB_No;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No")
+    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
     public FoodDescription getFoodDescription() {
         return foodDescription;
     }
@@ -68,18 +55,8 @@ public class Footnote {
         Footnt_Typ = footnt_Typ;
     }
 
-    // NutrientDefinition
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", insertable = false, updatable = false)
-    public String getNutr_No() {
-        return Nutr_No;
-    }
-
-    public void setNutr_No(String nutr_No) {
-        Nutr_No = nutr_No;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Nutr_No")
+    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
     public NutrientDefinition getNutrientDefinition() {
         return nutrientDefinition;
     }
@@ -96,17 +73,4 @@ public class Footnote {
     public void setFootnt_Txt(String footnt_Txt) {
         Footnt_Txt = footnt_Txt;
     }
-
-//    @OneToMany
-//    @JoinColumns({
-//            @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false),
-//            @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
-//    })
-//    public Set<NutrientData> getNutrientDataSet() {
-//        return nutrientDataSet;
-//    }
-//
-//    public void setNutrientDataSet(Set<NutrientData> nutrients) {
-//        this.nutrientDataSet = nutrients;
-//    }
 }

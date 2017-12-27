@@ -49,8 +49,7 @@ public class YogurtTests {
 
                         Set<Footnote> footnoteSet = nutrientDefinition.getFootnoteSet();
                         for (Footnote footnote : footnoteSet) {
-                            System.out.println("  Footnote: " + footnote.getId()
-                                    + " " + footnote.getFootnt_Txt());
+                            System.out.println("  Footnote: " + footnote.getFootnt_Txt());
                         }
 
                         SourceCode sourceCode = nutrientData.getSourceCode();
@@ -69,8 +68,7 @@ public class YogurtTests {
 
                     Set<Footnote> footnoteSet = foodDescription.getFootnoteSet();
                     for (Footnote footnote : footnoteSet) {
-                        System.out.println("    Footnote: " + footnote.getId()
-                                + " " + footnote.getFootnt_Txt());
+                        System.out.println("    Footnote: " + footnote.getFootnt_Txt());
                     }
                 } catch (Exception ex) {
                     transaction.rollback();
