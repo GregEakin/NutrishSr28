@@ -26,9 +26,6 @@ public class FoodDescription {
     private Set<Footnote> footnoteSet = new HashSet<>(0);
     private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
 
-    // private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
-    // private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
-
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
     //  Links to the Weight file by the NDB_No field

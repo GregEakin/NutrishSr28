@@ -16,9 +16,7 @@ public class DataSource {
     private String Issue_State; // Issue number for journal article; State where the sponsoring organization is located.
     private String Start_Page;  // Starting page number of article/document.
     private String End_Page;    // Ending page number of article/document.
-
-    private Set<DataSourceLink> dataSourceLinkSet = new HashSet<>(0);
-    //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+    private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
 
@@ -104,22 +102,12 @@ public class DataSource {
         End_Page = end_Page;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dataSource")
-    public Set<DataSourceLink> getDataSourceLinkSet() {
-        return dataSourceLinkSet;
+    @ManyToMany(mappedBy = "dataSourceSet")
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
     }
 
-    public void setDataSourceLinkSet(Set<DataSourceLink> dataSourceLinkSet) {
-        this.dataSourceLinkSet = dataSourceLinkSet;
+    public void setNutrientDataSet(Set<NutrientData> nutrients) {
+        this.nutrientDataSet = nutrients;
     }
-
-//    @ManyToMany
-//    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "DataSrc_ID")}, inverseJoinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")})
-//    public Set<NutrientData> getNutrientDataSet() {
-//        return nutrientDataSet;
-//    }
-//
-//    public void setNutrientDataSet(Set<NutrientData> nutrients) {
-//        this.nutrientDataSet = nutrients;
-//    }
 }

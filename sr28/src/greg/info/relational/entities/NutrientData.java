@@ -1,6 +1,8 @@
 package greg.info.relational.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "NUT_DATA")
@@ -23,8 +25,7 @@ public class NutrientData {
     private String Stat_cmt;                // Statistical comments.
     private String AddMod_Date;             // Indicates when a value was either added to the database or last modified.
     private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
-    // private Set<DataSourceLink> dataSourceLinkSet = new HashSet<>(0);
-    // private Set<DataSource> dataSourceSet = new HashSet<>(0);
+    private Set<DataSource> dataSourceSet = new HashSet<>(0);
     // private Set<Weight> weightSet = new HashSet<>(0);
     // private Set<Footnote> footnoteSet = new HashSet<>(0);
 
@@ -194,24 +195,19 @@ public class NutrientData {
         this.CC = CC;
     }
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "")
-//    public Set<DataSourceLink> getDataSourceLinkSet() {
-//        return dataSourceLinkSet;
-//    }
-//
-//    public void setDataSourceLinkSet(Set<DataSourceLink> dataSourceLinkSet) {
-//        this.dataSourceLinkSet = dataSourceLinkSet;
-//    }
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "DATSRCLN",
+            joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false), @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)}
+    )
+    public Set<DataSource> getDataSourceSet() {
+        return dataSourceSet;
+    }
 
-//    @ManyToMany
-//    @JoinTable(name = "DATSRCLN", joinColumns = {@JoinColumn(name = "NDB_No"), @JoinColumn(name = "Nutr_No")}, inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID")})
-//    public Set<DataSource> getDataSourceSet() {
-//        return dataSourceSet;
-//    }
-//
-//    public void setDataSourceSet(Set<DataSource> dataSources) {
-//        this.dataSourceSet = dataSources;
-//    }
+    public void setDataSourceSet(Set<DataSource> dataSources) {
+        this.dataSourceSet = dataSources;
+    }
 
 //    @ManyToMany
 //    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)

@@ -26,7 +26,6 @@
         <mapping class="greg.info.flatfile.entities.Abbreviations"/>
         <mapping class="greg.info.relational.entities.DataDerivation"/>
         <mapping class="greg.info.relational.entities.DataSource"/>
-        <mapping class="greg.info.relational.entities.DataSourceLink"/>
         <mapping class="greg.info.relational.entities.FoodDescription"/>
         <mapping class="greg.info.relational.entities.FoodGroup"/>
         <mapping class="greg.info.relational.entities.Footnote"/>
