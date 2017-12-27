@@ -15,7 +15,6 @@ public class NutrientDefinition {
     private Integer SR_Order;
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Footnote> footnoteSet = new HashSet<>(0);
-//    private Set<FoodDescription> foodDescriptions = new HashSet<>(0);
 
     //  Links to the Nutrient Data file by Nutr_No
 
@@ -92,14 +91,4 @@ public class NutrientDefinition {
     public void setFootnoteSet(Set<Footnote> footnoteSet) {
         this.footnoteSet = footnoteSet;
     }
-
-//    @ManyToMany
-//    @JoinTable(name = "Nut_Data", joinColumns = {@JoinColumn(name = "NDB_No")}, inverseJoinColumns = {@JoinColumn(name = "Nutr_No")})
-//    public Set<FoodDescription> getFoodDescriptions() {
-//        return foodDescriptions;
-//    }
-//
-//    public void setFoodDescriptions(Set<FoodDescription> nutrients) {
-//        this.foodDescriptions = nutrients;
-//    }
 }

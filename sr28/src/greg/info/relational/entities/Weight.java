@@ -20,7 +20,6 @@ public class Weight implements Serializable {
     private Double Gm_Wgt;
     private Integer Num_Data_Pts;
     private Double Std_Dev;
-    // private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
     //  Links to Food Description file by NDB_No
     //  Links to Nutrient Data file by NDB_No
@@ -84,13 +83,4 @@ public class Weight implements Serializable {
     public void setStd_Dev(Double std_Dev) {
         Std_Dev = std_Dev;
     }
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
-//    public Set<NutrientData> getNutrientDataSet() {
-//        return nutrientDataSet;
-//    }
-//
-//    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
-//        this.nutrientDataSet = nutrientDataSet;
-//    }
 }
