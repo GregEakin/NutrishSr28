@@ -189,7 +189,7 @@ public class FoodDescription {
         this.nutrientDataSet = nutrientData;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weightKey.foodDescription")
     public Set<Weight> getWeightSet() {
         return weightSet;
     }

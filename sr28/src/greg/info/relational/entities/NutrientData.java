@@ -1,11 +1,10 @@
 package greg.info.relational.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "NUT_DATA")
-public class NutrientData implements Serializable {
+public class NutrientData {
 
     private NutrientDataKey nutrientDataKey;
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
@@ -263,24 +262,4 @@ public class NutrientData implements Serializable {
 //    public void setFootnoteSet(Set<Footnote> footnoteSet) {
 //        this.footnoteSet = footnoteSet;
 //    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        NutrientData that = (NutrientData) o;
-
-        if (nutrientDataKey != null ? !nutrientDataKey.equals(that.nutrientDataKey) : that.nutrientDataKey != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        result = (nutrientDataKey != null ? nutrientDataKey.hashCode() : 0);
-        return result;
-    }
 }

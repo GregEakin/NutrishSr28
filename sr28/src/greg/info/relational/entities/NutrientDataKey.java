@@ -9,8 +9,6 @@ import java.io.Serializable;
 @Embeddable
 public class NutrientDataKey implements Serializable {
 
-    //    private String NDB_No;
-//    private String Nutr_No;
     private FoodDescription foodDescription;        // The food item
     private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
 
@@ -22,27 +20,8 @@ public class NutrientDataKey implements Serializable {
         this.nutrientDefinition = nutrientDefinition;
     }
 
-//    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
-//    public String getNDB_No() {
-//        return NDB_No;
-//    }
-//
-//    public void setNDB_No(String nDB_No) {
-//        this.NDB_No = nDB_No;
-//    }
-//
-//    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, insertable = false, updatable = false)
-//    public String getNutr_No() {
-//        return Nutr_No;
-//    }
-//
-//    public void setNutr_No(String nutr_No) {
-//        Nutr_No = nutr_No;
-//    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-    //@JoinColumn(name = "NDB_No")
     public FoodDescription getFoodDescription() {
         return foodDescription;
     }
@@ -53,7 +32,6 @@ public class NutrientDataKey implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
-    //@JoinColumn(name = "Nutr_No")
     public NutrientDefinition getNutrientDefinition() {
         return nutrientDefinition;
     }

@@ -1,6 +1,9 @@
 package greg.info.relational.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /*
@@ -11,9 +14,7 @@ import java.io.Serializable;
 @Table(name = "WEIGHT")
 public class Weight implements Serializable {
 
-    private String NDB_No;
-    private FoodDescription foodDescription;
-    private String Seq;
+    private WeightKey weightKey;
     private Double Amount;
     private String Msre_Desc;
     private Double Gm_Wgt;
@@ -24,37 +25,15 @@ public class Weight implements Serializable {
     //  Links to Food Description file by NDB_No
     //  Links to Nutrient Data file by NDB_No
 
-    // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
-    @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
-    public String getNDB_No() {
-        return NDB_No;
+    @EmbeddedId
+    public WeightKey getWeightKey() {
+        return weightKey;
     }
 
-    public void setNDB_No(String nDB_No) {
-        this.NDB_No = nDB_No;
+    public void setWeightKey(WeightKey weightKey) {
+        this.weightKey = weightKey;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No")
-    public FoodDescription getFoodDescription() {
-        return foodDescription;
-    }
-
-    public void setFoodDescription(FoodDescription foodDescription) {
-        this.foodDescription = foodDescription;
-    }
-
-    // Seq A 2* N Sequence number.
-    @Id
-    @Column(name = "Seq", columnDefinition = "character(2)", nullable = false)
-    public String getSeq() {
-        return Seq;
-    }
-
-    public void setSeq(String seq) {
-        Seq = seq;
-    }
 
     // Amount N 5.3 N Unit modifier (for example, 1 in “1 cup”).
     @Column(name = "Amount", columnDefinition = "float", nullable = false)
@@ -114,27 +93,4 @@ public class Weight implements Serializable {
 //    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
 //        this.nutrientDataSet = nutrientDataSet;
 //    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Weight that = (Weight) o;
-
-        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null)
-            return false;
-        if (Seq != null ? !Seq.equals(that.Seq) : that.Seq != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        result = (NDB_No != null ? NDB_No.hashCode() : 0);
-        result = 31 * result + (Seq != null ? Seq.hashCode() : 0);
-        return result;
-    }
 }
