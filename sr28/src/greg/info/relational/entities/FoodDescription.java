@@ -24,7 +24,7 @@ public class FoodDescription {
     private Double CHO_Factor;
     //    private Set<LanguaL> languaLSet = new HashSet<>(0);
     //    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
-    //    private Set<Footnote> footnoteSet = new HashSet<>(0);
+    private Set<Footnote> footnoteSet = new HashSet<>(0);
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Weight> weightSet = new HashSet<>(0);
 
@@ -171,14 +171,14 @@ public class FoodDescription {
         this.CHO_Factor = CHO_Factor;
     }
 
-//    @OneToMany(mappedBy = "foodDescription")
-//    public Set<Footnote> getFootnotes() {
-//        return footnotes;
-//    }
-//
-//    public void setFootnotes(Set<Footnote> footnotes) {
-//        this.footnotes = footnotes;
-//    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    public Set<Footnote> getFootnoteSet() {
+        return footnoteSet;
+    }
+
+    public void setFootnoteSet(Set<Footnote> footnoteSet) {
+        this.footnoteSet = footnoteSet;
+    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
     public Set<NutrientData> getNutrientDataSet() {

@@ -9,7 +9,7 @@ public class Footnote {
     private Integer Id;
 
     private String NDB_No;
-    //private FoodDescription foodDescription;    // 5-digit Nutrient Databank number that uniquely identifies a food item.
+    private FoodDescription foodDescription;    // 5-digit Nutrient Databank number that uniquely identifies a food item.
     private String Footnt_No;                   // Sequence number.
     private String Footnt_Typ;                  // Type of footnote:
     private String Nutr_No;
@@ -31,7 +31,7 @@ public class Footnote {
         this.Id = id;
     }
 
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -40,15 +40,15 @@ public class Footnote {
         this.NDB_No = nDB_No;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
-//    public FoodDescription getFoodDescription() {
-//        return foodDescription;
-//    }
-//
-//    public void setFoodDescription(FoodDescription foodDescription) {
-//        this.foodDescription = foodDescription;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NDB_No")
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
+    }
 
     @Column(name = "Footnt_No", columnDefinition = "character(4)", nullable = false)
     public String getFootnt_No() {

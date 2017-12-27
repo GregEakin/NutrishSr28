@@ -1,9 +1,6 @@
 package greg.info.server;
 
-import greg.info.relational.entities.FoodDescription;
-import greg.info.relational.entities.NutrientData;
-import greg.info.relational.entities.NutrientDefinition;
-import greg.info.relational.entities.Weight;
+import greg.info.relational.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,7 +37,7 @@ public class YogurtTests {
 
                     Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
                     for (NutrientData nutrientData : nutrientDataSet) {
-                        System.out.print("    " + nutrientData.getNutr_No()
+                        System.out.print("    NutData: " + nutrientData.getNutr_No()
                                 + ", " + nutrientData.getNutr_Val());
 
                         NutrientDefinition nutrientDefinition = nutrientData.getNutrientDefinition();
@@ -51,7 +48,12 @@ public class YogurtTests {
 
                     Set<Weight> weightSet = foodDescription.getWeightSet();
                     for (Weight weight : weightSet) {
-                        System.out.println(weight.getAmount());
+                        System.out.println("    Weight: " + weight.getAmount());
+                    }
+
+                    Set<Footnote> footnoteSet = foodDescription.getFootnoteSet();
+                    for (Footnote footnote : footnoteSet) {
+                        System.out.println("    Footnote: " + footnote.getId());
                     }
                 } catch (Exception ex) {
                     transaction.rollback();
