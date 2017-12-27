@@ -44,6 +44,9 @@ public class YogurtTests {
                         System.out.println(", " + nutrientDefinition.getTagname()
                                 + ", " + nutrientDefinition.getNutrDesc()
                                 + ", " + nutrientDefinition.getUnits());
+
+                        SourceCode sourceCode = nutrientData.getSourceCode();
+                        System.out.println("   Source: " + sourceCode.getSrcCd_Desc());
                     }
 
                     Set<Weight> weightSet = foodDescription.getWeightSet();

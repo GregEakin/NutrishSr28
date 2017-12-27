@@ -17,7 +17,7 @@ public class NutrientData implements Serializable {
     private String Src_Cd;
     private String Deriv_Cd;
     private String Ref_NDB_No;
-    //private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
+    private SourceCode sourceCode;          // Src_Cd - Code indicating type of data.
     //private DataDerivation dataDerivation;  // Deriv_Cd - Data Derivation Code giving specific information on how the value is determined.  This field is populated only for items added or updated starting with SR14.  This field may not be populated if older records were used in the calculation of the mean value.
     //private FoodDescription refFoodDescription;        // The item used to calculate a missing value. Populated only for items added or updated starting with SR14.
     private String Add_Nutr_Mark;           // Indicates a vitamin or mineral added for fortification or enrichment. This field is populated for ready-toeat breakfast cereals and many brand-name hot cereals in food group 08.
@@ -111,8 +111,7 @@ public class NutrientData implements Serializable {
         Std_Error = std_Error;
     }
 
-
-    @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
+    @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false, insertable = false, updatable = false)
     public String getSrc_Cd() {
         return Src_Cd;
     }
@@ -139,16 +138,16 @@ public class NutrientData implements Serializable {
         Ref_NDB_No = ref_NDB_No;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
-//    public SourceCode getSourceCode() {
-//        return sourceCode;
-//    }
-//
-//    public void setSourceCode(SourceCode sourceCode) {
-//        this.sourceCode = sourceCode;
-//    }
-//
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Src_Cd")
+    public SourceCode getSourceCode() {
+        return sourceCode;
+    }
+
+    public void setSourceCode(SourceCode sourceCode) {
+        this.sourceCode = sourceCode;
+    }
+
 //    @ManyToOne
 //    @JoinColumn(name = "Deriv_Cd", columnDefinition = "character(4)")
 //    public DataDerivation getDataDerivation() {

@@ -1,15 +1,14 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "SRC_CD")
 public class SourceCode {
     private String Src_Cd;
     private String SrcCd_Desc;
+    private Set<NutrientData> nutrientDataSet;
 
     //  Links to the Nutrient Data file by Src_Cd
 
@@ -30,5 +29,14 @@ public class SourceCode {
 
     public void setSrcCd_Desc(String srcCd_Desc) {
         SrcCd_Desc = srcCd_Desc;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sourceCode")
+    public Set<NutrientData> getNutrientDataSet() {
+        return nutrientDataSet;
+    }
+
+    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
+        this.nutrientDataSet = nutrientDataSet;
     }
 }

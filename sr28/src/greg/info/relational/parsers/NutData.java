@@ -3,6 +3,7 @@ package greg.info.relational.parsers;
 import greg.info.relational.entities.FoodDescription;
 import greg.info.relational.entities.NutrientData;
 import greg.info.relational.entities.NutrientDefinition;
+import greg.info.relational.entities.SourceCode;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -43,20 +44,19 @@ public class NutData {
 
         if (fields[4].length() > 0) item.setStd_Error(Double.parseDouble(fields[4]));
 
-        item.setSrc_Cd(fields[5].substring(1, fields[5].length() - 1));
-        if (fields[6].length() > 2) item.setDeriv_Cd(fields[6].substring(1, fields[6].length() - 1));
-        if (fields[7].length() > 2) item.setRef_NDB_No(fields[7].substring(1, fields[7].length() - 1));
+        //item.setSrc_Cd(fields[5].substring(1, fields[5].length() - 1));
+        String Src_Cd = fields[5].substring(1, fields[5].length() - 1);
+        SourceCode sourceCode = session.load(SourceCode.class, Src_Cd);
+        item.setSourceCode(sourceCode);
 
-//        String Src_Cd = fields[5].substring(1, fields[5].length() - 1);
-//        SourceCode sourceCode = session.load(SourceCode.class, Src_Cd);
-//        item.setSourceCode(sourceCode);
-//
+        if (fields[6].length() > 2) item.setDeriv_Cd(fields[6].substring(1, fields[6].length() - 1));
 //        if (fields[6].length() > 2) {
 //            String Deriv_Cd = fields[6].substring(1, fields[6].length() - 1);
 //            DataDerivation dataDerivation = session.load(DataDerivation.class, Deriv_Cd);
 //            item.setDataDerivation(dataDerivation);
 //        }
-//
+
+        if (fields[7].length() > 2) item.setRef_NDB_No(fields[7].substring(1, fields[7].length() - 1));
 //        if (fields[7].length() > 2) {
 //            String Ref_NDB_No = fields[7].substring(1, fields[7].length() - 1);
 //            FoodDescription foodDescription1 = session.load(FoodDescription.class, Ref_NDB_No);
