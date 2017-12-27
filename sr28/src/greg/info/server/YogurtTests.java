@@ -37,13 +37,21 @@ public class YogurtTests {
 
                     Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
                     for (NutrientData nutrientData : nutrientDataSet) {
-                        System.out.print("    NutData: " + nutrientData.getNutr_No()
-                                + ", " + nutrientData.getNutr_Val());
+                        NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
 
-                        NutrientDefinition nutrientDefinition = nutrientData.getNutrientDefinition();
+//                        System.out.print("    NutData: " + nutrientDataKey.getNutr_No()
+//                                + ", " + nutrientData.getNutr_Val());
+
+                        NutrientDefinition nutrientDefinition = nutrientDataKey.getNutrientDefinition();
                         System.out.println(", " + nutrientDefinition.getTagname()
                                 + ", " + nutrientDefinition.getNutrDesc()
                                 + ", " + nutrientDefinition.getUnits());
+
+                        Set<Footnote> footnoteSet = nutrientDefinition.getFootnoteSet();
+                        for (Footnote footnote : footnoteSet) {
+                            System.out.println("  Footnote: " + footnote.getId()
+                                    + " " + footnote.getFootnt_Txt());
+                        }
 
                         SourceCode sourceCode = nutrientData.getSourceCode();
                         System.out.println("   Source: " + sourceCode.getSrcCd_Desc());

@@ -7,10 +7,7 @@ import java.io.Serializable;
 @Table(name = "NUT_DATA")
 public class NutrientData implements Serializable {
 
-    private String NDB_No;
-    private String Nutr_No;
-    private FoodDescription foodDescription;        // The food item
-    private NutrientDefinition nutrientDefinition;  // The nutrient to which footnote applies.
+    private NutrientDataKey nutrientDataKey;
     private Double Nutr_Val;                // Amount in 100 grams, edible portion †.
     private Integer Num_Data_Pts;            // Number of data points is the number of analyses used to calculate the nutrient value. If the number of data points is 0, the value was calculated or imputed.
     private Double Std_Error;               // Standard error of the mean. Null if cannot be calculated. The standard error is also not given if the number of data points is less than three.
@@ -45,44 +42,13 @@ public class NutrientData implements Serializable {
     //  Links to the Sources of Data Link file by NDB_No and Nutr_No
     //  Links to the Weight file by NDB_No
 
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
-    public String getNDB_No() {
-        return NDB_No;
+    @EmbeddedId
+    public NutrientDataKey getNutrientDataKey() {
+        return nutrientDataKey;
     }
 
-    public void setNDB_No(String nDB_No) {
-        this.NDB_No = nDB_No;
-    }
-
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false, insertable = false, updatable = false)
-    public String getNutr_No() {
-        return Nutr_No;
-    }
-
-    public void setNutr_No(String nutr_No) {
-        Nutr_No = nutr_No;
-    }
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No")
-    public FoodDescription getFoodDescription() {
-        return foodDescription;
-    }
-
-    public void setFoodDescription(FoodDescription foodDescription) {
-        this.foodDescription = foodDescription;
-    }
-
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Nutr_No")
-    public NutrientDefinition getNutrientDefinition() {
-        return nutrientDefinition;
-    }
-
-    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
-        this.nutrientDefinition = nutrientDefinition;
+    public void setNutrientDataKey(NutrientDataKey nutrientDataKey) {
+        this.nutrientDataKey = nutrientDataKey;
     }
 
     @Column(name = "Nutr_Val", columnDefinition = "float", nullable = false)
@@ -305,9 +271,7 @@ public class NutrientData implements Serializable {
 
         NutrientData that = (NutrientData) o;
 
-        if (NDB_No != null ? !NDB_No.equals(that.NDB_No) : that.NDB_No != null)
-            return false;
-        if (Nutr_No != null ? !Nutr_No.equals(that.Nutr_No) : that.Nutr_No != null)
+        if (nutrientDataKey != null ? !nutrientDataKey.equals(that.nutrientDataKey) : that.nutrientDataKey != null)
             return false;
 
         return true;
@@ -316,8 +280,7 @@ public class NutrientData implements Serializable {
     @Override
     public int hashCode() {
         int result;
-        result = (NDB_No != null ? NDB_No.hashCode() : 0);
-        result = 31 * result + (Nutr_No != null ? Nutr_No.hashCode() : 0);
+        result = (nutrientDataKey != null ? nutrientDataKey.hashCode() : 0);
         return result;
     }
 }

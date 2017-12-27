@@ -1,5 +1,7 @@
 package greg.info.relational.parsers;
 
+import greg.info.relational.entities.FoodDescription;
+import greg.info.relational.entities.LanguaLDescription;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -29,12 +31,13 @@ public class LanguaL {
 
         greg.info.relational.entities.LanguaL item = new greg.info.relational.entities.LanguaL();
 
-        item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
-        item.setFactor_Code(fields[1].substring(1, fields[1].length() - 1));
+        String NDB_no = fields[0].substring(1, fields[0].length() - 1);
+        FoodDescription foodDescription = session.load(FoodDescription.class, NDB_no);
+        item.setFoodDescription(foodDescription);
 
-//        FoodDescription item = session.load(FoodDescription.class, foodDescriptionId);
-//        greg.info.relational.entities.LanguaL languaL = session.load(greg.info.relational.entities.LanguaL.class, languaLId);
-//        item.getLanguages().add(languaL);
+        String factor_code = fields[1].substring(1, fields[1].length() - 1);
+        LanguaLDescription languaLDescription = session.load(LanguaLDescription.class, factor_code);
+        item.setLanguaLDescription(languaLDescription);
 
         session.save(item);
     }

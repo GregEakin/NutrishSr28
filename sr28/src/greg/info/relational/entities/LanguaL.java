@@ -1,9 +1,6 @@
 package greg.info.relational.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 // language of food
@@ -12,14 +9,15 @@ import java.io.Serializable;
 public class LanguaL implements Serializable {
     private String NDB_No;
     private String Factor_Code;
-    // private String Description;
+    private FoodDescription foodDescription;
+    private LanguaLDescription languaLDescription;
     // private Set<FoodDescription> foodDescriptionSet = new HashSet<>(0);
 
     //  Links to the Food Description file by the NDB_No field
     //  Links to LanguaL Factors Description file by the Factor_Code field
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -29,13 +27,33 @@ public class LanguaL implements Serializable {
     }
 
     @Id
-    @Column(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "Factor_Code", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getFactor_Code() {
         return Factor_Code;
     }
 
     public void setFactor_Code(String factor_Code) {
         Factor_Code = factor_Code;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NDB_No")
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Factor_Code")
+    public LanguaLDescription getLanguaLDescription() {
+        return languaLDescription;
+    }
+
+    public void setLanguaLDescription(LanguaLDescription languaLDescription) {
+        this.languaLDescription = languaLDescription;
     }
 
 //    @Column(name = "Description", columnDefinition = "varchar(140)", nullable = false)

@@ -14,6 +14,8 @@ public class NutrientDefinition {
     private String Num_Dec;
     private Integer SR_Order;
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
+    private Set<Footnote> footnoteSet = new HashSet<>(0);
+    private Set<DataSourceLink> dataSourceLinkSet = new HashSet<>(0);
 //    private Set<NutrientDefinition> nutrientDefinitionSet = new HashSet<>(0);
 //    private Set<FoodDescription> foodDescriptions = new HashSet<>(0);
 
@@ -75,13 +77,31 @@ public class NutrientDefinition {
     }
 
     //  Links to the Nutrient Data file by Nutr_No
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
     public Set<NutrientData> getNutrientDataSet() {
         return nutrientDataSet;
     }
 
     public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
         this.nutrientDataSet = nutrientDataSet;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    public Set<Footnote> getFootnoteSet() {
+        return footnoteSet;
+    }
+
+    public void setFootnoteSet(Set<Footnote> footnoteSet) {
+        this.footnoteSet = footnoteSet;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    public Set<DataSourceLink> getDataSourceLinkSet() {
+        return dataSourceLinkSet;
+    }
+
+    public void setDataSourceLinkSet(Set<DataSourceLink> dataSourceLinkSet) {
+        this.dataSourceLinkSet = dataSourceLinkSet;
     }
 
 //    @OneToMany

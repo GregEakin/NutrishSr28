@@ -13,7 +13,7 @@ public class Footnote {
     private String Footnt_No;                   // Sequence number.
     private String Footnt_Typ;                  // Type of footnote:
     private String Nutr_No;
-    //private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
+    private NutrientDefinition nutrientDefinition; // The nutrient to which footnote applies.
     private String Footnt_Txt;                  // Footnote text.
     //private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
 
@@ -69,7 +69,7 @@ public class Footnote {
     }
 
     // NutrientDefinition
-    @Column(name = "Nutr_No", columnDefinition = "character(3)")
+    @Column(name = "Nutr_No", columnDefinition = "character(3)", insertable = false, updatable = false)
     public String getNutr_No() {
         return Nutr_No;
     }
@@ -78,15 +78,15 @@ public class Footnote {
         Nutr_No = nutr_No;
     }
 
-//    @OneToOne
-//    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
-//    public NutrientDefinition getNutrientDefinition() {
-//        return nutrientDefinition;
-//    }
-//
-//    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
-//        this.nutrientDefinition = nutrientDefinition;
-//    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Nutr_No")
+    public NutrientDefinition getNutrientDefinition() {
+        return nutrientDefinition;
+    }
+
+    public void setNutrientDefinition(NutrientDefinition nutrientDefinition) {
+        this.nutrientDefinition = nutrientDefinition;
+    }
 
     @Column(name = "Footnt_Txt", columnDefinition = "varchar(200)", nullable = false)
     public String getFootnt_Txt() {

@@ -27,11 +27,12 @@ public class NutData {
 
         String NDB_No = fields[0].substring(1, fields[0].length() - 1);
         FoodDescription foodDescription = session.load(FoodDescription.class, NDB_No);
-        item.setFoodDescription(foodDescription);
 
         String Nutr_No = fields[1].substring(1, fields[1].length() - 1);
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
-        item.setNutrientDefinition(nutrientDefinition);
+
+        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+        item.setNutrientDataKey(nutrientDataKey);
 
         item.setNutr_Val(Double.parseDouble(fields[2]));
 

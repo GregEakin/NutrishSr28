@@ -1,6 +1,7 @@
 package greg.info.relational.parsers;
 
 import greg.info.relational.entities.FoodDescription;
+import greg.info.relational.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -33,7 +34,6 @@ public class Footnote {
     private static greg.info.relational.entities.Footnote parseFootnote(final Session session, final String[] fields) {
         greg.info.relational.entities.Footnote item = new greg.info.relational.entities.Footnote();
 
-        //item.setNDB_No(fields[0].substring(1, fields[0].length() - 1));
         String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
         FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);
         item.setFoodDescription(foodDescription);
@@ -42,10 +42,9 @@ public class Footnote {
 
         item.setFootnt_Typ(fields[2].substring(1, fields[2].length() - 1));
 
-        item.setNutr_No(fields[3].substring(1, fields[3].length() - 1));
-//        String nutrientDefinitionId = fields[3].substring(1, fields[3].length() - 1);
-//        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, nutrientDefinitionId);
-//        item.setNutrientDefinition(nutrientDefinition);
+        String nutr_no = fields[3].substring(1, fields[3].length() - 1);
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, nutr_no);
+        item.setNutrientDefinition(nutrientDefinition);
 
         item.setFootnt_Txt(fields[4].substring(1, fields[4].length() - 1));
 

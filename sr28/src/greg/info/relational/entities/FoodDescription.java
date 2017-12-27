@@ -180,7 +180,7 @@ public class FoodDescription {
         this.footnoteSet = footnoteSet;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.foodDescription")
     public Set<NutrientData> getNutrientDataSet() {
         return nutrientDataSet;
     }

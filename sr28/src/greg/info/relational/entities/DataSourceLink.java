@@ -10,7 +10,8 @@ public class DataSourceLink implements Serializable {
     private String Nutr_No;
     private String DataSrc_ID;
 
-    //private NutrientData nutrientData;
+    private FoodDescription foodDescription;
+    private NutrientData nutrientData;
     private NutrientDefinition nutrientDefinition;
     private DataSource dataSource;
     //  Links to the Nutrient Data file by NDB No. and Nutr_No
@@ -18,13 +19,23 @@ public class DataSourceLink implements Serializable {
     //  Links to the Sources of Data file by DataSrc_ID
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false, insertable = false, updatable = false)
     public String getNDB_No() {
         return NDB_No;
     }
 
     public void setNDB_No(String nDB_No) {
         this.NDB_No = nDB_No;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NDB_No")
+    public FoodDescription getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(FoodDescription foodDescription) {
+        this.foodDescription = foodDescription;
     }
 
     @Id
@@ -47,6 +58,18 @@ public class DataSourceLink implements Serializable {
         this.nutrientDefinition = nutrientDefinition;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name = "NDB_No", insertable = false, updatable = false),
+            @JoinColumn(name = "Nutr_No", insertable = false, updatable = false)})
+    public NutrientData getNutrientData() {
+        return nutrientData;
+    }
+
+    public void setNutrientData(NutrientData nutrientData) {
+        this.nutrientData = nutrientData;
+    }
+
     @Id
     @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false, insertable = false, updatable = false)
     public String getDataSrc_ID() {
@@ -66,16 +89,6 @@ public class DataSourceLink implements Serializable {
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumns({@JoinColumn(name = "foodDescription"), @JoinColumn(name = "nutrientDefinition")})
-//    public NutrientData getNutrientData() {
-//        return nutrientData;
-//    }
-//
-//    public void setNutrientData(NutrientData nutrientData) {
-//        this.nutrientData = nutrientData;
-//    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
