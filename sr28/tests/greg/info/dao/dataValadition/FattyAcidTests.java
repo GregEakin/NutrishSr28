@@ -1,4 +1,4 @@
-package greg.info.dao.validateData;
+package greg.info.dao.dataValadition;
 
 import greg.info.dao.entities.NutrientDefinition;
 import org.hibernate.Session;
