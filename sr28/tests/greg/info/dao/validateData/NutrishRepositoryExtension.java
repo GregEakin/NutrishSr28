@@ -1,5 +1,6 @@
 package greg.info.dao.validateData;
 
+import greg.info.dao.entities.FoodDescription;
 import greg.info.dao.entities.NutrientData;
 import greg.info.dao.entities.NutrientDefinition;
 import org.hibernate.Session;
@@ -66,7 +67,8 @@ public class NutrishRepositoryExtension implements
     private SessionFactory createSessionFactory() {
         Configuration configuration = new Configuration().configure();
         configuration.addAnnotatedClass(NutrientData.class)
-                .addAnnotatedClass(NutrientDefinition.class);
+                .addAnnotatedClass(NutrientDefinition.class)
+                .addAnnotatedClass(FoodDescription.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
         configuration.setProperty("hibernate.connection.url", "jdbc:hsqldb:hsql://localhost/nutrish");
