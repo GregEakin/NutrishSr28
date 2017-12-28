@@ -1,6 +1,6 @@
 package greg.info.dao.parsers;
 
-import greg.info.dao.entities.LanguaLDescription;
+import greg.info.dao.entities.Language;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class LangDesc {
 
         String[] fields = line.split("\\^", -1);
 
-        LanguaLDescription item = new LanguaLDescription();
+        Language item = new Language();
         item.setFactor_Code(fields[0].substring(1, fields[0].length() - 1));
         item.setDescription(fields[1].substring(1, fields[1].length() - 1));
 

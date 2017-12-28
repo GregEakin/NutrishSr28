@@ -29,7 +29,7 @@
         <mapping class="greg.info.dao.entities.FoodDescription"/>
         <mapping class="greg.info.dao.entities.FoodGroup"/>
         <mapping class="greg.info.dao.entities.Footnote"/>
-        <mapping class="greg.info.dao.entities.LanguaLDescription"/>
+        <mapping class="greg.info.dao.entities.Language"/>
         <mapping class="greg.info.dao.entities.NutrientData"/>
         <mapping class="greg.info.dao.entities.NutrientDefinition"/>
         <mapping class="greg.info.dao.entities.SourceCode"/>

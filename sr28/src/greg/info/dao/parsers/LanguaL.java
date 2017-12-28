@@ -1,7 +1,7 @@
 package greg.info.dao.parsers;
 
 import greg.info.dao.entities.FoodDescription;
-import greg.info.dao.entities.LanguaLDescription;
+import greg.info.dao.entities.Language;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -33,9 +33,9 @@ public class LanguaL {
         FoodDescription foodDescription = session.load(FoodDescription.class, NDB_no);
 
         String factor_code = fields[1].substring(1, fields[1].length() - 1);
-        LanguaLDescription languaLDescription = session.load(LanguaLDescription.class, factor_code);
+        Language language = session.load(Language.class, factor_code);
 
-        foodDescription.getLanguaLDescriptions().add(languaLDescription);
+        foodDescription.getLanguageSet().add(language);
         session.save(foodDescription);
     }
 

@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "LANGDESC")
-public class LanguaLDescription {
+public class Language {
 
     private String Factor_Code;
     private String Description;
@@ -33,7 +33,7 @@ public class LanguaLDescription {
         Description = description;
     }
 
-    @ManyToMany(mappedBy = "languaLDescriptions")
+    @ManyToMany(mappedBy = "languageSet")
     public Set<FoodDescription> getFoodDescriptionSet() {
         return foodDescriptionSet;
     }

@@ -24,7 +24,7 @@ public class FoodDescription {
     private Set<NutrientData> nutrientDataSet = new HashSet<>(0);
     private Set<Weight> weightSet = new HashSet<>(0);
     private Set<Footnote> footnoteSet = new HashSet<>(0);
-    private Set<LanguaLDescription> languaLDescriptions = new HashSet<>(0);
+    private Set<Language> languageSet = new HashSet<>(0);
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     //  Links to the Nutrient Data file by the NDB_No field
@@ -193,11 +193,11 @@ public class FoodDescription {
             joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)}
     )
-    public Set<LanguaLDescription> getLanguaLDescriptions() {
-        return languaLDescriptions;
+    public Set<Language> getLanguageSet() {
+        return languageSet;
     }
 
-    public void setLanguaLDescriptions(Set<LanguaLDescription> languaLDescriptions) {
-        this.languaLDescriptions = languaLDescriptions;
+    public void setLanguageSet(Set<Language> languages) {
+        this.languageSet = languages;
     }
 }
