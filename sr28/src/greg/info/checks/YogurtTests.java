@@ -1,4 +1,4 @@
-package greg.info;
+package greg.info.checks;
 
 import greg.info.dao.entities.*;
 import org.hibernate.Session;

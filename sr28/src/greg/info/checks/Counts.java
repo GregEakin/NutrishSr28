@@ -1,4 +1,4 @@
-package greg.info;
+package greg.info.checks;
 
 import greg.info.flatfile.entities.Abbreviations;
 import org.hibernate.Criteria;
