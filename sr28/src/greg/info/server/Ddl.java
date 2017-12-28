@@ -7,10 +7,15 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 
+import java.io.File;
 import java.util.EnumSet;
 
 public class Ddl {
     public static void main(String[] args) throws Exception {
+
+        String filename = "db-schema.hibernate5.ddl";
+        File file = new File(filename);
+        file.delete();
 
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure("/hibernate.cfg.xml")
@@ -20,7 +25,7 @@ public class Ddl {
                 .buildMetadata();
 
         new SchemaExport()
-                .setOutputFile("db-schema.hibernate5.ddl")
+                .setOutputFile(filename)
                 .create(EnumSet.of(TargetType.SCRIPT), metadata);
 
         metadata.buildSessionFactory().close();

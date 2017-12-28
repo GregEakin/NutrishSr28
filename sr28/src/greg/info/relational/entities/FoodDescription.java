@@ -189,7 +189,7 @@ public class FoodDescription {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "LanguaL",
+            name = "LANGUAL",
             joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)}
     )

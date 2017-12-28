@@ -1,6 +1,5 @@
-alter table DATSRCLN drop constraint FKaskf2c6qfudcc8qx4qc78qiu
-alter table DATSRCLN drop constraint FKl4gk5knjfbwwu4ot8m0k64pm0
 alter table DATSRCLN drop constraint FKit9vvun660k9lagdn2327j5js
+alter table DATSRCLN drop constraint FKog89tm59jjnw5exeoe4r7l9f9
 alter table FOOD_DES drop constraint FKjne55ny77h9eaujlluf03jhr3
 alter table FOOTNOTE drop constraint FKksfxhfnrqb04p4ogwd1xko52p
 alter table FOOTNOTE drop constraint FKq2lmdgtcc0jwghi7y36fv0j0x
@@ -35,14 +34,13 @@ create table FD_GROUP (FdGrp_Cd character(4) not null, FdGrp_Desc varchar(60) no
 create table FOOD_DES (NDB_No character(5) not null, CHO_Factor float, ComName varchar(100), Fat_Factor float, Long_Desc varchar(200) not null, ManufacName varchar(65), N_Factor float, Pro_Factor float, Ref_desc varchar(135), Refuse tinyint, SciName varchar(65), Shrt_Desc varchar(60) not null, Survey character(1), FdGrp_Cd character(4) not null, primary key (NDB_No))
 create table FOOTNOTE (id integer not null, Footnt_No character(4) not null, Footnt_Txt varchar(200) not null, Footnt_Typ character(1) not null, NDB_No character(5) not null, Nutr_No character(3), primary key (id))
 create table LANGDESC (Factor_Code character(5) not null, Description varchar(140) not null, primary key (Factor_Code))
-create table LANGUAL (Factor_Code character(5) not null, NDB_No character(5) not null, primary key (Factor_Code, NDB_No))
+create table LANGUAL (NDB_No character(5) not null, Factor_Code character(5) not null, primary key (NDB_No, Factor_Code))
 create table NUT_DATA (CC character(1), DF integer, AddMod_Date character(10), Add_Nutr_Mark character(1), Low_EB float, Max float, min double, Num_Data_Pts integer not null, Num_Studies integer, Nutr_Val float not null, Stat_cmt character(10), Std_Error float, Up_EB float, Nutr_No character(3) not null, NDB_No character(5) not null, Deriv_Cd character(4), Ref_NDB_No character(5), Src_Cd character(2) not null, primary key (NDB_No, Nutr_No))
 create table NUTR_DEF (Nutr_No character(3) not null, SR_Order Integer not null, Num_Dec character(1) not null, NutrDesc varchar(60) not null, Tagname varchar(20), Units character(7) not null, primary key (Nutr_No))
 create table SRC_CD (Src_Cd character(2) not null, SrcCd_Desc varchar(60) not null, primary key (Src_Cd))
 create table WEIGHT (Seq character(2) not null, Amount float not null, Gm_Wgt float not null, Msre_Desc varchar(84) not null, Num_Data_Pts integer, Std_Dev float, NDB_No character(5) not null, primary key (NDB_No, Seq))
-alter table DATSRCLN add constraint FKaskf2c6qfudcc8qx4qc78qiu foreign key (NDB_No) references FOOD_DES
-alter table DATSRCLN add constraint FKl4gk5knjfbwwu4ot8m0k64pm0 foreign key (Nutr_No) references NUTR_DEF
 alter table DATSRCLN add constraint FKit9vvun660k9lagdn2327j5js foreign key (DataSrc_ID) references DATA_SRC
+alter table DATSRCLN add constraint FKog89tm59jjnw5exeoe4r7l9f9 foreign key (NDB_No, Nutr_No) references NUT_DATA
 alter table FOOD_DES add constraint FKjne55ny77h9eaujlluf03jhr3 foreign key (FdGrp_Cd) references FD_GROUP
 alter table FOOTNOTE add constraint FKksfxhfnrqb04p4ogwd1xko52p foreign key (NDB_No) references FOOD_DES
 alter table FOOTNOTE add constraint FKq2lmdgtcc0jwghi7y36fv0j0x foreign key (Nutr_No) references NUTR_DEF
