@@ -1,7 +1,7 @@
-package greg.info.relational.parsers;
+package greg.info.dao.parsers;
 
-import greg.info.relational.entities.FoodDescription;
-import greg.info.relational.entities.NutrientDefinition;
+import greg.info.dao.entities.FoodDescription;
+import greg.info.dao.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class Footnote {
 
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
-        greg.info.relational.entities.Footnote item = parseFootnote(session, fields);
+        greg.info.dao.entities.Footnote item = parseFootnote(session, fields);
 
         if (item != null)
             session.save(item);
@@ -42,8 +42,8 @@ public class Footnote {
 //         singleton.setSR_Order(0);
 //    }
 
-    private static greg.info.relational.entities.Footnote parseFootnote(final Session session, final String[] fields) {
-        greg.info.relational.entities.Footnote item = new greg.info.relational.entities.Footnote();
+    private static greg.info.dao.entities.Footnote parseFootnote(final Session session, final String[] fields) {
+        greg.info.dao.entities.Footnote item = new greg.info.dao.entities.Footnote();
 
         String foodDescriptionId = fields[0].substring(1, fields[0].length() - 1);
         FoodDescription foodDescription = session.load(FoodDescription.class, foodDescriptionId);

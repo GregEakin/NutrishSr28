@@ -24,15 +24,15 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="greg.info.flatfile.entities.Abbreviations"/>
-        <mapping class="greg.info.relational.entities.DataDerivation"/>
-        <mapping class="greg.info.relational.entities.DataSource"/>
-        <mapping class="greg.info.relational.entities.FoodDescription"/>
-        <mapping class="greg.info.relational.entities.FoodGroup"/>
-        <mapping class="greg.info.relational.entities.Footnote"/>
-        <mapping class="greg.info.relational.entities.LanguaLDescription"/>
-        <mapping class="greg.info.relational.entities.NutrientData"/>
-        <mapping class="greg.info.relational.entities.NutrientDefinition"/>
-        <mapping class="greg.info.relational.entities.SourceCode"/>
-        <mapping class="greg.info.relational.entities.Weight"/>
+        <mapping class="greg.info.dao.entities.DataDerivation"/>
+        <mapping class="greg.info.dao.entities.DataSource"/>
+        <mapping class="greg.info.dao.entities.FoodDescription"/>
+        <mapping class="greg.info.dao.entities.FoodGroup"/>
+        <mapping class="greg.info.dao.entities.Footnote"/>
+        <mapping class="greg.info.dao.entities.LanguaLDescription"/>
+        <mapping class="greg.info.dao.entities.NutrientData"/>
+        <mapping class="greg.info.dao.entities.NutrientDefinition"/>
+        <mapping class="greg.info.dao.entities.SourceCode"/>
+        <mapping class="greg.info.dao.entities.Weight"/>
     </session-factory>
 </hibernate-configuration>

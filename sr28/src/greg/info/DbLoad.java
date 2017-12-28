@@ -1,6 +1,6 @@
 package greg.info;
 
-import greg.info.relational.parsers.LanguaL;
+import greg.info.dao.parsers.LanguaL;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

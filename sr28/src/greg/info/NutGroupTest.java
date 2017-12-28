@@ -1,7 +1,7 @@
-package greg.info.server;
+package greg.info;
 
-import greg.info.relational.entities.FoodDescription;
-import greg.info.relational.entities.FoodGroup;
+import greg.info.dao.entities.FoodDescription;
+import greg.info.dao.entities.FoodGroup;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

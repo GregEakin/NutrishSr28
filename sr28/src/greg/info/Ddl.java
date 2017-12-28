@@ -1,4 +1,4 @@
-package greg.info.server;
+package greg.info;
 
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;

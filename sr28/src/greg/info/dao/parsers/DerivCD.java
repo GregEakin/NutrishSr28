@@ -1,6 +1,6 @@
-package greg.info.relational.parsers;
+package greg.info.dao.parsers;
 
-import greg.info.relational.entities.FoodGroup;
+import greg.info.dao.entities.DataDerivation;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class FdGroup {
-    public static final String Filename = ".\\data\\FD_GROUP.txt";
+public class DerivCD {
+    public static final String Filename = ".\\data\\DERIV_CD.txt";
 
     public static void parseFile(final Session session) throws IOException {
         Path path = Paths.get(Filename);
@@ -21,12 +21,11 @@ public class FdGroup {
     }
 
     private static void parseLine(final Session session, final String line) {
-
         String[] fields = line.split("\\^", -1);
 
-        FoodGroup item = new FoodGroup();
-        item.setFdGrp_Cd(fields[0].substring(1, fields[0].length() - 1));
-        item.setFdGrp_Desc(fields[1].substring(1, fields[1].length() - 1));
+        DataDerivation item = new DataDerivation();
+        item.setDeriv_Cd(fields[0].substring(1, fields[0].length() - 1));
+        item.setDeriv_Desc(fields[1].substring(1, fields[1].length() - 1));
 
         session.save(item);
     }

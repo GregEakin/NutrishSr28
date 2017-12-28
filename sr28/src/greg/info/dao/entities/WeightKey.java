@@ -1,4 +1,4 @@
-package greg.info.relational.entities;
+package greg.info.dao.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

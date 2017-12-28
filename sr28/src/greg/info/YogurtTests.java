@@ -1,6 +1,6 @@
-package greg.info.server;
+package greg.info;
 
-import greg.info.relational.entities.*;
+import greg.info.dao.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

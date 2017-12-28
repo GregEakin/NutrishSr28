@@ -1,7 +1,7 @@
-package greg.info.relational.parsers;
+package greg.info.dao.parsers;
 
-import greg.info.relational.entities.FoodDescription;
-import greg.info.relational.entities.WeightKey;
+import greg.info.dao.entities.FoodDescription;
+import greg.info.dao.entities.WeightKey;
 import org.hibernate.Session;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class Weight {
 
         String[] fields = line.split("\\^", -1);
 
-        greg.info.relational.entities.Weight item = new greg.info.relational.entities.Weight();
+        greg.info.dao.entities.Weight item = new greg.info.dao.entities.Weight();
 
         // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
         // Seq A 2* N Sequence number.

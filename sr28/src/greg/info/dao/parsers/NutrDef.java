@@ -1,6 +1,6 @@
-package greg.info.relational.parsers;
+package greg.info.dao.parsers;
 
-import greg.info.relational.entities.NutrientDefinition;
+import greg.info.dao.entities.NutrientDefinition;
 import org.hibernate.Session;
 
 import java.io.IOException;
