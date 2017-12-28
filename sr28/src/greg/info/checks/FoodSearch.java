@@ -35,7 +35,7 @@ public class FoodSearch {
                     }
 
                     Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
-                    Comparator<NutrientData> nutrientDataComparator = (o1, o2) -> Integer.compare(o1.getNutrientDataKey().getNutrientDefinition().getSR_Order(), o2.getNutrientDataKey().getNutrientDefinition().getSR_Order());
+                    Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
                     List<NutrientData> data = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
                     for (NutrientData nutrientData : data) {
                         NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();

@@ -11,11 +11,12 @@ import java.io.File;
 import java.util.EnumSet;
 
 public class Ddl {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         String filename = "db-schema.hibernate5.ddl";
         File file = new File(filename);
-        file.delete();
+        boolean deleted = file.delete();
+        System.out.println("Previous file deleted.");
 
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure("/hibernate.cfg.xml")
@@ -30,5 +31,4 @@ public class Ddl {
 
         metadata.buildSessionFactory().close();
     }
-
 }

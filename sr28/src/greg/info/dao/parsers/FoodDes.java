@@ -9,10 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.stream.Stream;
 
 public class FoodDes {
@@ -57,63 +53,5 @@ public class FoodDes {
         if (fields[12].length() > 0) item.setFat_Factor(Double.parseDouble(fields[12]));
         if (fields[13].length() > 0) item.setCHO_Factor(Double.parseDouble(fields[13]));
         return item;
-    }
-
-    public static int sqlSelectRows2(Connection con) throws SQLException {
-        try (Statement stmt = con.createStatement()) {
-
-            String sql = "SELECT * FROM FOOD_DES";
-            ResultSet result = stmt.executeQuery(sql);
-
-            int count = 0;
-            while (result.next()) {
-                String x0 = result.getString("NDB_No");
-                String x1 = result.getString("FdGrp_Cd");
-                String x2 = result.getString("Long_Desc");
-                String x3 = result.getString("Shrt_Desc");
-                String x4 = result.getString("ComName");
-                String x5 = result.getString("ManufacName");
-                String x6 = result.getString("Survey");
-                String x7 = result.getString("Ref_desc");
-
-                Byte x8 = result.getByte("Refuse");
-                if (result.wasNull()) x8 = null;
-
-                String x9 = result.getString("SciName");
-
-                Float x10 = result.getFloat("N_Factor");
-                if (result.wasNull()) x10 = null;
-
-                Float x11 = result.getFloat("Pro_Factor");
-                if (result.wasNull()) x11 = null;
-
-                Float x12 = result.getFloat("Fat_Factor");
-                if (result.wasNull()) x12 = null;
-
-                Float x13 = result.getFloat("CHO_Factor");
-                if (result.wasNull()) x13 = null;
-
-                System.out.println(x0 + ", " + x1 + ", " + x2 + ", " + x3);
-                /*
-                      0  "NDB_No", "CHARACTER(5)", Types.CHAR, "NOT NULL PRIMARY KEY"),
-                      1  "FdGrp_Cd", "CHARACTER(4)", Types.CHAR, "NOT NULL"),
-                      2  "Long_Desc", "VARCHAR(200)", Types.VARCHAR, "NOT NULL"),
-                      3  "Shrt_Desc", "VARCHAR(60)", Types.VARCHAR, "NOT NULL"),
-                      4  "ComName", "VARCHAR(100)", Types.VARCHAR, null),
-                      5  "ManufacName", "VARCHAR(65)", Types.VARCHAR, null),
-                      6  "Survey", "CHARACTER(1)", Types.CHAR, null),
-                      7  "Ref_desc", "VARCHAR(135)", Types.VARCHAR, null),
-                      8  "SciName", "VARCHAR(65)", Types.VARCHAR, null),
-                      9  "N_Factor", "FLOAT", Types.FLOAT, null),
-                     10  "Pro_Factor", "FLOAT", Types.FLOAT, null),
-                     11  "Fat_Factor", "FLOAT", Types.FLOAT, null),
-                     12  "CHO_Factor", "FLOAT", Types.FLOAT, null),
-                */
-
-                count++;
-            }
-
-            return count;
-        }
     }
 }
