@@ -1,6 +1,5 @@
 package greg.info;
 
-import greg.info.relational.parsers.DatScrLn;
 import greg.info.relational.parsers.LanguaL;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
@@ -34,7 +33,7 @@ public class DbLoad {
 //                    FoodDes.parseFile(session);
 //                    LanguaL.parseFile(session);
 //                    Weight.parseFile(session);
-                    DatScrLn.parseFile(session);
+//                    DatScrLn.parseFile(session);
 //                    NutData.parseFile(session);
 //                    Footnote.parseFile(session);
 

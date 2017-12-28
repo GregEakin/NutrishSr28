@@ -31,7 +31,7 @@ public class YogurtTests {
             try (final Session session = sessionFactory.openSession()) {
                 Transaction transaction = session.beginTransaction();
                 try {
-                    FoodDescription foodDescription = session.load(FoodDescription.class, "02068");
+                    FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
                     System.out.println(foodDescription.getNDB_No()
                             + ", " + foodDescription.getLong_Desc());
 
@@ -39,24 +39,23 @@ public class YogurtTests {
                     for (NutrientData nutrientData : nutrientDataSet) {
                         NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
 
-//                        System.out.print("    NutData: " + nutrientDataKey.getNutr_No()
-//                                + ", " + nutrientData.getNutr_Val());
+                        System.out.print("    NutData: " + nutrientData.getNutr_Val());
 
                         NutrientDefinition nutrientDefinition = nutrientDataKey.getNutrientDefinition();
-                        System.out.println(", " + nutrientDefinition.getTagname()
-                                + ", " + nutrientDefinition.getNutrDesc()
-                                + ", " + nutrientDefinition.getUnits());
+                        System.out.println(", " + nutrientDefinition.getUnits()
+                                + ", " + nutrientDefinition.getTagname()
+                                + ", " + nutrientDefinition.getNutrDesc());
 
-                        Set<Footnote> footnoteSet = nutrientDefinition.getFootnoteSet();
-                        for (Footnote footnote : footnoteSet) {
-                            System.out.println("  Footnote: " + footnote.getFootnt_Txt());
-                        }
+//                        Set<Footnote> footnoteSet = nutrientDefinition.getFootnoteSet();
+//                        for (Footnote footnote : footnoteSet) {
+//                            System.out.println("  Footnote: " + footnote.getFootnt_Txt());
+//                        }
 
-                        SourceCode sourceCode = nutrientData.getSourceCode();
-                        System.out.println("   Source: " + sourceCode.getSrcCd_Desc());
-
-                        DataDerivation dataDerivationSet = nutrientData.getDataDerivation();
-                        System.out.println("   DataDerivation: " + dataDerivationSet.getDeriv_Desc());
+//                        SourceCode sourceCode = nutrientData.getSourceCode();
+//                        System.out.println("   Source: " + sourceCode.getSrcCd_Desc());
+//
+//                        DataDerivation dataDerivationSet = nutrientData.getDataDerivation();
+//                        System.out.println("   DataDerivation: " + dataDerivationSet.getDeriv_Desc());
                     }
 
                     Set<Weight> weightSet = foodDescription.getWeightSet();
