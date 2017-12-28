@@ -3,37 +3,19 @@ package greg.info.dao.validateData;
 import greg.info.dao.entities.NutrientData;
 import greg.info.dao.entities.NutrientDefinition;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
 
+@ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientCountTests {
 
-    private static SessionFactory sessionFactory;
-    private static Session session;
+    private final Session session;
 
-    @BeforeAll
-    public static void before() {
-        sessionFactory = createSessionFactory();
-        session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-    }
-
-    private static SessionFactory createSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(NutrientData.class)
-                .addAnnotatedClass(NutrientDefinition.class);
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-        configuration.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:hsqldb:hsql://localhost/nutrish");
-        configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        return sessionFactory;
+    NutrientCountTests(Session session) {
+        this.session = session;
     }
 
     @Test
