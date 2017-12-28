@@ -141,4 +141,30 @@ public class YogurtTests {
                 Assertions.assertEquals("contains 2.841 g omega-3 fatty acids", footnote.getFootnt_Txt());
         }
     }
+
+    @Test
+    public void sourceCodeTest() {
+        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
+        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+
+        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
+
+        SourceCode sourceCode = nutrientData.getSourceCode();
+        Assertions.assertEquals("1 ", sourceCode.getSrc_Cd());
+        Assertions.assertEquals("Analytical or derived from analytical", sourceCode.getSrcCd_Desc());
+    }
+
+    @Test
+    public void dataDerivationTest() {
+        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "313");
+        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+
+        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
+
+        DataDerivation dataDerivation = nutrientData.getDataDerivation();
+        Assertions.assertEquals("A   ", dataDerivation.getDeriv_Cd());
+        Assertions.assertEquals("Analytical data", dataDerivation.getDeriv_Desc());
+    }
 }
