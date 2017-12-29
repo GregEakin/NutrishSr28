@@ -23,16 +23,16 @@
         <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="greg.info.flatfile.entities.Abbreviations"/>
-        <mapping class="greg.info.dao.entities.DataDerivation"/>
-        <mapping class="greg.info.dao.entities.DataSource"/>
-        <mapping class="greg.info.dao.entities.FoodDescription"/>
-        <mapping class="greg.info.dao.entities.FoodGroup"/>
-        <mapping class="greg.info.dao.entities.Footnote"/>
-        <mapping class="greg.info.dao.entities.Language"/>
-        <mapping class="greg.info.dao.entities.NutrientData"/>
-        <mapping class="greg.info.dao.entities.NutrientDefinition"/>
-        <mapping class="greg.info.dao.entities.SourceCode"/>
-        <mapping class="greg.info.dao.entities.Weight"/>
+        <mapping class="info.gdbtech.flatfile.entities.Abbreviations"/>
+        <mapping class="info.gdbtech.dao.entities.DataDerivation"/>
+        <mapping class="info.gdbtech.dao.entities.DataSource"/>
+        <mapping class="info.gdbtech.dao.entities.FoodDescription"/>
+        <mapping class="info.gdbtech.dao.entities.FoodGroup"/>
+        <mapping class="info.gdbtech.dao.entities.Footnote"/>
+        <mapping class="info.gdbtech.dao.entities.Language"/>
+        <mapping class="info.gdbtech.dao.entities.NutrientData"/>
+        <mapping class="info.gdbtech.dao.entities.NutrientDefinition"/>
+        <mapping class="info.gdbtech.dao.entities.SourceCode"/>
+        <mapping class="info.gdbtech.dao.entities.Weight"/>
     </session-factory>
 </hibernate-configuration>
