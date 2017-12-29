@@ -63,9 +63,8 @@ public class NutrientDataKey implements Serializable {
 
         NutrientDataKey that = (NutrientDataKey) o;
 
-        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null)
-            return false;
-        return nutrientDefinition != null ? nutrientDefinition.equals(that.nutrientDefinition) : that.nutrientDefinition == null;
+        return (foodDescription != null ? foodDescription.equals(that.foodDescription) : that.foodDescription == null)
+                && (nutrientDefinition != null ? nutrientDefinition.equals(that.nutrientDefinition) : that.nutrientDefinition == null);
     }
 
     @Override

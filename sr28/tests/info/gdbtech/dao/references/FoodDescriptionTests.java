@@ -35,7 +35,7 @@ public class FoodDescriptionTests {
 
     //  Links to the Food Group Description file by the FdGrp_Cd field
     @Test
-    public void foodGroupDescriptionTest() {
+    public void foodGroupTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
 
         FoodGroup foodGroup = foodDescription.getFoodGroup();

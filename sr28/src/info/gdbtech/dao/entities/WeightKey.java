@@ -59,9 +59,8 @@ public class WeightKey implements Serializable {
 
         WeightKey that = (WeightKey) o;
 
-        if (foodDescription != null ? !foodDescription.equals(that.foodDescription) : that.foodDescription != null)
-            return false;
-        return Seq != null ? Seq.equals(that.Seq) : that.Seq == null;
+        return (foodDescription != null ? foodDescription.equals(that.foodDescription) : that.foodDescription == null)
+                && (Seq != null ? Seq.equals(that.Seq) : that.Seq == null);
     }
 
     @Override
