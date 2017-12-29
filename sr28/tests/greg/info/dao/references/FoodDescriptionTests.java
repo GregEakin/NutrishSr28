@@ -1,6 +1,7 @@
-package greg.info.dao.dataValadition;
+package greg.info.dao.references;
 
 import greg.info.dao.entities.*;
+import greg.info.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ public class FoodDescriptionTests {
     @Test
     public void foodGroupDescriptionTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+
         FoodGroup foodGroup = foodDescription.getFoodGroup();
         Assertions.assertEquals("0100", foodGroup.getFdGrp_Cd());
         Assertions.assertEquals("Dairy and Egg Products", foodGroup.getFdGrp_Desc());
@@ -29,6 +31,7 @@ public class FoodDescriptionTests {
     @Test
     public void NutrientDataTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+
         Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
         Assertions.assertEquals(91, nutrientDataSet.size());
     }
@@ -37,6 +40,7 @@ public class FoodDescriptionTests {
     @Test
     public void WeightTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+
         Set<Weight> weightSet = foodDescription.getWeightSet();
         Assertions.assertEquals(3, weightSet.size());
     }
@@ -45,6 +49,7 @@ public class FoodDescriptionTests {
     @Test
     public void FootnoteTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "05315");
+
         Set<Footnote> footnoteSet = foodDescription.getFootnoteSet();
         Assertions.assertEquals(3, footnoteSet.size());
     }
@@ -53,6 +58,7 @@ public class FoodDescriptionTests {
     @Test
     public void LanguageTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "02002");
+
         Set<Language> languageSet = foodDescription.getLanguageSet();
         Assertions.assertEquals(13, languageSet.size());
     }

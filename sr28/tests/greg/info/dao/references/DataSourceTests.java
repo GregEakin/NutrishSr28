@@ -1,8 +1,10 @@
-package greg.info.dao.dataValadition;
+package greg.info.dao.references;
 
 import greg.info.dao.entities.DataSource;
 import greg.info.dao.entities.NutrientData;
+import greg.info.dao.entities.NutrientDataKey;
 import greg.info.dao.entities.NutrientDefinition;
+import greg.info.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,16 +33,14 @@ public class DataSourceTests {
     @Test
     public void nutrientDefinitionTest() {
         DataSource dataSource = session.load(DataSource.class, "D642  ");
-
         Set<NutrientData> nutrientDataSet = dataSource.getNutrientDataSet();
-        Assertions.assertEquals(2, nutrientDataSet.size());
-        for (NutrientData nutrientData : nutrientDataSet) {
-            NutrientDefinition nutrientDefinition = nutrientData.getNutrientDataKey().getNutrientDefinition();
-            System.out.println(nutrientDefinition.getNutr_No());
-            // Todo: 306, and 307
-        }
+
+        String nutrKeys[] = nutrientDataSet.stream()
+                .map(NutrientData::getNutrientDataKey)
+                .map(NutrientDataKey::getNutrientDefinition)
+                .map(NutrientDefinition::getNutr_No)
+                .sorted()
+                .toArray(String[]::new);
+        Assertions.assertArrayEquals(new String[]{"306", "307"}, nutrKeys);
     }
 }
-
-
-

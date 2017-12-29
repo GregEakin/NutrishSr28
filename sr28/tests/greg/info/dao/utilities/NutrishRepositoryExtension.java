@@ -1,4 +1,4 @@
-package greg.info.dao.dataValadition;
+package greg.info.dao.utilities;
 
 import greg.info.dao.entities.FoodDescription;
 import greg.info.dao.entities.NutrientData;

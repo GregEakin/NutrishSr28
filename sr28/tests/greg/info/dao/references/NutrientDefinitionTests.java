@@ -1,7 +1,8 @@
-package greg.info.dao.dataValadition;
+package greg.info.dao.references;
 
 import greg.info.dao.entities.NutrientData;
 import greg.info.dao.entities.NutrientDefinition;
+import greg.info.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
