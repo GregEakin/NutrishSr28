@@ -16,9 +16,7 @@
 
 package info.gdbtech.dao.utilities;
 
-import info.gdbtech.dao.entities.FoodDescription;
-import info.gdbtech.dao.entities.NutrientData;
-import info.gdbtech.dao.entities.NutrientDefinition;
+import info.gdbtech.dao.entities.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,18 +35,18 @@ public class NutrishRepositoryExtension implements
     private Transaction transaction;
 
     @Override
-    public void beforeAll(ExtensionContext extensionContext) throws Exception {
+    public void beforeAll(ExtensionContext extensionContext) {
         sessionFactory = createSessionFactory();
         session = createSession();
     }
 
     @Override
-    public void beforeTestExecution(ExtensionContext extensionContext) throws Exception {
+    public void beforeTestExecution(ExtensionContext extensionContext) {
         transaction = session.beginTransaction();
     }
 
     @Override
-    public void afterTestExecution(ExtensionContext extensionContext) throws Exception {
+    public void afterTestExecution(ExtensionContext extensionContext) {
         try {
             transaction.rollback();
         } catch (Exception ex) {
@@ -57,7 +55,7 @@ public class NutrishRepositoryExtension implements
     }
 
     @Override
-    public void afterAll(ExtensionContext extensionContext) throws Exception {
+    public void afterAll(ExtensionContext extensionContext) {
         try {
             try {
                 session.close();
@@ -82,13 +80,22 @@ public class NutrishRepositoryExtension implements
 
     private SessionFactory createSessionFactory() {
         Configuration configuration = new Configuration().configure();
-        configuration.addAnnotatedClass(NutrientData.class)
-                .addAnnotatedClass(NutrientDefinition.class)
-                .addAnnotatedClass(FoodDescription.class);
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
         configuration.setProperty("hibernate.connection.url", "jdbc:hsqldb:hsql://localhost/nutrish");
         configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
+        configuration
+                .addAnnotatedClass(DataDerivation.class)
+                .addAnnotatedClass(DataSource.class)
+                .addAnnotatedClass(FoodDescription.class)
+                .addAnnotatedClass(FoodGroup.class)
+                .addAnnotatedClass(Footnote.class)
+                .addAnnotatedClass(Language.class)
+                .addAnnotatedClass(NutrientData.class)
+                .addAnnotatedClass(NutrientDefinition.class)
+                .addAnnotatedClass(SourceCode.class)
+                .addAnnotatedClass(Weight.class);
+
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         return sessionFactory;
     }
