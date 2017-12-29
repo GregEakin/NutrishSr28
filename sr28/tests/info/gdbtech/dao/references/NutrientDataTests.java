@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientDataTests {
@@ -60,32 +59,41 @@ public class NutrientDataTests {
         Assertions.assertEquals(3, weightSet.size());
     }
 
-    //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
+    //  Links to the Footnote file by NDB_No
     @Test
     public void footnoteTest1() {
-        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+        FoodDescription foodDescription = session.load(FoodDescription.class, "12040");
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
-        Set<Footnote> footnoteSet = nutrientData.getNutrientDataKey().getNutrientDefinition().getFootnoteSet();
-        Assertions.assertEquals(13, footnoteSet.size());
+        Set<Footnote> footnoteSet = nutrientDataKey.getFoodDescription().getFootnoteSet();
+        Assertions.assertEquals(2, footnoteSet.size());
+        for (Footnote footnote : footnoteSet) {
+            Assertions.assertEquals("12040", footnote.getFoodDescription().getNDB_No());
+            Assertions.assertNull(footnote.getNutrientDefinition());
+        }
     }
 
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
     @Test
     public void footnoteTest2() {
-        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
+        FoodDescription foodDescription = session.load(FoodDescription.class, "03073");
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "320");
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
-        Set<Footnote> footnoteSet = nutrientData.getNutrientDataKey().getNutrientDefinition().getFootnoteSet();
-        Stream<Footnote> footnoteStream = footnoteSet.stream().filter(o -> o.getNutrientDefinition().getNutr_No() == nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
-        Footnote footnote = (Footnote) footnoteStream.toArray()[0];
+        // TODO: Find the records, in footnote1 and footnote2, where:
+        //      footnote.getFoodDescription().getNDB_No()) == "03073"
+        //      footnote.getNutrientDefinition().getNutr_No() == "320"
 
-        // TODO
-        // Assertions.assertEquals("Data from the Duckling Council and a USDA contract", footnote.getFootnt_Txt());
+        Set<Footnote> footnoteSet1 = nutrientDataKey.getFoodDescription().getFootnoteSet();
+        Assertions.assertEquals(2, footnoteSet1.size());
+        for (Footnote footnote : footnoteSet1)
+            Assertions.assertEquals("03073", footnote.getFoodDescription().getNDB_No());
+
+        Set<Footnote> footnoteSet2 = nutrientDataKey.getNutrientDefinition().getFootnoteSet();
+        Assertions.assertEquals(12, footnoteSet2.size());
+        for (Footnote footnote : footnoteSet2)
+            Assertions.assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
     }
 
     //  Links to the Sources of Data Link file by NDB_No and Nutr_No
