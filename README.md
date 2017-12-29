@@ -1,5 +1,5 @@
-# NutrishSr28
-###Greg Eakin
+# Nutrish Sr28
+**Greg Eakin**
 
 This is an experiment in configuring an existing database in Hibernate and JUnit 5.
 Here we defined the schema with annotation in Java files.
