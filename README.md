@@ -26,8 +26,11 @@ These jars need to be installed in the SR28/Lib folder.
 
 ## Database Server:
 Run this database server
+`info.gdbtech.server.Database`
 
 ## Import the Data:
 Run this program, to load the text files into the database
+`info.gdbtech.Ddl`
 
-## Run the Unit Tests
+## Run the Unit Tests:
+Everything in the `info.gdbtech` folder.
