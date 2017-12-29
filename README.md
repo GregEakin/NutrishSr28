@@ -1,5 +1,9 @@
 # NutrishSr28
-Greg Eakin
+###Greg Eakin
+
+This is an experiment in configuring an existing database in Hibernate and JUnit 5.
+Here we defined the schema with annotation in Java files.
+
 
 ## Tags
 - [USDA National Nutrient Database for Standard Reference SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/)
