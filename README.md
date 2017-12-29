@@ -12,7 +12,7 @@ Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/nor
 database and save the text files in the /data folder
 
 ## Libraries:
-These jars need to be installed in the SR28/Lib folder.
+These jars need to be installed in the /SR28/Lib folder.
 - antlr-2.7.7.jar
 - classmate-1.3.0.jar
 - dom4j-1.6.1.jar
