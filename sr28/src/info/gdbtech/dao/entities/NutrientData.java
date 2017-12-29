@@ -42,8 +42,6 @@ public class NutrientData {
     private String AddMod_Date;             // Indicates when a value was either added to the database or last modified.
     private String CC;                      // Confidence Code indicating data quality, based on evaluation of sample plan, sample handling, analytical method, analytical quality control, and number of samples analyzed.
     private Set<DataSource> dataSourceSet = new HashSet<>(0);
-    // private Set<Weight> weightSet = new HashSet<>(0);
-    // private Set<Footnote> footnoteSet = new HashSet<>(0);
 
     //  Links to the Food Description file by NDB_No
     //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
@@ -224,23 +222,4 @@ public class NutrientData {
     public void setDataSourceSet(Set<DataSource> dataSources) {
         this.dataSourceSet = dataSources;
     }
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "weightKey.foodDescription")
-//    public Set<Weight> getWeightSet() {
-//        return weightSet;
-//    }
-//
-//    public void setWeightSet(Set<Weight> weightSet) {
-//        this.weightSet = weightSet;
-//    }
-
-//    @ManyToMany
-//    @JoinColumn(name = "NDB_No", nullable = false)
-//    public Set<Footnote> getFootnoteSet() {
-//        return footnoteSet;
-//    }
-//
-//    public void setFootnoteSet(Set<Footnote> footnoteSet) {
-//        this.footnoteSet = footnoteSet;
-//    }
 }

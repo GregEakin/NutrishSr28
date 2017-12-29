@@ -16,16 +16,13 @@
 
 package info.gdbtech.dao.dataValadition;
 
-import info.gdbtech.dao.entities.FoodDescription;
-import info.gdbtech.dao.entities.NutrientData;
-import info.gdbtech.dao.entities.NutrientDataKey;
 import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.util.Set;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class ElementCountTests {
@@ -38,23 +35,14 @@ public class ElementCountTests {
     @Test
     public void waterTest() {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
-        System.out.println(nutrientDefinition.getNutr_No()
-                + " " + nutrientDefinition.getNutrDesc()
-                + " " + nutrientDefinition.getUnits());
+        Assertions.assertEquals("255", nutrientDefinition.getNutr_No());
+        Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
-        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        System.out.println("   NutData Cout: " + nutrientDataSet.size());
-        int count = 0;
-        for (NutrientData nutrientData : nutrientDataSet) {
-            NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
-            System.out.print("    NutData: " + nutrientData.getNutr_Val());
-
-            FoodDescription foodDescription = nutrientData.getNutrientDataKey().getFoodDescription();
-            System.out.println(" " + foodDescription.getLong_Desc());
-
-            if (++count > 15)
-                break;
-        }
-
+        String hql = "select count(*) from  NutrientData where nutrientDataKey.nutrientDefinition.nutr_No = :nutr_no";
+        Query<Long> query = session.createQuery(hql, Long.class);
+        query.setParameter("nutr_no", "255");
+        Long count = query.getSingleResult();
+        Assertions.assertEquals(8788L, count.longValue());
     }
 }

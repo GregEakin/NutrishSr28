@@ -39,9 +39,9 @@ public class YogurtTests {
         Assertions.assertEquals("01119", foodDescription.getNDB_No());
         Assertions.assertEquals("Yogurt, vanilla, low fat, 11 grams protein per 8 ounce", foodDescription.getLong_Desc());
         Assertions.assertEquals("YOGURT,VANILLA,LOFAT,11 GRAMS PROT PER 8 OZ", foodDescription.getShrt_Desc());
-        Assertions.assertEquals(new Double(3.87), foodDescription.getCHO_Factor());
-        Assertions.assertEquals(new Double(4.27), foodDescription.getPro_Factor());
-        Assertions.assertEquals(new Double(6.38), foodDescription.getN_Factor());
+        Assertions.assertEquals(3.87, foodDescription.getCHO_Factor().doubleValue());
+        Assertions.assertEquals(4.27, foodDescription.getPro_Factor().doubleValue());
+        Assertions.assertEquals(6.38, foodDescription.getN_Factor().doubleValue());
     }
 
     @Test
@@ -108,19 +108,19 @@ public class YogurtTests {
         Assertions.assertEquals(3, weightSet.size());
 
         for (Weight weight : weightSet) {
-            Assertions.assertEquals(new Double(1), weight.getAmount());
+            Assertions.assertEquals(1.0, weight.getAmount().doubleValue());
             Assertions.assertNull(weight.getStd_Dev());
             switch (weight.getWeightKey().getSeq()) {
                 case "1 ":
-                    Assertions.assertEquals(new Double(170), weight.getGm_Wgt());
+                    Assertions.assertEquals(170.0, weight.getGm_Wgt().doubleValue());
                     Assertions.assertEquals("container (6 oz)", weight.getMsre_Desc());
                     break;
                 case "2 ":
-                    Assertions.assertEquals(new Double(227), weight.getGm_Wgt());
+                    Assertions.assertEquals(227.0, weight.getGm_Wgt().doubleValue());
                     Assertions.assertEquals("container (8 oz)", weight.getMsre_Desc());
                     break;
                 case "3 ":
-                    Assertions.assertEquals(new Double(245), weight.getGm_Wgt());
+                    Assertions.assertEquals(245.0, weight.getGm_Wgt().doubleValue());
                     Assertions.assertEquals("cup (8 fl oz)", weight.getMsre_Desc());
                     break;
             }

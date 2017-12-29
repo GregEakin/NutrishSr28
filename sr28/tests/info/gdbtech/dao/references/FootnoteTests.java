@@ -41,11 +41,12 @@ public class FootnoteTests {
     //  Links to the Food Description file by NDB_No
     @Test
     public void foodDescriptionTest() {
-        String hql = "FROM Footnote WHERE foodDescription.NDB_No = '05316' and nutrientDefinition.nutr_No is null";
-        Query query = session.createQuery(hql);
+        String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No is null";
+        Query<Footnote> query = session.createQuery(hql, Footnote.class);
+        query.setParameter("ndb_no", "05316");
         List results = query.list();
         Assertions.assertEquals(1, results.size());
-        Footnote footnote = (Footnote) results.get(0);
+        Footnote footnote = query.getSingleResult();
 
         FoodDescription foodDescription = footnote.getFoodDescription();
         Assertions.assertEquals("05316", foodDescription.getNDB_No());
@@ -54,11 +55,10 @@ public class FootnoteTests {
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
     @Test
     public void nutrientDataTest1() {
-        String hql = "FROM Footnote WHERE foodDescription.NDB_No = '05316' and nutrientDefinition.nutr_No is null";
-        Query query = session.createQuery(hql);
-        List results = query.list();
-        Assertions.assertEquals(1, results.size());
-        Footnote footnote = (Footnote) results.get(0);
+        String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No is null";
+        Query<Footnote> query = session.createQuery(hql, Footnote.class);
+        query.setParameter("ndb_no", "05316");
+        Footnote footnote = query.getSingleResult();
 
         FoodDescription foodDescription = footnote.getFoodDescription();
         Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
@@ -70,19 +70,17 @@ public class FootnoteTests {
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
     @Test
     public void nutrientDataTest2() {
-//        String hql = "FROM Footnote WHERE foodDescription.NDB_No = '05316' and nutrientDefinition.nutr_No = '204'";
-//        Query query = session.createQuery(hql);
-//        List results = query.list();
-//        Assertions.assertEquals(1, results.size());
-//        Footnote footnote = (Footnote) results.get(0);
+//        String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
+//        Query<Footnote> query = session.createQuery(hql, Footnote.class);
+//        query.setParameter("ndb_no", "05316");
+//        query.setParameter("nutr_no", "204");
+//        Footnote footnote = query.getSingleResult();
 
         String hql = "FROM NutrientData WHERE nutrientDataKey.foodDescription.NDB_No = :ndb_no and nutrientDataKey.nutrientDefinition.nutr_No = :nutr_no";
-        Query query = session.createQuery(hql);
+        Query<NutrientData> query = session.createQuery(hql, NutrientData.class);
         query.setParameter("ndb_no", "05316");  // set from footnote.getFoodDescription().getNDB_No()
         query.setParameter("nutr_no", "204");   // set from footnote.getNutrientDefinition().getNutr_No()
-        List results = query.list();
-        Assertions.assertEquals(1, results.size());
-        NutrientData nutrientData = (NutrientData) results.get(0);
+        NutrientData nutrientData = query.getSingleResult();
         Assertions.assertEquals("05316", nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
         Assertions.assertEquals("204", nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
     }
@@ -90,11 +88,11 @@ public class FootnoteTests {
     //  Links to the Nutrient Definition file by Nutr_No, when applicable
     @Test
     public void nutrientDefinitionTest() {
-        String hql = "FROM Footnote WHERE foodDescription.NDB_No = '05316' and nutrientDefinition.nutr_No = '204'";
-        Query query = session.createQuery(hql);
-        List results = query.list();
-        Assertions.assertEquals(1, results.size());
-        Footnote footnote = (Footnote) results.get(0);
+        String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
+        Query<Footnote> query = session.createQuery(hql, Footnote.class);
+        query.setParameter("ndb_no", "05316");
+        query.setParameter("nutr_no", "204");
+        Footnote footnote = query.getSingleResult();
 
         NutrientDefinition nutrientDefinition = footnote.getNutrientDefinition();
         Assertions.assertEquals("204", nutrientDefinition.getNutr_No());

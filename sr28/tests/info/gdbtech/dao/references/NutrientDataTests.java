@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.util.List;
 import java.util.Set;
 
 @ExtendWith(NutrishRepositoryExtension.class)
@@ -84,12 +83,10 @@ public class NutrientDataTests {
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
         String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
-        Query query = session.createQuery(hql);
+        Query<Footnote> query = session.createQuery(hql, Footnote.class);
         query.setParameter("ndb_no", nutrientDataKey.getFoodDescription().getNDB_No());
         query.setParameter("nutr_no", nutrientDataKey.getNutrientDefinition().getNutr_No());
-        List results = query.list();
-        Assertions.assertEquals(1, results.size());
-        Footnote footnote = (Footnote) results.get(0);
+        Footnote footnote = query.getSingleResult();
 
         Assertions.assertEquals("03073", footnote.getFoodDescription().getNDB_No());
         Assertions.assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
