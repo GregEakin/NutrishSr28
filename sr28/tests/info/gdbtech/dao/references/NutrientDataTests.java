@@ -20,10 +20,12 @@ import info.gdbtech.dao.entities.*;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.List;
 import java.util.Set;
 
 @ExtendWith(NutrishRepositoryExtension.class)
@@ -81,19 +83,16 @@ public class NutrientDataTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "320");
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
-        // TODO: Find the records, in footnote1 and footnote2, where:
-        //      footnote.getFoodDescription().getNDB_No()) == "03073"
-        //      footnote.getNutrientDefinition().getNutr_No() == "320"
+        String hql = "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
+        Query query = session.createQuery(hql);
+        query.setParameter("ndb_no", nutrientDataKey.getFoodDescription().getNDB_No());
+        query.setParameter("nutr_no", nutrientDataKey.getNutrientDefinition().getNutr_No());
+        List results = query.list();
+        Assertions.assertEquals(1, results.size());
+        Footnote footnote = (Footnote) results.get(0);
 
-        Set<Footnote> footnoteSet1 = nutrientDataKey.getFoodDescription().getFootnoteSet();
-        Assertions.assertEquals(2, footnoteSet1.size());
-        for (Footnote footnote : footnoteSet1)
-            Assertions.assertEquals("03073", footnote.getFoodDescription().getNDB_No());
-
-        Set<Footnote> footnoteSet2 = nutrientDataKey.getNutrientDefinition().getFootnoteSet();
-        Assertions.assertEquals(12, footnoteSet2.size());
-        for (Footnote footnote : footnoteSet2)
-            Assertions.assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
+        Assertions.assertEquals("03073", footnote.getFoodDescription().getNDB_No());
+        Assertions.assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
     }
 
     //  Links to the Sources of Data Link file by NDB_No and Nutr_No
