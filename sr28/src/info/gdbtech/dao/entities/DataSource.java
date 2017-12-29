@@ -37,7 +37,7 @@ public class DataSource {
     //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
 
     @Id
-    @Column(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)
+    @Column(name = "DataSrc_ID", length = 6, nullable = false)
     public String getDataSrc_ID() {
         return DataSrc_ID;
     }
@@ -46,7 +46,7 @@ public class DataSource {
         DataSrc_ID = dataSrc_ID;
     }
 
-    @Column(name = "Authors", columnDefinition = "varchar(255)")
+    @Column(name = "Authors", length = 255)
     public String getAuthors() {
         return Authors;
     }
@@ -55,7 +55,7 @@ public class DataSource {
         Authors = authors;
     }
 
-    @Column(name = "Title", columnDefinition = "varchar(255)", nullable = false)
+    @Column(name = "Title", length = 255, nullable = false)
     public String getTitle() {
         return Title;
     }
@@ -64,7 +64,7 @@ public class DataSource {
         Title = title;
     }
 
-    @Column(name = "Year", columnDefinition = "character(4)")
+    @Column(name = "Year", length = 4)
     public String getYear() {
         return Year;
     }
@@ -73,7 +73,7 @@ public class DataSource {
         Year = year;
     }
 
-    @Column(name = "Journal", columnDefinition = "varchar(135)")
+    @Column(name = "Journal", length = 135)
     public String getJournal() {
         return Journal;
     }
@@ -82,7 +82,7 @@ public class DataSource {
         Journal = journal;
     }
 
-    @Column(name = "Vol_City", columnDefinition = "character(16)")
+    @Column(name = "Vol_City", length = 16)
     public String getVol_City() {
         return Vol_City;
     }
@@ -91,7 +91,7 @@ public class DataSource {
         Vol_City = vol_City;
     }
 
-    @Column(name = "Issue_State", columnDefinition = "character(5)")
+    @Column(name = "Issue_State", length = 5)
     public String getIssue_State() {
         return Issue_State;
     }
@@ -100,7 +100,7 @@ public class DataSource {
         Issue_State = issue_State;
     }
 
-    @Column(name = "Start_Page", columnDefinition = "character(5)")
+    @Column(name = "Start_Page", length = 5)
     public String getStart_Page() {
         return Start_Page;
     }
@@ -109,7 +109,7 @@ public class DataSource {
         Start_Page = start_Page;
     }
 
-    @Column(name = "End_Page", columnDefinition = "character(5)")
+    @Column(name = "End_Page", length = 5)
     public String getEnd_Page() {
         return End_Page;
     }

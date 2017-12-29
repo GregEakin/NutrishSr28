@@ -64,7 +64,7 @@ public class NutrientData {
         this.nutrientDataKey = nutrientDataKey;
     }
 
-    @Column(name = "Nutr_Val", columnDefinition = "float", nullable = false)
+    @Column(name = "Nutr_Val", nullable = false)
     public Double getNutr_Val() {
         return Nutr_Val;
     }
@@ -73,7 +73,7 @@ public class NutrientData {
         Nutr_Val = nutr_Val;
     }
 
-    @Column(name = "Num_Data_Pts", columnDefinition = "integer", nullable = false)
+    @Column(name = "Num_Data_Pts", nullable = false)
     public Integer getNum_Data_Pts() {
         return Num_Data_Pts;
     }
@@ -82,7 +82,7 @@ public class NutrientData {
         Num_Data_Pts = num_Data_Pts;
     }
 
-    @Column(name = "Std_Error", columnDefinition = "float")
+    @Column(name = "Std_Error")
     public Double getStd_Error() {
         return Std_Error;
     }
@@ -92,7 +92,7 @@ public class NutrientData {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
+    @JoinColumn(name = "Src_Cd", nullable = false)
     public SourceCode getSourceCode() {
         return sourceCode;
     }
@@ -102,7 +102,7 @@ public class NutrientData {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Deriv_Cd", columnDefinition = "character(4)")
+    @JoinColumn(name = "Deriv_Cd")
     public DataDerivation getDataDerivation() {
         return dataDerivation;
     }
@@ -112,7 +112,7 @@ public class NutrientData {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Ref_NDB_No", columnDefinition = "character(5)")
+    @JoinColumn(name = "Ref_NDB_No")
     public FoodDescription getRefFoodDescription() {
         return refFoodDescription;
     }
@@ -121,7 +121,7 @@ public class NutrientData {
         this.refFoodDescription = foodDescription;
     }
 
-    @Column(name = "Add_Nutr_Mark", columnDefinition = "character(1)")
+    @Column(name = "Add_Nutr_Mark", length = 1)
     public String getAdd_Nutr_Mark() {
         return Add_Nutr_Mark;
     }
@@ -130,7 +130,7 @@ public class NutrientData {
         Add_Nutr_Mark = add_Nutr_Mark;
     }
 
-    @Column(name = "Num_Studies", columnDefinition = "integer")
+    @Column(name = "Num_Studies")
     public Integer getNum_Studies() {
         return Num_Studies;
     }
@@ -143,12 +143,12 @@ public class NutrientData {
         return Min;
     }
 
-    @Column(name = "Min", columnDefinition = "float")
+    @Column(name = "Min")
     public void setMin(Double min) {
         Min = min;
     }
 
-    @Column(name = "Max", columnDefinition = "float")
+    @Column(name = "Max")
     public Double getMax() {
         return Max;
     }
@@ -157,7 +157,7 @@ public class NutrientData {
         Max = max;
     }
 
-    @Column(name = "DF", columnDefinition = "integer")
+    @Column(name = "DF")
     public Integer getDF() {
         return DF;
     }
@@ -166,7 +166,7 @@ public class NutrientData {
         this.DF = DF;
     }
 
-    @Column(name = "Low_EB", columnDefinition = "float")
+    @Column(name = "Low_EB")
     public Double getLow_EB() {
         return Low_EB;
     }
@@ -175,7 +175,7 @@ public class NutrientData {
         Low_EB = low_EB;
     }
 
-    @Column(name = "Up_EB", columnDefinition = "float")
+    @Column(name = "Up_EB")
     public Double getUp_EB() {
         return Up_EB;
     }
@@ -184,7 +184,7 @@ public class NutrientData {
         Up_EB = up_EB;
     }
 
-    @Column(name = "Stat_cmt", columnDefinition = "character(10)")
+    @Column(name = "Stat_cmt", length = 10)
     public String getStat_cmt() {
         return Stat_cmt;
     }
@@ -193,7 +193,7 @@ public class NutrientData {
         Stat_cmt = stat_cmt;
     }
 
-    @Column(name = "AddMod_Date", columnDefinition = "character(10)")
+    @Column(name = "AddMod_Date", length = 10)
     public String getAddMod_Date() {
         return AddMod_Date;
     }
@@ -202,7 +202,7 @@ public class NutrientData {
         AddMod_Date = addMod_Date;
     }
 
-    @Column(name = "CC", columnDefinition = "character(1)")
+    @Column(name = "CC", length = 1)
     public String getCC() {
         return CC;
     }
@@ -214,8 +214,8 @@ public class NutrientData {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "DATSRCLN",
-            joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false), @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID", columnDefinition = "character(6)", nullable = false)}
+            joinColumns = {@JoinColumn(name = "NDB_No", nullable = false), @JoinColumn(name = "Nutr_No", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "DataSrc_ID", nullable = false)}
     )
     public Set<DataSource> getDataSourceSet() {
         return dataSourceSet;
@@ -235,7 +235,7 @@ public class NutrientData {
 //    }
 
 //    @ManyToMany
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+//    @JoinColumn(name = "NDB_No", nullable = false)
 //    public Set<Footnote> getFootnoteSet() {
 //        return footnoteSet;
 //    }

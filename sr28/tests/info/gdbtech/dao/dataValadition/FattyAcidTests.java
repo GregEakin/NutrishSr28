@@ -37,7 +37,7 @@ public class FattyAcidTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "607");
         Assertions.assertEquals("4:0", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("F4D0", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
     }
 
@@ -47,7 +47,7 @@ public class FattyAcidTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "608");
         Assertions.assertEquals("6:0", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("F6D0", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
     }
 
@@ -57,7 +57,7 @@ public class FattyAcidTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "625");
         Assertions.assertEquals("14:1", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("F14D1", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
     }
 }

@@ -129,7 +129,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         SourceCode sourceCode = nutrientData.getSourceCode();
-        Assertions.assertEquals("4 ", sourceCode.getSrc_Cd());
+        Assertions.assertEquals("4", sourceCode.getSrc_Cd());
         Assertions.assertEquals("Calculated or imputed", sourceCode.getSrcCd_Desc());
     }
 

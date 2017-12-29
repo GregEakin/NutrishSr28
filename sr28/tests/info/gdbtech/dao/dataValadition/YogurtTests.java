@@ -83,7 +83,7 @@ public class YogurtTests {
         Assertions.assertEquals("204", nutrientDefinition.getNutr_No());
         Assertions.assertEquals("Total lipid (fat)", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("FAT", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
     }
 
     @Test
@@ -168,7 +168,7 @@ public class YogurtTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         SourceCode sourceCode = nutrientData.getSourceCode();
-        Assertions.assertEquals("1 ", sourceCode.getSrc_Cd());
+        Assertions.assertEquals("1", sourceCode.getSrc_Cd());
         Assertions.assertEquals("Analytical or derived from analytical", sourceCode.getSrcCd_Desc());
     }
 
@@ -181,7 +181,7 @@ public class YogurtTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         DataDerivation dataDerivation = nutrientData.getDataDerivation();
-        Assertions.assertEquals("A   ", dataDerivation.getDeriv_Cd());
+        Assertions.assertEquals("A", dataDerivation.getDeriv_Cd());
         Assertions.assertEquals("Analytical data", dataDerivation.getDeriv_Desc());
     }
 }

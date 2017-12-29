@@ -29,7 +29,7 @@ public class SourceCode {
     //  Links to the Nutrient Data file by Src_Cd
 
     @Id
-    @Column(name = "Src_Cd", columnDefinition = "character(2)", nullable = false)
+    @Column(name = "Src_Cd", length = 2, nullable = false)
     public String getSrc_Cd() {
         return Src_Cd;
     }
@@ -38,7 +38,7 @@ public class SourceCode {
         Src_Cd = src_Cd;
     }
 
-    @Column(name = "SrcCd_Desc", columnDefinition = "varchar(60)", nullable = false)
+    @Column(name = "SrcCd_Desc", length = 60, nullable = false)
     public String getSrcCd_Desc() {
         return SrcCd_Desc;
     }

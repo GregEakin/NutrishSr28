@@ -36,7 +36,7 @@ public class NutrientValidationTests {
 
     @Test
     public void nutrientDataTest() {
-        DataSource dataSource = session.load(DataSource.class, "D642  ");
+        DataSource dataSource = session.load(DataSource.class, "D642");
 
         Set<NutrientData> nutrientDataSet = dataSource.getNutrientDataSet();
         Assertions.assertEquals(2, nutrientDataSet.size());

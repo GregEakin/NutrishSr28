@@ -51,7 +51,7 @@ public class Weight implements Serializable {
 
 
     // Amount N 5.3 N Unit modifier (for example, 1 in “1 cup”).
-    @Column(name = "Amount", columnDefinition = "float", nullable = false)
+    @Column(name = "Amount", nullable = false)
     public Double getAmount() {
         return Amount;
     }
@@ -61,7 +61,7 @@ public class Weight implements Serializable {
     }
 
     // Msre_Desc A 84 N Description (for example, cup, diced, and 1-inch pieces).
-    @Column(name = "Msre_Desc", columnDefinition = "varchar(84)", nullable = false)
+    @Column(name = "Msre_Desc", length = 84, nullable = false)
     public String getMsre_Desc() {
         return Msre_Desc;
     }
@@ -71,7 +71,7 @@ public class Weight implements Serializable {
     }
 
     // Gm_Wgt N 7.1 N Gram weight.
-    @Column(name = "Gm_Wgt", columnDefinition = "float", nullable = false)
+    @Column(name = "Gm_Wgt", nullable = false)
     public Double getGm_Wgt() {
         return Gm_Wgt;
     }
@@ -81,7 +81,7 @@ public class Weight implements Serializable {
     }
 
     // Num_Data_Pts N 3 Y Number of data points.
-    @Column(name = "Num_Data_Pts", columnDefinition = "integer")
+    @Column(name = "Num_Data_Pts")
     public Integer getNum_Data_Pts() {
         return Num_Data_Pts;
     }
@@ -91,7 +91,7 @@ public class Weight implements Serializable {
     }
 
     // Std_Dev N 7.3 Y Standard deviation.
-    @Column(name = "Std_Dev", columnDefinition = "float")
+    @Column(name = "Std_Dev")
     public Double getStd_Dev() {
         return Std_Dev;
     }

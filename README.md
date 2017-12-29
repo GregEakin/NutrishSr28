@@ -4,19 +4,18 @@
 This is an experiment in configuring an existing database in Hibernate and JUnit 5.
 Here we defined the schema with annotation in Java files.
 
-
 ## Tags
-- [USDA National Nutrient Database for Standard Reference SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/)
-- [Hibernate](http://hibernate.org/) Object-Relation Mapping
-- [HPL/SQL](http://www.hplsql.org/) Database
+- [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
 - [JUnit 5](http://junit.org/junit5/) Unit Tests
+- [HPL/SQL](http://www.hplsql.org/) Database
+- [USDA National Nutrient Database](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/) for Standard Reference SR28
 
 ## Database:
-Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/)
-database and save the text files in the /data folder
+Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
+database and save the text files in the `/data` folder
 
 ## Libraries:
-These jars need to be installed in the /SR28/Lib folder.
+These jars need to be installed in the `/SR28/Lib` folder.
 - antlr-2.7.7.jar
 - classmate-1.3.0.jar
 - dom4j-1.6.1.jar
@@ -30,11 +29,12 @@ These jars need to be installed in the /SR28/Lib folder.
 
 ## Database Server:
 Run this database server
-`info.gdbtech.server.Database`
+>`info.gdbtech.server.Database`
 
 ## Import the Data:
 Run this program, to load the text files into the database
-`info.gdbtech.Ddl`
+>`info.gdbtech.Ddl`
 
 ## Run the Unit Tests:
-Everything in the `info.gdbtech` folder.
+Everything in the `/tests` folder:
+> `info.gdbtech`

@@ -34,7 +34,7 @@ public class WeightKey implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @JoinColumn(name = "NDB_No", nullable = false)
     public FoodDescription getFoodDescription() {
         return foodDescription;
     }
@@ -43,7 +43,7 @@ public class WeightKey implements Serializable {
         this.foodDescription = foodDescription;
     }
 
-    @Column(name = "Seq", columnDefinition = "character(2)", nullable = false)
+    @Column(name = "Seq", length = 2, nullable = false)
     public String getSeq() {
         return Seq;
     }

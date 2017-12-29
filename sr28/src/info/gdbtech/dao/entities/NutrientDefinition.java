@@ -35,16 +35,16 @@ public class NutrientDefinition {
     //  Links to the Nutrient Data file by Nutr_No
 
     @Id
-    @Column(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+    @Column(name = "Nutr_No", length = 3, nullable = false)
     public String getNutr_No() {
         return Nutr_No;
     }
 
-    public void setNutr_No(String nutr_No) {
-        Nutr_No = nutr_No;
+    public void setNutr_No(String Nutr_No) {
+        this.Nutr_No = Nutr_No;
     }
 
-    @Column(name = "Units", columnDefinition = "character(7)", nullable = false)
+    @Column(name = "Units", length = 7, nullable = false)
     public String getUnits() {
         return Units;
     }
@@ -53,7 +53,7 @@ public class NutrientDefinition {
         Units = units;
     }
 
-    @Column(name = "Tagname", columnDefinition = "varchar(20)")
+    @Column(name = "Tagname", length = 20)
     public String getTagname() {
         return Tagname;
     }
@@ -62,7 +62,7 @@ public class NutrientDefinition {
         Tagname = tagname;
     }
 
-    @Column(name = "NutrDesc", columnDefinition = "varchar(60)", nullable = false)
+    @Column(name = "NutrDesc", length = 60, nullable = false)
     public String getNutrDesc() {
         return NutrDesc;
     }
@@ -71,7 +71,7 @@ public class NutrientDefinition {
         NutrDesc = nutrDesc;
     }
 
-    @Column(name = "Num_Dec", columnDefinition = "character(1)", nullable = false)
+    @Column(name = "Num_Dec", length = 1, nullable = false)
     public String getNum_Dec() {
         return Num_Dec;
     }
@@ -80,7 +80,7 @@ public class NutrientDefinition {
         Num_Dec = num_Dec;
     }
 
-    @Column(name = "SR_Order", columnDefinition = "Integer", nullable = false)
+    @Column(name = "SR_Order", nullable = false)
     public Integer getSR_Order() {
         return SR_Order;
     }

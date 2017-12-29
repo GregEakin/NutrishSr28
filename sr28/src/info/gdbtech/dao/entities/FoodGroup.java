@@ -30,7 +30,7 @@ public class FoodGroup {
     //  Links to the Food Description file by FdGrp_Cd
 
     @Id
-    @Column(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+    @Column(name = "FdGrp_Cd", length = 4, nullable = false)
     public String getFdGrp_Cd() {
         return FdGrp_Cd;
     }
@@ -39,7 +39,7 @@ public class FoodGroup {
         this.FdGrp_Cd = fdGrp_Cd;
     }
 
-    @Column(name = "FdGrp_Desc", columnDefinition = "varchar(60)", nullable = false)
+    @Column(name = "FdGrp_Desc", length = 60, nullable = false)
     public String getFdGrp_Desc() {
         return FdGrp_Desc;
     }

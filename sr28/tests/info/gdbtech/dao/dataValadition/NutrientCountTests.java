@@ -41,7 +41,7 @@ public class NutrientCountTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
         Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("WATER", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
         Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
         Assertions.assertEquals(8788, nutrientDataSet.size());
@@ -53,7 +53,7 @@ public class NutrientCountTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "208");
         Assertions.assertEquals("Energy", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("ENERC_KCAL", nutrientDefinition.getTagname());
-        Assertions.assertEquals("kcal   ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("kcal", nutrientDefinition.getUnits());
 
         Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
         Assertions.assertEquals(8789, nutrientDataSet.size());
@@ -64,7 +64,7 @@ public class NutrientCountTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "211");
         Assertions.assertEquals("Glucose (dextrose)", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("GLUS", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
         Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
         Assertions.assertEquals(1752, nutrientDataSet.size());
@@ -75,7 +75,7 @@ public class NutrientCountTests {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
         Assertions.assertEquals("Total lipid (fat)", nutrientDefinition.getNutrDesc());
         Assertions.assertEquals("FAT", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g      ", nutrientDefinition.getUnits());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
 
         Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
         Assertions.assertEquals(8789, nutrientDataSet.size());

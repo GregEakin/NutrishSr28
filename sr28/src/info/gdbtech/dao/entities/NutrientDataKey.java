@@ -37,7 +37,7 @@ public class NutrientDataKey implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @JoinColumn(name = "NDB_No", nullable = false)
     public FoodDescription getFoodDescription() {
         return foodDescription;
     }
@@ -47,7 +47,7 @@ public class NutrientDataKey implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)", nullable = false)
+    @JoinColumn(name = "Nutr_No", nullable = false)
     public NutrientDefinition getNutrientDefinition() {
         return nutrientDefinition;
     }

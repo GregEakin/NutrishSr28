@@ -78,10 +78,9 @@ public class Abbreviations {
     private Double GmWt_2;//    GmWt_2 N 9.2 Second household weight for this item from the Weight file.‡
     private String GmWt_Desc2;//    GmWt_Desc2 A 120 Description of household weight number 2.
     private Integer Refuse_Pct;//    Refuse_Pct N 2 Percent refuse.
-    // private FoodDescription foodDescription;
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", length = 5, nullable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -90,7 +89,7 @@ public class Abbreviations {
         this.NDB_No = NDB_No;
     }
 
-    @Column(name = "Shrt_Desc", columnDefinition = "varchar(60)", nullable = false)
+    @Column(name = "Shrt_Desc", length = 60, nullable = false)
     public String getShrt_Desc() {
         return Shrt_Desc;
     }
@@ -99,7 +98,7 @@ public class Abbreviations {
         Shrt_Desc = shrt_Desc;
     }
 
-    @Column(name = "Water", columnDefinition = "float")
+    @Column(name = "Water")
     public Double getWater() {
         return Water;
     }
@@ -108,7 +107,7 @@ public class Abbreviations {
         Water = water;
     }
 
-    @Column(name = "Energ_Kcal", columnDefinition = "integer")
+    @Column(name = "Energ_Kcal")
     public Integer getEnerg_Kcal() {
         return Energ_Kcal;
     }
@@ -117,7 +116,7 @@ public class Abbreviations {
         Energ_Kcal = energ_Kcal;
     }
 
-    @Column(name = "Protein", columnDefinition = "float")
+    @Column(name = "Protein")
     public Double getProtein() {
         return Protein;
     }
@@ -126,7 +125,7 @@ public class Abbreviations {
         Protein = protein;
     }
 
-    @Column(name = "Lipid_Tot", columnDefinition = "float")
+    @Column(name = "Lipid_Tot")
     public Double getLipid_Tot() {
         return Lipid_Tot;
     }
@@ -135,7 +134,7 @@ public class Abbreviations {
         Lipid_Tot = lipid_Tot;
     }
 
-    @Column(name = "Ash", columnDefinition = "float")
+    @Column(name = "Ash")
     public Double getAsh() {
         return Ash;
     }
@@ -144,7 +143,7 @@ public class Abbreviations {
         Ash = ash;
     }
 
-    @Column(name = "Carbohydrt", columnDefinition = "float", nullable = false)
+    @Column(name = "Carbohydrt", nullable = false)
     public Double getCarbohydrt() {
         return Carbohydrt;
     }
@@ -153,7 +152,7 @@ public class Abbreviations {
         Carbohydrt = carbohydrt;
     }
 
-    @Column(name = "Fiber_TD", columnDefinition = "float")
+    @Column(name = "Fiber_TD")
     public Double getFiber_TD() {
         return Fiber_TD;
     }
@@ -162,7 +161,7 @@ public class Abbreviations {
         Fiber_TD = fiber_TD;
     }
 
-    @Column(name = "Sugar_Tot", columnDefinition = "float")
+    @Column(name = "Sugar_Tot")
     public Double getSugar_Tot() {
         return Sugar_Tot;
     }
@@ -171,7 +170,7 @@ public class Abbreviations {
         Sugar_Tot = sugar_Tot;
     }
 
-    @Column(name = "Calcium", columnDefinition = "integer")
+    @Column(name = "Calcium")
     public Integer getCalcium() {
         return Calcium;
     }
@@ -180,7 +179,7 @@ public class Abbreviations {
         Calcium = calcium;
     }
 
-    @Column(name = "Iron", columnDefinition = "float")
+    @Column(name = "Iron")
     public Double getIron() {
         return Iron;
     }
@@ -189,7 +188,7 @@ public class Abbreviations {
         Iron = iron;
     }
 
-    @Column(name = "Magnesium", columnDefinition = "integer")
+    @Column(name = "Magnesium")
     public Integer getMagnesium() {
         return Magnesium;
     }
@@ -198,7 +197,7 @@ public class Abbreviations {
         Magnesium = magnesium;
     }
 
-    @Column(name = "Phosphorus", columnDefinition = "integer")
+    @Column(name = "Phosphorus")
     public Integer getPhosphorus() {
         return Phosphorus;
     }
@@ -207,7 +206,7 @@ public class Abbreviations {
         Phosphorus = phosphorus;
     }
 
-    @Column(name = "Potassium", columnDefinition = "integer")
+    @Column(name = "Potassium")
     public Integer getPotassium() {
         return Potassium;
     }
@@ -216,7 +215,7 @@ public class Abbreviations {
         Potassium = potassium;
     }
 
-    @Column(name = "Sodium", columnDefinition = "integer")
+    @Column(name = "Sodium")
     public Integer getSodium() {
         return Sodium;
     }
@@ -225,7 +224,7 @@ public class Abbreviations {
         Sodium = sodium;
     }
 
-    @Column(name = "Zinc", columnDefinition = "float")
+    @Column(name = "Zinc")
     public Double getZinc() {
         return Zinc;
     }
@@ -234,7 +233,7 @@ public class Abbreviations {
         Zinc = zinc;
     }
 
-    @Column(name = "Copper", columnDefinition = "float")
+    @Column(name = "Copper")
     public Double getCopper() {
         return Copper;
     }
@@ -243,7 +242,7 @@ public class Abbreviations {
         Copper = copper;
     }
 
-    @Column(name = "Manganese", columnDefinition = "float")
+    @Column(name = "Manganese")
     public Double getManganese() {
         return Manganese;
     }
@@ -252,7 +251,7 @@ public class Abbreviations {
         Manganese = manganese;
     }
 
-    @Column(name = "Selenium", columnDefinition = "float")
+    @Column(name = "Selenium")
     public Double getSelenium() {
         return Selenium;
     }
@@ -261,7 +260,7 @@ public class Abbreviations {
         Selenium = selenium;
     }
 
-    @Column(name = "Vit_C", columnDefinition = "float")
+    @Column(name = "Vit_C")
     public Double getVit_C() {
         return Vit_C;
     }
@@ -270,7 +269,7 @@ public class Abbreviations {
         Vit_C = vit_C;
     }
 
-    @Column(name = "Thiamin", columnDefinition = "float")
+    @Column(name = "Thiamin")
     public Double getThiamin() {
         return Thiamin;
     }
@@ -279,7 +278,7 @@ public class Abbreviations {
         Thiamin = thiamin;
     }
 
-    @Column(name = "Riboflavin", columnDefinition = "float")
+    @Column(name = "Riboflavin")
     public Double getRiboflavin() {
         return Riboflavin;
     }
@@ -288,7 +287,7 @@ public class Abbreviations {
         Riboflavin = riboflavin;
     }
 
-    @Column(name = "Niacin", columnDefinition = "float")
+    @Column(name = "Niacin")
     public Double getNiacin() {
         return Niacin;
     }
@@ -297,7 +296,7 @@ public class Abbreviations {
         Niacin = niacin;
     }
 
-    @Column(name = "Panto_acid", columnDefinition = "float")
+    @Column(name = "Panto_acid")
     public Double getPanto_acid() {
         return Panto_acid;
     }
@@ -306,7 +305,7 @@ public class Abbreviations {
         Panto_acid = panto_acid;
     }
 
-    @Column(name = "Vit_B6", columnDefinition = "float")
+    @Column(name = "Vit_B6")
     public Double getVit_B6() {
         return Vit_B6;
     }
@@ -315,7 +314,7 @@ public class Abbreviations {
         Vit_B6 = vit_B6;
     }
 
-    @Column(name = "Folate_Tot", columnDefinition = "integer")
+    @Column(name = "Folate_Tot")
     public Integer getFolate_Tot() {
         return Folate_Tot;
     }
@@ -324,7 +323,7 @@ public class Abbreviations {
         Folate_Tot = folate_Tot;
     }
 
-    @Column(name = "Folic_acid", columnDefinition = "integer")
+    @Column(name = "Folic_acid")
     public Integer getFolic_acid() {
         return Folic_acid;
     }
@@ -333,7 +332,7 @@ public class Abbreviations {
         Folic_acid = folic_acid;
     }
 
-    @Column(name = "Food_Folate", columnDefinition = "integer")
+    @Column(name = "Food_Folate")
     public Integer getFood_Folate() {
         return Food_Folate;
     }
@@ -342,7 +341,7 @@ public class Abbreviations {
         Food_Folate = food_Folate;
     }
 
-    @Column(name = "Folate_DFE", columnDefinition = "integer")
+    @Column(name = "Folate_DFE")
     public Integer getFolate_DFE() {
         return Folate_DFE;
     }
@@ -351,7 +350,7 @@ public class Abbreviations {
         Folate_DFE = folate_DFE;
     }
 
-    @Column(name = "Choline_Tot", columnDefinition = "float")
+    @Column(name = "Choline_Tot")
     public Double getCholine_Tot() {
         return Choline_Tot;
     }
@@ -360,7 +359,7 @@ public class Abbreviations {
         Choline_Tot = choline_Tot;
     }
 
-    @Column(name = "Vit_B12", columnDefinition = "float")
+    @Column(name = "Vit_B12")
     public Double getVit_B12() {
         return Vit_B12;
     }
@@ -369,7 +368,7 @@ public class Abbreviations {
         Vit_B12 = vit_B12;
     }
 
-    @Column(name = "Vit_A_IU", columnDefinition = "integer")
+    @Column(name = "Vit_A_IU")
     public Integer getVit_A_IU() {
         return Vit_A_IU;
     }
@@ -378,7 +377,7 @@ public class Abbreviations {
         Vit_A_IU = vit_A_IU;
     }
 
-    @Column(name = "Vit_A_RAE", columnDefinition = "integer")
+    @Column(name = "Vit_A_RAE")
     public Integer getVit_A_RAE() {
         return Vit_A_RAE;
     }
@@ -387,7 +386,7 @@ public class Abbreviations {
         Vit_A_RAE = vit_A_RAE;
     }
 
-    @Column(name = "Retinol", columnDefinition = "integer")
+    @Column(name = "Retinol")
     public Integer getRetinol() {
         return Retinol;
     }
@@ -396,7 +395,7 @@ public class Abbreviations {
         Retinol = retinol;
     }
 
-    @Column(name = "Alpha_Carot", columnDefinition = "integer")
+    @Column(name = "Alpha_Carot")
     public Integer getAlpha_Carot() {
         return Alpha_Carot;
     }
@@ -405,7 +404,7 @@ public class Abbreviations {
         Alpha_Carot = alpha_Carot;
     }
 
-    @Column(name = "Beta_Carot", columnDefinition = "integer")
+    @Column(name = "Beta_Carot")
     public Integer getBeta_Carot() {
         return Beta_Carot;
     }
@@ -414,7 +413,7 @@ public class Abbreviations {
         Beta_Carot = beta_Carot;
     }
 
-    @Column(name = "Beta_Crypt", columnDefinition = "integer")
+    @Column(name = "Beta_Crypt")
     public Integer getBeta_Crypt() {
         return Beta_Crypt;
     }
@@ -423,7 +422,7 @@ public class Abbreviations {
         Beta_Crypt = beta_Crypt;
     }
 
-    @Column(name = "Lycopene", columnDefinition = "integer")
+    @Column(name = "Lycopene")
     public Integer getLycopene() {
         return Lycopene;
     }
@@ -432,7 +431,7 @@ public class Abbreviations {
         Lycopene = lycopene;
     }
 
-    @Column(name = "Lut_Zea", columnDefinition = "integer")
+    @Column(name = "Lut_Zea")
     public Integer getLut_Zea() {
         return Lut_Zea;
     }
@@ -441,7 +440,7 @@ public class Abbreviations {
         Lut_Zea = lut_Zea;
     }
 
-    @Column(name = "Vit_E", columnDefinition = "float")
+    @Column(name = "Vit_E")
     public Double getVit_E() {
         return Vit_E;
     }
@@ -450,7 +449,7 @@ public class Abbreviations {
         Vit_E = vit_E;
     }
 
-    @Column(name = "Vit_D_mcg", columnDefinition = "float")
+    @Column(name = "Vit_D_mcg")
     public Double getVit_D_mcg() {
         return Vit_D_mcg;
     }
@@ -459,7 +458,7 @@ public class Abbreviations {
         Vit_D_mcg = vit_D_mcg;
     }
 
-    @Column(name = "Vit_D_IU", columnDefinition = "integer")
+    @Column(name = "Vit_D_IU")
     public Integer getVit_D_IU() {
         return Vit_D_IU;
     }
@@ -468,7 +467,7 @@ public class Abbreviations {
         Vit_D_IU = vit_D_IU;
     }
 
-    @Column(name = "Vit_K", columnDefinition = "float")
+    @Column(name = "Vit_K")
     public Double getVit_K() {
         return Vit_K;
     }
@@ -477,7 +476,7 @@ public class Abbreviations {
         Vit_K = vit_K;
     }
 
-    @Column(name = "FA_Sat", columnDefinition = "float")
+    @Column(name = "FA_Sat")
     public Double getFA_Sat() {
         return FA_Sat;
     }
@@ -486,7 +485,7 @@ public class Abbreviations {
         this.FA_Sat = FA_Sat;
     }
 
-    @Column(name = "FA_Mono", columnDefinition = "float")
+    @Column(name = "FA_Mono")
     public Double getFA_Mono() {
         return FA_Mono;
     }
@@ -495,7 +494,7 @@ public class Abbreviations {
         this.FA_Mono = FA_Mono;
     }
 
-    @Column(name = "FA_Poly", columnDefinition = "float")
+    @Column(name = "FA_Poly")
     public Double getFA_Poly() {
         return FA_Poly;
     }
@@ -504,7 +503,7 @@ public class Abbreviations {
         this.FA_Poly = FA_Poly;
     }
 
-    @Column(name = "Cholestrl", columnDefinition = "float")
+    @Column(name = "Cholestrl")
     public Double getCholestrl() {
         return Cholestrl;
     }
@@ -513,7 +512,7 @@ public class Abbreviations {
         Cholestrl = cholestrl;
     }
 
-    @Column(name = "GmWt_1", columnDefinition = "float")
+    @Column(name = "GmWt_1")
     public Double getGmWt_1() {
         return GmWt_1;
     }
@@ -522,7 +521,7 @@ public class Abbreviations {
         GmWt_1 = gmWt_1;
     }
 
-    @Column(name = "GmWt_Desc1", columnDefinition = "varchar(120)")
+    @Column(name = "GmWt_Desc1", length = 120)
     public String getGmWt_Desc1() {
         return GmWt_Desc1;
     }
@@ -531,7 +530,7 @@ public class Abbreviations {
         GmWt_Desc1 = gmWt_Desc1;
     }
 
-    @Column(name = "GmWt_2", columnDefinition = "float")
+    @Column(name = "GmWt_2")
     public Double getGmWt_2() {
         return GmWt_2;
     }
@@ -540,7 +539,7 @@ public class Abbreviations {
         GmWt_2 = gmWt_2;
     }
 
-    @Column(name = "GWt_Desc2", columnDefinition = "varchar(120)")
+    @Column(name = "GWt_Desc2", length = 120)
     public String getGmWt_Desc2() {
         return GmWt_Desc2;
     }
@@ -549,7 +548,7 @@ public class Abbreviations {
         GmWt_Desc2 = gmWt_Desc2;
     }
 
-    @Column(name = "Refuse_Pct", columnDefinition = "integer")
+    @Column(name = "Refuse_Pct")
     public Integer getRefuse_Pct() {
         return Refuse_Pct;
     }
@@ -557,14 +556,4 @@ public class Abbreviations {
     public void setRefuse_Pct(Integer refuse_Pct) {
         Refuse_Pct = refuse_Pct;
     }
-
-//    @OneToOne
-//    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)")
-//    public FoodDescription getFoodDescription() {
-//        return foodDescription;
-//    }
-//
-//    public void setFoodDescription(FoodDescription foodDescription) {
-//        this.foodDescription = foodDescription;
-//    }
 }

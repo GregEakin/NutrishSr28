@@ -37,7 +37,7 @@ public class DataDerivationTests {
     //  Links to the Nutrient Data file by Deriv_Cd
     @Test
     public void nutrientDataTest() {
-        DataDerivation dataDerivation = session.load(DataDerivation.class, "RC  ");
+        DataDerivation dataDerivation = session.load(DataDerivation.class, "RC");
 
         Set<NutrientData> nutrientDataSet = dataDerivation.getNutrientDataSet();
         Assertions.assertEquals(2358, nutrientDataSet.size());

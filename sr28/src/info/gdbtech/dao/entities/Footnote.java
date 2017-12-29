@@ -44,7 +44,7 @@ public class Footnote {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @JoinColumn(name = "NDB_No", nullable = false)
     public FoodDescription getFoodDescription() {
         return foodDescription;
     }
@@ -53,7 +53,7 @@ public class Footnote {
         this.foodDescription = foodDescription;
     }
 
-    @Column(name = "Footnt_No", columnDefinition = "character(4)", nullable = false)
+    @Column(name = "Footnt_No", length = 4, nullable = false)
     public String getFootnt_No() {
         return Footnt_No;
     }
@@ -62,7 +62,7 @@ public class Footnote {
         Footnt_No = footnt_No;
     }
 
-    @Column(name = "Footnt_Typ", columnDefinition = "character(1)", nullable = false)
+    @Column(name = "Footnt_Typ", length = 1, nullable = false)
     public String getFootnt_Typ() {
         return Footnt_Typ;
     }
@@ -72,7 +72,7 @@ public class Footnote {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Nutr_No", columnDefinition = "character(3)")
+    @JoinColumn(name = "Nutr_No")
     public NutrientDefinition getNutrientDefinition() {
         return nutrientDefinition;
     }
@@ -81,7 +81,7 @@ public class Footnote {
         this.nutrientDefinition = nutrientDefinition;
     }
 
-    @Column(name = "Footnt_Txt", columnDefinition = "varchar(200)", nullable = false)
+    @Column(name = "Footnt_Txt", length = 200, nullable = false)
     public String getFootnt_Txt() {
         return Footnt_Txt;
     }

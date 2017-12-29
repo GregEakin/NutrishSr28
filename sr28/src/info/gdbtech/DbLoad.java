@@ -16,7 +16,7 @@
 
 package info.gdbtech;
 
-import info.gdbtech.dao.parsers.LanguaL;
+import info.gdbtech.dao.parsers.*;
 import org.hibernate.Metamodel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,25 +37,46 @@ public class DbLoad {
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         try (final SessionFactory sessionFactory = configuration.buildSessionFactory()) {
             try (final Session session = sessionFactory.openSession()) {
-                Transaction transaction = session.beginTransaction();
+                Transaction transaction;
                 try {
-//                    FdGroup.parseFile(session);
-//                    SrcCd.parseFile(session);
-//                    DerivCD.parseFile(session);
-//                    LangDesc.parseFile(session);
-//                    DataSrc.parseFile(session);
-//
-//                    NutrDef.parseFile(session);
-//                    FoodDes.parseFile(session);
-//                    LanguaL.parseFile(session);
-//                    Weight.parseFile(session);
-//                    DatScrLn.parseFile(session);
-//                    NutData.parseFile(session);
-//                    Footnote.parseFile(session);
+                    transaction = session.beginTransaction();
+                    FdGroup.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    SrcCd.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    DerivCD.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    LangDesc.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    DataSrc.parseFile(session);
+                    transaction.commit();
 
+                    transaction = session.beginTransaction();
+                    NutrDef.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    FoodDes.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    LanguaL.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    Weight.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    NutData.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    DatScrLn.parseFile(session);
+                    transaction.commit();
+                    transaction = session.beginTransaction();
+                    Footnote.parseFile(session);
                     transaction.commit();
                 } catch (Exception ex) {
-                    transaction.rollback();
                     throw ex;
                 }
             }
@@ -70,8 +91,8 @@ public class DbLoad {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
             for (EntityType<?> entityType : metamodel.getEntities()) {
-                final String entityName = entityType.getName();
-                final Query query = session.createQuery("from " + entityName);
+                final String entityName = "from " + entityType.getName();
+                final Query query = session.createQuery(entityName);
                 System.out.println("executing: " + query.getQueryString());
                 for (Object o : query.list()) {
                     System.out.println("  " + o);
@@ -94,5 +115,4 @@ public class DbLoad {
             e.printStackTrace(System.out);
         }
     }
-
 }

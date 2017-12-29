@@ -30,7 +30,7 @@ public class DataDerivation {
     //  Links to the Nutrient Data file by Deriv_Cd
 
     @Id
-    @Column(name = "Deriv_Cd", columnDefinition = "character(4)", nullable = false)
+    @Column(name = "Deriv_Cd", length = 4, nullable = false)
     public String getDeriv_Cd() {
         return Deriv_Cd;
     }
@@ -39,7 +39,7 @@ public class DataDerivation {
         Deriv_Cd = deriv_Cd;
     }
 
-    @Column(name = "Deriv_Desc", columnDefinition = "varchar(120)", nullable = false)
+    @Column(name = "Deriv_Desc", length = 120, nullable = false)
     public String getDeriv_Desc() {
         return Deriv_Desc;
     }

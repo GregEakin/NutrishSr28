@@ -31,7 +31,7 @@ public class Language {
     //  Links to the LanguaL Factor file by the Factor_Code field
 
     @Id
-    @Column(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "Factor_Code", length = 5, nullable = false)
     public String getFactor_Code() {
         return Factor_Code;
     }
@@ -40,7 +40,7 @@ public class Language {
         Factor_Code = factor_Code;
     }
 
-    @Column(name = "Description", columnDefinition = "varchar(140)", nullable = false)
+    @Column(name = "Description", length = 140, nullable = false)
     public String getDescription() {
         return Description;
     }

@@ -49,7 +49,7 @@ public class FoodDescription {
     //  Links to the LanguaL Factor file by the NDB_No field
 
     @Id
-    @Column(name = "NDB_No", columnDefinition = "character(5)", nullable = false)
+    @Column(name = "NDB_No", length = 5, nullable = false)
     public String getNDB_No() {
         return NDB_No;
     }
@@ -59,7 +59,7 @@ public class FoodDescription {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FdGrp_Cd", columnDefinition = "character(4)", nullable = false)
+    @JoinColumn(name = "FdGrp_Cd", nullable = false)
     public FoodGroup getFoodGroup() {
         return foodGroup;
     }
@@ -68,7 +68,7 @@ public class FoodDescription {
         this.foodGroup = foodGroup;
     }
 
-    @Column(name = "Long_Desc", columnDefinition = "varchar(200)", nullable = false)
+    @Column(name = "Long_Desc", length = 200, nullable = false)
     public String getLong_Desc() {
         return Long_Desc;
     }
@@ -77,7 +77,7 @@ public class FoodDescription {
         Long_Desc = long_Desc;
     }
 
-    @Column(name = "Shrt_Desc", columnDefinition = "varchar(60)", nullable = false)
+    @Column(name = "Shrt_Desc", length = 60, nullable = false)
     public String getShrt_Desc() {
         return Shrt_Desc;
     }
@@ -86,7 +86,7 @@ public class FoodDescription {
         Shrt_Desc = shrt_Desc;
     }
 
-    @Column(name = "ComName", columnDefinition = "varchar(100)")
+    @Column(name = "ComName", length = 100)
     public String getComName() {
         return ComName;
     }
@@ -95,7 +95,7 @@ public class FoodDescription {
         ComName = comName;
     }
 
-    @Column(name = "ManufacName", columnDefinition = "varchar(65)")
+    @Column(name = "ManufacName", length = 65)
     public String getManufacName() {
         return ManufacName;
     }
@@ -104,7 +104,7 @@ public class FoodDescription {
         ManufacName = manufacName;
     }
 
-    @Column(name = "Survey", columnDefinition = "character(1)")
+    @Column(name = "Survey", length = 1)
     public String getSurvey() {
         return Survey;
     }
@@ -113,7 +113,7 @@ public class FoodDescription {
         Survey = survey;
     }
 
-    @Column(name = "Ref_desc", columnDefinition = "varchar(135)")
+    @Column(name = "Ref_desc", length = 135)
     public String getRef_desc() {
         return Ref_desc;
     }
@@ -122,7 +122,7 @@ public class FoodDescription {
         Ref_desc = ref_desc;
     }
 
-    @Column(name = "Refuse", columnDefinition = "tinyint")
+    @Column(name = "Refuse")
     public Integer getRefuse() {
         return Refuse;
     }
@@ -131,7 +131,7 @@ public class FoodDescription {
         Refuse = refuse;
     }
 
-    @Column(name = "SciName", columnDefinition = "varchar(65)")
+    @Column(name = "SciName", length = 65)
     public String getSciName() {
         return SciName;
     }
@@ -140,7 +140,7 @@ public class FoodDescription {
         SciName = sciName;
     }
 
-    @Column(name = "N_Factor", columnDefinition = "float")
+    @Column(name = "N_Factor")
     public Double getN_Factor() {
         return N_Factor;
     }
@@ -149,7 +149,7 @@ public class FoodDescription {
         N_Factor = n_Factor;
     }
 
-    @Column(name = "Pro_Factor", columnDefinition = "float")
+    @Column(name = "Pro_Factor")
     public Double getPro_Factor() {
         return Pro_Factor;
     }
@@ -158,7 +158,7 @@ public class FoodDescription {
         Pro_Factor = pro_Factor;
     }
 
-    @Column(name = "Fat_Factor", columnDefinition = "float")
+    @Column(name = "Fat_Factor")
     public Double getFat_Factor() {
         return Fat_Factor;
     }
@@ -167,7 +167,7 @@ public class FoodDescription {
         Fat_Factor = fat_Factor;
     }
 
-    @Column(name = "CHO_Factor", columnDefinition = "float")
+    @Column(name = "CHO_Factor")
     public Double getCHO_Factor() {
         return CHO_Factor;
     }
@@ -206,8 +206,8 @@ public class FoodDescription {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "LANGUAL",
-            joinColumns = {@JoinColumn(name = "NDB_No", columnDefinition = "character(5)", nullable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "Factor_Code", columnDefinition = "character(5)", nullable = false)}
+            joinColumns = {@JoinColumn(name = "NDB_No", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "Factor_Code", nullable = false)}
     )
     public Set<Language> getLanguageSet() {
         return languageSet;
