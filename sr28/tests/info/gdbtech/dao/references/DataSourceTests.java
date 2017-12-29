@@ -18,14 +18,15 @@ package info.gdbtech.dao.references;
 
 import info.gdbtech.dao.entities.DataSource;
 import info.gdbtech.dao.entities.NutrientData;
-import info.gdbtech.dao.entities.NutrientDataKey;
 import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.List;
 import java.util.Set;
 
 @ExtendWith(NutrishRepositoryExtension.class)
@@ -48,15 +49,13 @@ public class DataSourceTests {
     //  Links to the Nutrient Definition file by Nutr_No
     @Test
     public void nutrientDefinitionTest() {
-        DataSource dataSource = session.load(DataSource.class, "D642");
-        Set<NutrientData> nutrientDataSet = dataSource.getNutrientDataSet();
+        //DataSource dataSource = session.load(DataSource.class, "D642");
 
-        String nutrKeys[] = nutrientDataSet.stream()
-                .map(NutrientData::getNutrientDataKey)
-                .map(NutrientDataKey::getNutrientDefinition)
-                .map(NutrientDefinition::getNutr_No)
-                .sorted()
-                .toArray(String[]::new);
-        Assertions.assertArrayEquals(new String[]{"306", "307"}, nutrKeys);
+        String hql = "select nd from DataSource ds join ds.nutrientDataSet nds join nds.nutrientDataKey.nutrientDefinition nd where ds.id = :id";
+        Query<NutrientDefinition> query = session.createQuery(hql, NutrientDefinition.class);
+        query.setParameter("id", "D642");
+        List<NutrientDefinition> list = query.getResultList();
+        Assertions.assertEquals(2, list.size());
+        Assertions.assertArrayEquals(new String[]{"306", "307"}, list.stream().map(NutrientDefinition::getNutr_No).sorted().toArray());
     }
 }

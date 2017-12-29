@@ -19,13 +19,13 @@ package info.gdbtech.dao.dataValadition;
 import info.gdbtech.dao.entities.*;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FoodSearchTests {
@@ -36,7 +36,7 @@ public class FoodSearchTests {
     }
 
     @Test
-    public void Test1() {
+    public void SortedQueryTest() {
         FoodDescription foodDescription = session.load(FoodDescription.class, "01001");
         System.out.println("Basic Report: " + foodDescription.getNDB_No()
                 + ", " + foodDescription.getLong_Desc());
@@ -47,10 +47,20 @@ public class FoodSearchTests {
             System.out.println("   Weight: " + weight.getMsre_Desc() + ", " + weight.getAmount() + " x " + weight.getGm_Wgt() + " g");
         }
 
-        Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
-        Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
-        List<NutrientData> data = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
-        for (NutrientData nutrientData : data) {
+        String hql = "select nds "
+                + "from FoodDescription fd join fd.nutrientDataSet nds "
+                + "where fd.NDB_No = :id "
+                + "order by nds.nutrientDataKey.nutrientDefinition.SR_Order";
+        Query<NutrientData> query = session.createQuery(hql, NutrientData.class);
+        query.setParameter("id", "01001");
+        List<NutrientData> list = query.getResultList();
+
+//        Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
+//        Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
+//        List<NutrientData> list = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
+
+        Assertions.assertEquals(115, list.size());
+        for (NutrientData nutrientData : list) {
             NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
             NutrientDefinition nutrientDefinition = nutrientDataKey.getNutrientDefinition();
 

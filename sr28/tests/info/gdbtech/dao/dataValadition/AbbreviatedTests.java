@@ -16,10 +16,16 @@
 
 package info.gdbtech.dao.dataValadition;
 
+import info.gdbtech.dao.entities.DataSource;
+import info.gdbtech.dao.entities.NutrientData;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.util.List;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class AbbreviatedTests {
@@ -31,6 +37,19 @@ public class AbbreviatedTests {
 
     @Test
     public void Test1() {
+        String hql = "FROM DataSource AS d1 where d1.id = :id";
+        Query<DataSource> query = session.createQuery(hql, DataSource.class);
+        query.setParameter("id", "D642");
+        DataSource dataSource = query.getSingleResult();
+        Assertions.assertEquals("D642", dataSource.getDataSrc_ID());
+    }
 
+    @Test
+    public void Test2() {
+        String hql = "select nds from DataSource ds join ds.nutrientDataSet nds where ds.id = :id";
+        Query<NutrientData> query = session.createQuery(hql, NutrientData.class);
+        query.setParameter("id", "D642");
+        List<NutrientData> list = query.getResultList();
+        Assertions.assertEquals(2, list.size());
     }
 }

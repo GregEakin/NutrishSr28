@@ -20,6 +20,7 @@ import info.gdbtech.dao.entities.FoodDescription;
 import info.gdbtech.dao.entities.FoodGroup;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -36,10 +37,10 @@ public class NutGroupTests {
     @Test
     public void Test1() {
         FoodGroup foodGroup = session.load(FoodGroup.class, "1200");
-        System.out.println(foodGroup.getFdGrp_Cd() + ", " + foodGroup.getFdGrp_Desc());
+        Assertions.assertEquals("1200", foodGroup.getFdGrp_Cd());
+        Assertions.assertEquals("Nut and Seed Products", foodGroup.getFdGrp_Desc());
+
         Set<FoodDescription> foodDescriptionSet = foodGroup.getFoodDescriptionSet();
-        for (FoodDescription foodDescription : foodDescriptionSet) {
-            System.out.println("  " + foodDescription.getNDB_No() + " " + foodDescription.getShrt_Desc());
-        }
+        Assertions.assertEquals(137, foodDescriptionSet.size());
     }
 }
