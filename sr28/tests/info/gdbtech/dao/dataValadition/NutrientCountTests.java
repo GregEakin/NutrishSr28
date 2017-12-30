@@ -30,54 +30,27 @@ import java.util.Set;
 public class NutrientCountTests {
 
     private final Session session;
+    String Stuff[][] = new String[][]{
+            new String[]{"255", "Water", "WATER", "g", "8788"},
+            new String[]{"208", "Energy", "ENERC_KCAL", "kcal", "8789"},
+            new String[]{"211", "Glucose (dextrose)", "GLUS", "g", "1752"},
+            new String[]{"204", "Total lipid (fat)", "FAT", "g", "8789"},
+    };
 
     NutrientCountTests(Session session) {
         this.session = session;
     }
 
     @Test
-    public void waterCountTest() {
+    void counterTest() {
+        for (String[] data : Stuff) {
+            NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, data[0]);
+            Assertions.assertEquals(data[1], nutrientDefinition.getNutrDesc());
+            Assertions.assertEquals(data[2], nutrientDefinition.getTagname());
+            Assertions.assertEquals(data[3], nutrientDefinition.getUnits());
 
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
-        Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("WATER", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
-
-        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        Assertions.assertEquals(8788, nutrientDataSet.size());
-    }
-
-    @Test
-    public void energyKcalCountTest() {
-
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "208");
-        Assertions.assertEquals("Energy", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("ENERC_KCAL", nutrientDefinition.getTagname());
-        Assertions.assertEquals("kcal", nutrientDefinition.getUnits());
-
-        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        Assertions.assertEquals(8789, nutrientDataSet.size());
-    }
-
-    @Test
-    void glucoseCountTest() {
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "211");
-        Assertions.assertEquals("Glucose (dextrose)", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("GLUS", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
-
-        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        Assertions.assertEquals(1752, nutrientDataSet.size());
-    }
-
-    @Test
-    void fatCountTest() {
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
-        Assertions.assertEquals("Total lipid (fat)", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("FAT", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
-
-        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        Assertions.assertEquals(8789, nutrientDataSet.size());
+            Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
+            Assertions.assertEquals(Double.parseDouble(data[4]), nutrientDataSet.size());
+        }
     }
 }

@@ -17,7 +17,9 @@
 package info.gdbtech.dao.dataValadition;
 
 import info.gdbtech.dao.entities.DataSource;
+import info.gdbtech.dao.entities.FoodDescription;
 import info.gdbtech.dao.entities.NutrientData;
+import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -27,6 +29,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class AbbreviatedTests {
@@ -79,5 +82,51 @@ public class AbbreviatedTests {
         query.setParameter("value", 98.0);
         List list = query.getResultList();
         Assertions.assertEquals(112, list.size());
+    }
+
+    @Test
+    public void ColumnTest() {
+        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
+        Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
+        Assertions.assertEquals("WATER", nutrientDefinition.getTagname());
+        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+
+        Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
+        Assertions.assertEquals(8788, nutrientDataSet.size());
+    }
+
+    @Test
+    public void ColumnHqlTest() {
+        String hql = "FROM NutrientData as nd join nd.nutrientDataKey.foodDescription as fd "
+                + "where nd.nutrientDataKey.nutrientDefinition.nutr_No = :id "
+                + "order by nd.nutrientDataKey.foodDescription.NDB_No ";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", "255");
+        query.setMaxResults(10);
+        List list = query.getResultList();
+        for (Object listItem : list) {
+            Object[] o1 = (Object[]) listItem;
+            NutrientData nd = (NutrientData) o1[0];
+            FoodDescription fd = (FoodDescription) o1[1];
+            System.out.println(fd.getNDB_No() + ", " + fd.getShrt_Desc() + ", " + nd.getNutr_Val());
+        }
+    }
+
+    @Test
+    public void RowHqlTest() {
+        //String hql = "FROM NutrientData as nd join nd.nutrientDataKey.foodDescription as fd "
+        String hql = "FROM FoodDescription as fd join fd.nutrientDataSet as nds "
+                + "where fd.NDB_No = :id "
+                + "order by nds.nutrientDataKey.nutrientDefinition.nutr_No ";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", "01001");
+        query.setMaxResults(10);
+        List list = query.getResultList();
+        for (Object listItem : list) {
+            Object[] o1 = (Object[]) listItem;
+            NutrientData nd = (NutrientData) o1[1];
+            FoodDescription fd = (FoodDescription) o1[0];
+            System.out.println(fd.getNDB_No() + ", " + fd.getShrt_Desc() + ", " + nd.getNutr_Val() + ", " + nd.getNutrientDataKey().getNutrientDefinition().getTagname());
+        }
     }
 }
