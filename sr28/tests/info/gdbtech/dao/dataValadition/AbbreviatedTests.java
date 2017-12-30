@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
+import java.util.Map;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class AbbreviatedTests {
@@ -37,7 +38,7 @@ public class AbbreviatedTests {
 
     @Test
     public void Test1() {
-        String hql = "FROM DataSource AS d1 where d1.id = :id";
+        String hql = "FROM DataSource AS ds WHERE ds.id = :id";
         Query<DataSource> query = session.createQuery(hql, DataSource.class);
         query.setParameter("id", "D642");
         DataSource dataSource = query.getSingleResult();
@@ -46,10 +47,37 @@ public class AbbreviatedTests {
 
     @Test
     public void Test2() {
-        String hql = "select nds from DataSource ds join ds.nutrientDataSet nds where ds.id = :id";
+        String hql = "select nds from DataSource as ds join ds.nutrientDataSet nds where ds.id = :id";
         Query<NutrientData> query = session.createQuery(hql, NutrientData.class);
         query.setParameter("id", "D642");
         List<NutrientData> list = query.getResultList();
         Assertions.assertEquals(2, list.size());
+    }
+
+    @Test
+    public void Test3() {
+
+        String hql = "select new map( max(nutr_Val) as max, min(nutr_Val) as min, count(*) as n ) "
+                + "from NutrientData nut "
+                + "where nut.nutrientDataKey.nutrientDefinition.nutr_No = :id";
+        Query<Map<String, Object>> query = session.createQuery(hql);
+        query.setParameter("id", "262");
+        Map<String, Object> map = query.getSingleResult();
+        Assertions.assertEquals(0.0, (double) map.get("min"));
+        Assertions.assertEquals(5714.0, (double) map.get("max"));
+        Assertions.assertEquals(5396, (long) map.get("n"));
+    }
+
+    @Test
+    public void Test4() {
+        String hql = "select nd.nutr_Val, fd.long_Desc "
+                + "from NutrientData as nd join nd.nutrientDataKey.foodDescription as fd "
+                + "where nd.nutrientDataKey.nutrientDefinition.nutr_No = :id and nd.nutr_Val >= :value "
+                + "order by nd.nutr_Val desc ";
+        Query query = session.createQuery(hql);
+        query.setParameter("id", "204");
+        query.setParameter("value", 98.0);
+        List list = query.getResultList();
+        Assertions.assertEquals(112, list.size());
     }
 }
