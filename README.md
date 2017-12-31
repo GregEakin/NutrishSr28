@@ -11,6 +11,4 @@ Here we defined the schema with annotation in Java files.
 - [USDA National Nutrient Database](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/) for Standard Reference SR28
 
 ## Database:
-Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
-database and save the text files in the `/data` folder
 [![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
