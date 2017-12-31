@@ -7,7 +7,7 @@ Here we defined the schema with annotation in Java files.
 ## Tags
 - [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
 - [JUnit 5](http://junit.org/junit5/) Unit Tests
-- [HPL/SQL](http://www.hplsql.org/) Database
+- [HyperSQL](http://hsqldb.org/) Database
 - [USDA National Nutrient Database](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/) for Standard Reference SR28
 
 ## Database:

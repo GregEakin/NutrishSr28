@@ -18,6 +18,10 @@ These jars need to be installed in the `/sr28/Lib` folder.
 - jboss-logging-3.3.0.Final.jar
 - jboss-transaction-api_1.2_spec-1.0.1.Final.jar
 
+## External Libraries:
+- hsqldb-2.4.0
+- JUnit5.0
+
 ## Database Server:
 Run this database server
 >`info.gdbtech.server.Database`
