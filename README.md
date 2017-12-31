@@ -4,7 +4,7 @@
 This is an experiment in configuring an existing database in Hibernate and JUnit 5.
 Here we defined the schema with annotation in Java files.
 
-[![USDA Nutrition Database](https://raw.githubusercontent.com/GregEakin/NutrishSr28/master/sr28/docs/Nutrish SR28.jpg)](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
+[![USDA Nutrition Database](docs/Nutrish SR28.jpg)](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
 
 ## Tags
 - [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
