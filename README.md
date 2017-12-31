@@ -4,8 +4,6 @@
 This is an experiment in configuring an existing database in Hibernate and JUnit 5.
 Here we defined the schema with annotation in Java files.
 
-[![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
-
 ## Tags
 - [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
 - [JUnit 5](http://junit.org/junit5/) Unit Tests
@@ -15,6 +13,7 @@ Here we defined the schema with annotation in Java files.
 ## Database:
 Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
 database and save the text files in the `/data` folder
+[![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
 
 ## Libraries:
 These jars need to be installed in the `/SR28/Lib` folder.
