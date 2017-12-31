@@ -66,6 +66,7 @@ public class Weight {
         // Std_Dev N 7.3 Y Standard deviation.
         if (fields[6].length() > 0) item.setStd_Dev(Double.parseDouble(fields[6]));
 
+        foodDescription.addWeight(item);
         session.save(item);
     }
 }

@@ -99,6 +99,13 @@ public class NutrientData {
         this.sourceCode = sourceCode;
     }
 
+    public void addSourceCode(SourceCode sourceCode) {
+        if (sourceCode == null)
+            throw new IllegalArgumentException("null SourceCode");
+        this.sourceCode = sourceCode;
+        sourceCode.getNutrientDataSet().add(this);
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Deriv_Cd")
     public DataDerivation getDataDerivation() {
@@ -107,6 +114,14 @@ public class NutrientData {
 
     public void setDataDerivation(DataDerivation dataDerivation) {
         this.dataDerivation = dataDerivation;
+    }
+
+    public void addDataDerivation(DataDerivation dataDerivation) {
+        if (dataDerivation == null)
+            throw new IllegalArgumentException("Null DataDerivation");
+        dataDerivation.addNutrientData(this);
+//        this.dataDerivation = dataDerivation;
+//        dataDerivation.getNutrientDataSet().add(this);
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -221,5 +236,13 @@ public class NutrientData {
 
     public void setDataSourceSet(Set<DataSource> dataSources) {
         this.dataSourceSet = dataSources;
+    }
+
+    public void addDataSource(DataSource dataSource) {
+        if (dataSource == null)
+            throw new IllegalArgumentException("Null DataDerivation");
+        dataSource.addNutrientData(this);
+//        this.dataSourceSet.add(dataSource);
+//        dataSource.getNutrientDataSet().add(this);
     }
 }

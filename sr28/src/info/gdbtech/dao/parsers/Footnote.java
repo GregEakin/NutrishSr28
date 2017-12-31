@@ -49,15 +49,6 @@ public class Footnote {
             session.save(item);
     }
 
-//    private static final NutrientDefinition singleton = new NutrientDefinition();
-//     static  {
-//         singleton.setNutr_No("");
-//         singleton.setUnits("");
-//         singleton.setNutrDesc("");
-//         singleton.setNum_Dec("");
-//         singleton.setSR_Order(0);
-//    }
-
     private static info.gdbtech.dao.entities.Footnote parseFootnote(final Session session, final String[] fields) {
         info.gdbtech.dao.entities.Footnote item = new info.gdbtech.dao.entities.Footnote();
 
@@ -72,11 +63,12 @@ public class Footnote {
         if (fields[3].length() > 2) {
             String Nutr_No = fields[3].substring(1, fields[3].length() - 1);
             NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, Nutr_No);
-            item.setNutrientDefinition(nutrientDefinition);
+            item.addNutrientDefinition(nutrientDefinition);
         }
 
         item.setFootnt_Txt(fields[4].substring(1, fields[4].length() - 1));
 
+        foodDescription.addFootnote(item);
         return item;
     }
 }

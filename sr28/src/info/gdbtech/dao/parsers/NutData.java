@@ -58,12 +58,12 @@ public class NutData {
 
         String Src_Cd = fields[5].substring(1, fields[5].length() - 1);
         SourceCode sourceCode = session.load(SourceCode.class, Src_Cd);
-        item.setSourceCode(sourceCode);
+        item.addSourceCode(sourceCode);
 
         if (fields[6].length() > 2) {
             String Deriv_Cd = fields[6].substring(1, fields[6].length() - 1);
             DataDerivation dataDerivation = session.load(DataDerivation.class, Deriv_Cd);
-            item.setDataDerivation(dataDerivation);
+            item.addDataDerivation(dataDerivation);
         }
 
         if (fields[7].length() > 2) {
@@ -83,6 +83,8 @@ public class NutData {
         if (fields[16].length() > 0) item.setAddMod_Date(fields[16]);
         if (fields[17].length() > 0) item.setCC(fields[17]);
 
+        foodDescription.addNutrientData(item);
+        nutrientDefinition.addNutrientData(item);
         session.save(item);
     }
 }

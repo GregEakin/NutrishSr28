@@ -56,4 +56,11 @@ public class DataDerivation {
     public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
         this.nutrientDataSet = nutrientDataSet;
     }
+
+    public void addNutrientData(NutrientData nutrientData) {
+        if (nutrientData == null)
+            throw new IllegalArgumentException("Null NutrientData");
+        nutrientData.setDataDerivation(this);
+        nutrientDataSet.add(nutrientData);
+    }
 }

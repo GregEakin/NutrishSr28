@@ -53,7 +53,7 @@ public class DatScrLn {
         String DataSrc_ID = fields[2].substring(1, fields[2].length() - 1);
         DataSource dataSource = session.load(DataSource.class, DataSrc_ID);
 
-        nutrientData.getDataSourceSet().add(dataSource);
+        nutrientData.addDataSource(dataSource);
         session.save(nutrientData);
     }
 }

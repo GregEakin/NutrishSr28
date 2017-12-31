@@ -99,6 +99,14 @@ public class NutrientDefinition {
         this.nutrientDataSet = nutrientDataSet;
     }
 
+    public void addNutrientData(NutrientData nutrientData) {
+        if (nutrientData == null)
+            throw new IllegalArgumentException("Null NutrientData");
+
+        // if (nutrientData.getNutrientDataKey().getNutrientDefinition().)
+        nutrientDataSet.add(nutrientData);
+    }
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
     public Set<Footnote> getFootnoteSet() {
         return footnoteSet;
@@ -106,5 +114,12 @@ public class NutrientDefinition {
 
     public void setFootnoteSet(Set<Footnote> footnoteSet) {
         this.footnoteSet = footnoteSet;
+    }
+
+    public void addFootnote(Footnote footnote) {
+        if (footnote == null)
+            throw new IllegalArgumentException("null Footnote");
+        this.footnoteSet.add(footnote);
+        footnote.setNutrientDefinition(this);
     }
 }

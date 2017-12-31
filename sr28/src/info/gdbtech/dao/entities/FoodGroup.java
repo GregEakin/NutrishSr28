@@ -56,4 +56,11 @@ public class FoodGroup {
     public void setFoodDescriptionSet(Set<FoodDescription> foodDescriptionSet) {
         this.foodDescriptionSet = foodDescriptionSet;
     }
+
+    public void addFoodDescriptionSet(FoodDescription foodDescription) {
+        if (foodDescription == null)
+            throw new IllegalArgumentException("Null FoodDescription");
+        foodDescription.setFoodGroup(this);
+        foodDescriptionSet.add(foodDescription);
+    }
 }

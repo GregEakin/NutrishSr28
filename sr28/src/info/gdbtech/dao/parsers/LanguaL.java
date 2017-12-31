@@ -51,8 +51,8 @@ public class LanguaL {
         String factor_code = fields[1].substring(1, fields[1].length() - 1);
         Language language = session.load(Language.class, factor_code);
 
-        foodDescription.getLanguageSet().add(language);
-        session.save(foodDescription);
+        language.addFoodDescription(foodDescription);
+        session.save(language);
     }
 
     public static int sqlSelectRows(Connection con) throws SQLException {

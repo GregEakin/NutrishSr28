@@ -81,6 +81,13 @@ public class Footnote {
         this.nutrientDefinition = nutrientDefinition;
     }
 
+    public void addNutrientDefinition(NutrientDefinition nutrientDefinition) {
+        if (nutrientDefinition == null)
+            throw new IllegalArgumentException("null NutrientDefinition");
+        this.nutrientDefinition = nutrientDefinition;
+        this.nutrientDefinition.getFootnoteSet().add(this);
+    }
+
     @Column(name = "Footnt_Txt", length = 200, nullable = false)
     public String getFootnt_Txt() {
         return Footnt_Txt;

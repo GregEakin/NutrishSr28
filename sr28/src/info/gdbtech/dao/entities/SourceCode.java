@@ -17,6 +17,7 @@
 package info.gdbtech.dao.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,7 +25,7 @@ import java.util.Set;
 public class SourceCode {
     private String Src_Cd;
     private String SrcCd_Desc;
-    private Set<NutrientData> nutrientDataSet;
+    private Set<NutrientData> nutrientDataSet = new HashSet<>();
 
     //  Links to the Nutrient Data file by Src_Cd
 
@@ -54,5 +55,12 @@ public class SourceCode {
 
     public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
         this.nutrientDataSet = nutrientDataSet;
+    }
+
+    public void addNutrientData(NutrientData nutrientData) {
+        if (nutrientData == null)
+            throw new IllegalArgumentException("Null NutrientData");
+        nutrientData.setSourceCode(this);
+        nutrientDataSet.add(nutrientData);
     }
 }

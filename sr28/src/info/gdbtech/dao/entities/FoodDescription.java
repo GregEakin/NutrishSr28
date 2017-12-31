@@ -68,6 +68,15 @@ public class FoodDescription {
         this.foodGroup = foodGroup;
     }
 
+    public void addFoodGroup(FoodGroup foodGroup) {
+        if (foodGroup == null)
+            throw new IllegalArgumentException("Null FoodGroup");
+//        if (this.foodGroup != null)
+//            this.foodGroup.getFoodDescriptionSet().remove(this);
+        this.foodGroup = foodGroup;
+        this.foodGroup.getFoodDescriptionSet().add(this);
+    }
+
     @Column(name = "Long_Desc", length = 200, nullable = false)
     public String getLong_Desc() {
         return Long_Desc;
@@ -185,6 +194,15 @@ public class FoodDescription {
         this.nutrientDataSet = nutrientData;
     }
 
+    public void addNutrientData(NutrientData nutrientData) {
+        if (nutrientData == null)
+            throw new IllegalArgumentException("Null NutrientData");
+
+        NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
+        nutrientDataKey.setFoodDescription(this);
+        nutrientDataSet.add(nutrientData);
+    }
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "weightKey.foodDescription")
     public Set<Weight> getWeightSet() {
         return weightSet;
@@ -194,6 +212,14 @@ public class FoodDescription {
         this.weightSet = weightSet;
     }
 
+    public void addWeight(Weight weight) {
+        if (weight == null)
+            throw new IllegalArgumentException("null Weight");
+        if (weight.getWeightKey().getFoodDescription().getNDB_No() != NDB_No)
+            throw new IllegalArgumentException("Weight not related to FoodDescription");
+        weightSet.add(weight);
+    }
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "foodDescription")
     public Set<Footnote> getFootnoteSet() {
         return footnoteSet;
@@ -201,6 +227,13 @@ public class FoodDescription {
 
     public void setFootnoteSet(Set<Footnote> footnoteSet) {
         this.footnoteSet = footnoteSet;
+    }
+
+    public void addFootnote(Footnote footnote) {
+        if (footnote == null)
+            throw new IllegalArgumentException("null Footnote");
+        footnote.setFoodDescription(this);
+        footnoteSet.add(footnote);
     }
 
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -213,7 +246,14 @@ public class FoodDescription {
         return languageSet;
     }
 
-    public void setLanguageSet(Set<Language> languages) {
-        this.languageSet = languages;
+    public void setLanguageSet(Set<Language> languageSet) {
+        this.languageSet = languageSet;
+    }
+
+    public void addLanguage(Language language) {
+        if (language == null)
+            throw new IllegalArgumentException("null Language");
+        language.getFoodDescriptionSet().add(this);
+        languageSet.add(language);
     }
 }

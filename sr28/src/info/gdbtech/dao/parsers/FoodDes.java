@@ -54,7 +54,7 @@ public class FoodDes {
 
         String foodGroupId = fields[1].substring(1, fields[1].length() - 1);
         FoodGroup foodGroup = session.load(FoodGroup.class, foodGroupId);
-        item.setFoodGroup(foodGroup);
+        item.addFoodGroup(foodGroup);
 
         item.setLong_Desc(fields[2].substring(1, fields[2].length() - 1));
         item.setShrt_Desc(fields[3].substring(1, fields[3].length() - 1));

@@ -57,4 +57,11 @@ public class Language {
     public void setFoodDescriptionSet(Set<FoodDescription> foodDescriptionSet) {
         this.foodDescriptionSet = foodDescriptionSet;
     }
+
+    public void addFoodDescription(FoodDescription foodDescription) {
+        if (foodDescription == null)
+            throw new IllegalArgumentException("null FoodDescription");
+        foodDescriptionSet.add(foodDescription);
+        foodDescription.getLanguageSet().add(this);
+    }
 }

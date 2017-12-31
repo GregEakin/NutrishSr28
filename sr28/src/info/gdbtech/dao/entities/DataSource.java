@@ -123,7 +123,14 @@ public class DataSource {
         return nutrientDataSet;
     }
 
-    public void setNutrientDataSet(Set<NutrientData> nutrients) {
-        this.nutrientDataSet = nutrients;
+    public void setNutrientDataSet(Set<NutrientData> nutrientDataSet) {
+        this.nutrientDataSet = nutrientDataSet;
+    }
+
+    public void addNutrientData(NutrientData nutrientData) {
+        if (nutrientData == null)
+            throw new IllegalArgumentException("Null NutrientData");
+        nutrientData.getDataSourceSet().add(this);
+        nutrientDataSet.add(nutrientData);
     }
 }
