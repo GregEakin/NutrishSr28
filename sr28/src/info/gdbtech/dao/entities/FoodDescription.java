@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. Greg Eakin
+ * Copyright (c) 2018. Greg Eakin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -242,6 +242,7 @@ public class FoodDescription {
             joinColumns = {@JoinColumn(name = "NDB_No", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "Factor_Code", nullable = false)}
     )
+
     public Set<Language> getLanguageSet() {
         return languageSet;
     }
