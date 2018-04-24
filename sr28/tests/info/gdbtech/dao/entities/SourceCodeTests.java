@@ -18,7 +18,6 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -26,6 +25,7 @@ import org.junit.jupiter.api.function.Executable;
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.NutrientDataTests.crateNutrientData;
 import static info.gdbtech.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class SourceCodeTests {
@@ -46,7 +46,7 @@ public class SourceCodeTests {
         SourceCode sourceCode = createSourceCode();
 
         Executable closureContainingCodeToTest = () -> sourceCode.addNutrientData(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class SourceCodeTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         sourceCode.addNutrientData(nutrientData);
-        Assertions.assertSame(sourceCode, nutrientData.getSourceCode());
-        Assertions.assertTrue(sourceCode.getNutrientDataSet().contains(nutrientData));
+        assertSame(sourceCode, nutrientData.getSourceCode());
+        assertTrue(sourceCode.getNutrientDataSet().contains(nutrientData));
     }
 }

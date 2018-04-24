@@ -18,7 +18,6 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -27,6 +26,7 @@ import static info.gdbtech.dao.entities.FoodGroupTests.createFoodGroup;
 import static info.gdbtech.dao.entities.FootnoteTests.createFootnote;
 import static info.gdbtech.dao.entities.LanguageTests.createLanguage;
 import static info.gdbtech.dao.entities.WeightTests.createWeight;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FoodDescriptionTests {
@@ -47,7 +47,7 @@ public class FoodDescriptionTests {
         FoodDescription foodDescription = createFoodDescription();
 
         Executable closureContainingCodeToTest = () -> foodDescription.addFoodGroup(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodGroup");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodGroup");
     }
 
     @Test
@@ -56,8 +56,8 @@ public class FoodDescriptionTests {
         FoodGroup foodGroup = createFoodGroup();
 
         foodDescription.addFoodGroup(foodGroup);
-        Assertions.assertSame(foodGroup, foodDescription.getFoodGroup());
-        Assertions.assertTrue(foodGroup.getFoodDescriptionSet().contains(foodDescription));
+        assertSame(foodGroup, foodDescription.getFoodGroup());
+        assertTrue(foodGroup.getFoodDescriptionSet().contains(foodDescription));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class FoodDescriptionTests {
         FoodDescription foodDescription = createFoodDescription();
 
         Executable closureContainingCodeToTest = () -> foodDescription.addWeight(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Weight");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Weight");
     }
 
     @Test
@@ -74,8 +74,8 @@ public class FoodDescriptionTests {
         Weight weight = createWeight(foodDescription);
 
         foodDescription.addWeight(weight);
-        Assertions.assertTrue(foodDescription.getWeightSet().contains(weight));
-        Assertions.assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
+        assertTrue(foodDescription.getWeightSet().contains(weight));
+        assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class FoodDescriptionTests {
         FoodDescription foodDescription = createFoodDescription();
 
         Executable closureContainingCodeToTest = () -> foodDescription.addFootnote(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Footnote");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Footnote");
     }
 
     @Test
@@ -92,8 +92,8 @@ public class FoodDescriptionTests {
         Footnote footnote = createFootnote();
 
         foodDescription.addFootnote(footnote);
-        Assertions.assertTrue(foodDescription.getFootnoteSet().contains(footnote));
-        Assertions.assertSame(foodDescription, footnote.getFoodDescription());
+        assertTrue(foodDescription.getFootnoteSet().contains(footnote));
+        assertSame(foodDescription, footnote.getFoodDescription());
     }
 
     @Test
@@ -101,7 +101,7 @@ public class FoodDescriptionTests {
         FoodDescription foodDescription = createFoodDescription();
 
         Executable closureContainingCodeToTest = () -> foodDescription.addLanguage(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Language");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Language");
     }
 
     @Test
@@ -110,7 +110,7 @@ public class FoodDescriptionTests {
         Language language = createLanguage();
 
         foodDescription.addLanguage(language);
-        Assertions.assertTrue(foodDescription.getLanguageSet().contains(language));
-        Assertions.assertTrue(language.getFoodDescriptionSet().contains(foodDescription));
+        assertTrue(foodDescription.getLanguageSet().contains(language));
+        assertTrue(language.getFoodDescriptionSet().contains(foodDescription));
     }
 }

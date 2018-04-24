@@ -18,7 +18,6 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -28,6 +27,7 @@ import static info.gdbtech.dao.entities.DataSourceTests.createDataSource;
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
 import static info.gdbtech.dao.entities.SourceCodeTests.createSourceCode;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientDataTests {
@@ -51,7 +51,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addDataDerivation(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataDerivation");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataDerivation");
     }
 
     @Test
@@ -62,8 +62,8 @@ public class NutrientDataTests {
         DataDerivation dataDerivation = createDataDerivation();
 
         nutrientData.addDataDerivation(dataDerivation);
-        Assertions.assertSame(dataDerivation, nutrientData.getDataDerivation());
-        Assertions.assertTrue(dataDerivation.getNutrientDataSet().contains(nutrientData));
+        assertSame(dataDerivation, nutrientData.getDataDerivation());
+        assertTrue(dataDerivation.getNutrientDataSet().contains(nutrientData));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addDataSource(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataSource");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataSource");
     }
 
     @Test
@@ -84,8 +84,8 @@ public class NutrientDataTests {
         DataSource dataSource = createDataSource();
 
         nutrientData.addDataSource(dataSource);
-        Assertions.assertTrue(nutrientData.getDataSourceSet().contains(dataSource));
-        Assertions.assertTrue(dataSource.getNutrientDataSet().contains(nutrientData));
+        assertTrue(nutrientData.getDataSourceSet().contains(dataSource));
+        assertTrue(dataSource.getNutrientDataSet().contains(nutrientData));
     }
 
 //    @Test
@@ -105,7 +105,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         nutrientData.setRefFoodDescription(foodDescription);
-        Assertions.assertSame(foodDescription, nutrientData.getRefFoodDescription());
+        assertSame(foodDescription, nutrientData.getRefFoodDescription());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addSourceCode(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null SourceCode");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null SourceCode");
     }
 
     @Test
@@ -126,7 +126,7 @@ public class NutrientDataTests {
         SourceCode sourceCode = createSourceCode();
 
         nutrientData.addSourceCode(sourceCode);
-        Assertions.assertSame(sourceCode, nutrientData.getSourceCode());
-        Assertions.assertTrue(sourceCode.getNutrientDataSet().contains(nutrientData));
+        assertSame(sourceCode, nutrientData.getSourceCode());
+        assertTrue(sourceCode.getNutrientDataSet().contains(nutrientData));
     }
 }

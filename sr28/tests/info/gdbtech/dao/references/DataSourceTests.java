@@ -22,12 +22,14 @@ import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class DataSourceTests {
@@ -43,7 +45,7 @@ public class DataSourceTests {
         DataSource dataSource = session.load(DataSource.class, "D642");
 
         Set<NutrientData> nutrientDataSet = dataSource.getNutrientDataSet();
-        Assertions.assertEquals(2, nutrientDataSet.size());
+        assertEquals(2, nutrientDataSet.size());
     }
 
     //  Links to the Nutrient Definition file by Nutr_No
@@ -55,7 +57,7 @@ public class DataSourceTests {
         Query<NutrientDefinition> query = session.createQuery(hql, NutrientDefinition.class);
         query.setParameter("id", "D642");
         List<NutrientDefinition> list = query.getResultList();
-        Assertions.assertEquals(2, list.size());
-        Assertions.assertArrayEquals(new String[]{"306", "307"}, list.stream().map(NutrientDefinition::getNutr_No).sorted().toArray());
+        assertEquals(2, list.size());
+        assertArrayEquals(new String[]{"306", "307"}, list.stream().map(NutrientDefinition::getNutr_No).sorted().toArray());
     }
 }

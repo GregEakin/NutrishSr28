@@ -18,12 +18,13 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class LanguageTests {
@@ -44,7 +45,7 @@ public class LanguageTests {
         Language language = createLanguage();
 
         Executable closureContainingCodeToTest = () -> language.addFoodDescription(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
     }
 
     @Test
@@ -53,7 +54,7 @@ public class LanguageTests {
         FoodDescription foodDescription = createFoodDescription();
 
         language.addFoodDescription(foodDescription);
-        Assertions.assertTrue(language.getFoodDescriptionSet().contains(foodDescription));
-        Assertions.assertTrue(foodDescription.getLanguageSet().contains(language));
+        assertTrue(language.getFoodDescriptionSet().contains(foodDescription));
+        assertTrue(foodDescription.getLanguageSet().contains(language));
     }
 }

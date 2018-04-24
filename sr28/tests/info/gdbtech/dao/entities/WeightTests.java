@@ -18,13 +18,14 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.NutrientDataTests.crateNutrientData;
 import static info.gdbtech.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class WeightTests {
@@ -48,7 +49,7 @@ public class WeightTests {
 //        Weight weight = createWeight(foodDescription);
 //
 //        Executable closureContainingCodeToTest = () -> weight.addFoodDescription(null);
-//        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
+//        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
 //    }
 
     @Test
@@ -57,8 +58,8 @@ public class WeightTests {
         Weight weight = createWeight(foodDescription);
 
         // weight.addFoodDescription(foodDescription);
-        Assertions.assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
-        Assertions.assertTrue(foodDescription.getWeightSet().contains(weight));
+        assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
+        assertTrue(foodDescription.getWeightSet().contains(weight));
     }
 
 //    @Test
@@ -67,7 +68,7 @@ public class WeightTests {
 //        Weight weight = createWeight(foodDescription);
 //
 //        Executable closureContainingCodeToTest = () -> weight.addNutrientData(null);
-//        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
+//        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
 //    }
 
     @Test
@@ -77,7 +78,7 @@ public class WeightTests {
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
-        Assertions.assertSame(weight.getWeightKey().getFoodDescription(), nutrientData.getNutrientDataKey().getFoodDescription());
-        // Assertions.assertTrue(nutrientData.getWeightSet().contains(weight));
+        assertSame(weight.getWeightKey().getFoodDescription(), nutrientData.getNutrientDataKey().getFoodDescription());
+        // assertTrue(nutrientData.getWeightSet().contains(weight));
     }
 }

@@ -18,7 +18,6 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -26,6 +25,7 @@ import org.junit.jupiter.api.function.Executable;
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.FootnoteTests.createFootnote;
 import static info.gdbtech.dao.entities.NutrientDataTests.crateNutrientData;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientDefinitionTests {
@@ -46,7 +46,7 @@ public class NutrientDefinitionTests {
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
 
         Executable closureContainingCodeToTest = () -> nutrientDefinition.addNutrientData(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null NutrientData");
     }
 
     @Test
@@ -56,8 +56,8 @@ public class NutrientDefinitionTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         nutrientDefinition.addNutrientData(nutrientData);
-        Assertions.assertTrue(nutrientDefinition.getNutrientDataSet().contains(nutrientData));
-        Assertions.assertSame(nutrientDefinition, nutrientData.getNutrientDataKey().getNutrientDefinition());
+        assertTrue(nutrientDefinition.getNutrientDataSet().contains(nutrientData));
+        assertSame(nutrientDefinition, nutrientData.getNutrientDataKey().getNutrientDefinition());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class NutrientDefinitionTests {
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
 
         Executable closureContainingCodeToTest = () -> nutrientDefinition.addFootnote(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Footnote");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null Footnote");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class NutrientDefinitionTests {
         Footnote footnote = createFootnote();
 
         nutrientDefinition.addFootnote(footnote);
-        Assertions.assertSame(nutrientDefinition, footnote.getNutrientDefinition());
-        Assertions.assertTrue(nutrientDefinition.getFootnoteSet().contains(footnote));
+        assertSame(nutrientDefinition, footnote.getNutrientDefinition());
+        assertTrue(nutrientDefinition.getFootnoteSet().contains(footnote));
     }
 }

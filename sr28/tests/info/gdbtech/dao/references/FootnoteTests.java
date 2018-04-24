@@ -23,12 +23,13 @@ import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FootnoteTests {
@@ -45,11 +46,11 @@ public class FootnoteTests {
         Query<Footnote> query = session.createQuery(hql, Footnote.class);
         query.setParameter("ndb_no", "05316");
         List results = query.list();
-        Assertions.assertEquals(1, results.size());
+        assertEquals(1, results.size());
         Footnote footnote = query.getSingleResult();
 
         FoodDescription foodDescription = footnote.getFoodDescription();
-        Assertions.assertEquals("05316", foodDescription.getNDB_No());
+        assertEquals("05316", foodDescription.getNDB_No());
     }
 
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -62,9 +63,9 @@ public class FootnoteTests {
 
         FoodDescription foodDescription = footnote.getFoodDescription();
         Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
-        Assertions.assertEquals(44, nutrientDataSet.size());
+        assertEquals(44, nutrientDataSet.size());
         for (NutrientData nutrientData : nutrientDataSet)
-            Assertions.assertEquals("05316", nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
+            assertEquals("05316", nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
     }
 
     //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -81,8 +82,8 @@ public class FootnoteTests {
         query.setParameter("ndb_no", "05316");  // set from footnote.getFoodDescription().getNDB_No()
         query.setParameter("nutr_no", "204");   // set from footnote.getNutrientDefinition().getNutr_No()
         NutrientData nutrientData = query.getSingleResult();
-        Assertions.assertEquals("05316", nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
-        Assertions.assertEquals("204", nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
+        assertEquals("05316", nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
+        assertEquals("204", nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
     }
 
     //  Links to the Nutrient Definition file by Nutr_No, when applicable
@@ -95,7 +96,7 @@ public class FootnoteTests {
         Footnote footnote = query.getSingleResult();
 
         NutrientDefinition nutrientDefinition = footnote.getNutrientDefinition();
-        Assertions.assertEquals("204", nutrientDefinition.getNutr_No());
+        assertEquals("204", nutrientDefinition.getNutr_No());
     }
 }
 

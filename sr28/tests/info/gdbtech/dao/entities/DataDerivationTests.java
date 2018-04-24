@@ -18,7 +18,6 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
@@ -26,6 +25,7 @@ import org.junit.jupiter.api.function.Executable;
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.NutrientDataTests.crateNutrientData;
 import static info.gdbtech.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class DataDerivationTests {
@@ -46,7 +46,7 @@ public class DataDerivationTests {
         DataDerivation dataDerivation = createDataDerivation();
 
         Executable closureContainingCodeToTest = () -> dataDerivation.addNutrientData(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataDerivation");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataDerivation");
     }
 
     @Test
@@ -57,7 +57,7 @@ public class DataDerivationTests {
         NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
 
         dataDerivation.addNutrientData(nutrientData);
-        Assertions.assertSame(dataDerivation, nutrientData.getDataDerivation());
-        Assertions.assertTrue(dataDerivation.getNutrientDataSet().contains(nutrientData));
+        assertSame(dataDerivation, nutrientData.getDataDerivation());
+        assertTrue(dataDerivation.getNutrientDataSet().contains(nutrientData));
     }
 }

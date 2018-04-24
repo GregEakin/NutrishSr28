@@ -16,41 +16,34 @@
 
 package info.gdbtech.dao.primes;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PrimeTests {
 
     public static LazyList<Integer> from(int n) {
-        return new LazyList<Integer>(n, () -> from(n + 1));
+        return new LazyList<>(n, () -> from(n + 1));
     }
 
     public static MyList<Integer> primes(MyList<Integer> numbers) {
-        return new LazyList<>(
-                numbers.head(), () -> {
-            return primes(
-                    numbers.tail().filter(n -> {
-                        return n % numbers.head() != 0;
-                    })
-            );
-        }
-        );
+        return new LazyList<>(numbers.head(), () -> primes(numbers.tail().filter(n -> n % numbers.head() != 0)));
     }
 
     @Test
     public void LazyListTest() {
         LazyList<Integer> numbers = from(2);
-        Assertions.assertEquals(2, numbers.head().intValue());
-        Assertions.assertEquals(3, numbers.tail().head().intValue());
-        Assertions.assertEquals(4, numbers.tail().tail().head().intValue());
+        assertEquals(2, numbers.head().intValue());
+        assertEquals(3, numbers.tail().head().intValue());
+        assertEquals(4, numbers.tail().tail().head().intValue());
     }
 
     @Test
     public void PrimeTest() {
         LazyList<Integer> numbers = from(2);
-        Assertions.assertEquals(2, primes(numbers).head().intValue());
-        Assertions.assertEquals(3, primes(numbers).tail().head().intValue());
-        Assertions.assertEquals(5, primes(numbers).tail().tail().head().intValue());
+        assertEquals(2, primes(numbers).head().intValue());
+        assertEquals(3, primes(numbers).tail().head().intValue());
+        assertEquals(5, primes(numbers).tail().tail().head().intValue());
     }
 
     @Test

@@ -215,7 +215,7 @@ public class FoodDescription {
     public void addWeight(Weight weight) {
         if (weight == null)
             throw new IllegalArgumentException("null Weight");
-        if (weight.getWeightKey().getFoodDescription().getNDB_No() != NDB_No)
+        if (!weight.getWeightKey().getFoodDescription().getNDB_No().equals(NDB_No))
             throw new IllegalArgumentException("Weight not related to FoodDescription");
         weightSet.add(weight);
     }

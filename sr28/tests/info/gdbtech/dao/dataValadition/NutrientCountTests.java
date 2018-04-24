@@ -20,17 +20,18 @@ import info.gdbtech.dao.entities.NutrientData;
 import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientCountTests {
 
     private final Session session;
-    String Stuff[][] = new String[][]{
+    final String Stuff[][] = new String[][]{
             new String[]{"255", "Water", "WATER", "g", "8788"},
             new String[]{"208", "Energy", "ENERC_KCAL", "kcal", "8789"},
             new String[]{"211", "Glucose (dextrose)", "GLUS", "g", "1752"},
@@ -45,12 +46,12 @@ public class NutrientCountTests {
     void counterTest() {
         for (String[] data : Stuff) {
             NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, data[0]);
-            Assertions.assertEquals(data[1], nutrientDefinition.getNutrDesc());
-            Assertions.assertEquals(data[2], nutrientDefinition.getTagname());
-            Assertions.assertEquals(data[3], nutrientDefinition.getUnits());
+            assertEquals(data[1], nutrientDefinition.getNutrDesc());
+            assertEquals(data[2], nutrientDefinition.getTagname());
+            assertEquals(data[3], nutrientDefinition.getUnits());
 
             Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-            Assertions.assertEquals(Double.parseDouble(data[4]), nutrientDataSet.size());
+            assertEquals(Double.parseDouble(data[4]), nutrientDataSet.size());
         }
     }
 }

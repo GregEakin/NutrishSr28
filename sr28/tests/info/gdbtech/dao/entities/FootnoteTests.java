@@ -18,13 +18,13 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static info.gdbtech.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FootnoteTests {
@@ -44,7 +44,7 @@ public class FootnoteTests {
         Footnote footnote = createFootnote();
 
         Executable closureContainingCodeToTest = () -> footnote.addNutrientDefinition(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
     }
 
     @Test
@@ -53,8 +53,8 @@ public class FootnoteTests {
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
 
         footnote.addNutrientDefinition(nutrientDefinition);
-        Assertions.assertSame(nutrientDefinition, footnote.getNutrientDefinition());
-        Assertions.assertTrue(nutrientDefinition.getFootnoteSet().contains(footnote));
+        assertSame(nutrientDefinition, footnote.getNutrientDefinition());
+        assertTrue(nutrientDefinition.getFootnoteSet().contains(footnote));
     }
 
     @Test

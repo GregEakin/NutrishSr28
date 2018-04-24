@@ -21,11 +21,12 @@ import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientDataTests {
@@ -43,8 +44,8 @@ public class NutrientDataTests {
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
-        Assertions.assertSame(nutrientDataKey, nutrientData.getNutrientDataKey());
-        Assertions.assertSame(foodDescription, nutrientData.getNutrientDataKey().getFoodDescription());
+        assertSame(nutrientDataKey, nutrientData.getNutrientDataKey());
+        assertSame(foodDescription, nutrientData.getNutrientDataKey().getFoodDescription());
     }
 
     //  Links to the Weight file by NDB_No
@@ -57,7 +58,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         Set<Weight> weightSet = nutrientData.getNutrientDataKey().getFoodDescription().getWeightSet();
-        Assertions.assertEquals(3, weightSet.size());
+        assertEquals(3, weightSet.size());
     }
 
     //  Links to the Footnote file by NDB_No
@@ -68,10 +69,10 @@ public class NutrientDataTests {
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
         Set<Footnote> footnoteSet = nutrientDataKey.getFoodDescription().getFootnoteSet();
-        Assertions.assertEquals(2, footnoteSet.size());
+        assertEquals(2, footnoteSet.size());
         for (Footnote footnote : footnoteSet) {
-            Assertions.assertEquals("12040", footnote.getFoodDescription().getNDB_No());
-            Assertions.assertNull(footnote.getNutrientDefinition());
+            assertEquals("12040", footnote.getFoodDescription().getNDB_No());
+            assertNull(footnote.getNutrientDefinition());
         }
     }
 
@@ -88,8 +89,8 @@ public class NutrientDataTests {
         query.setParameter("nutr_no", nutrientDataKey.getNutrientDefinition().getNutr_No());
         Footnote footnote = query.getSingleResult();
 
-        Assertions.assertEquals("03073", footnote.getFoodDescription().getNDB_No());
-        Assertions.assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
+        assertEquals("03073", footnote.getFoodDescription().getNDB_No());
+        assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
     }
 
     //  Links to the Sources of Data Link file by NDB_No and Nutr_No
@@ -101,7 +102,7 @@ public class NutrientDataTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         Set<DataSource> dataSourceSet = nutrientData.getDataSourceSet();
-        Assertions.assertEquals(1, dataSourceSet.size());
+        assertEquals(1, dataSourceSet.size());
     }
 
     //  Links to the Nutrient Definition file by Nutr_No
@@ -112,8 +113,8 @@ public class NutrientDataTests {
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
-        Assertions.assertSame(nutrientDataKey, nutrientData.getNutrientDataKey());
-        Assertions.assertSame(nutrientDefinition, nutrientData.getNutrientDataKey().getNutrientDefinition());
+        assertSame(nutrientDataKey, nutrientData.getNutrientDataKey());
+        assertSame(nutrientDefinition, nutrientData.getNutrientDataKey().getNutrientDefinition());
     }
 
     //  Links to the Source Code file by Src_Cd
@@ -125,8 +126,8 @@ public class NutrientDataTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         SourceCode sourceCode = nutrientData.getSourceCode();
-        Assertions.assertEquals("4", sourceCode.getSrc_Cd());
-        Assertions.assertEquals("Calculated or imputed", sourceCode.getSrcCd_Desc());
+        assertEquals("4", sourceCode.getSrc_Cd());
+        assertEquals("Calculated or imputed", sourceCode.getSrcCd_Desc());
     }
 
     //  Links to the Data Derivation Code Description file by Deriv_Cd
@@ -138,8 +139,8 @@ public class NutrientDataTests {
         NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
 
         DataDerivation dataDerivation = nutrientData.getDataDerivation();
-        Assertions.assertEquals("BFNN", dataDerivation.getDeriv_Cd());
-        Assertions.assertEquals("Based on another form of the food or similar food; Concentration adjustment; Non-fat solids; Retention factors not used", dataDerivation.getDeriv_Desc());
+        assertEquals("BFNN", dataDerivation.getDeriv_Cd());
+        assertEquals("Based on another form of the food or similar food; Concentration adjustment; Non-fat solids; Retention factors not used", dataDerivation.getDeriv_Desc());
     }
 }
 

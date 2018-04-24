@@ -20,11 +20,12 @@ import info.gdbtech.dao.entities.DataDerivation;
 import info.gdbtech.dao.entities.NutrientData;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class DataDerivationTests {
@@ -40,7 +41,7 @@ public class DataDerivationTests {
         DataDerivation dataDerivation = session.load(DataDerivation.class, "RC");
 
         Set<NutrientData> nutrientDataSet = dataDerivation.getNutrientDataSet();
-        Assertions.assertEquals(2358, nutrientDataSet.size());
+        assertEquals(2358, nutrientDataSet.size());
     }
 }
 

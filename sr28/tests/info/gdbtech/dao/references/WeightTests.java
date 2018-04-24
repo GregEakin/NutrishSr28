@@ -22,11 +22,13 @@ import info.gdbtech.dao.entities.Weight;
 import info.gdbtech.dao.entities.WeightKey;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class WeightTests {
@@ -43,7 +45,7 @@ public class WeightTests {
         WeightKey weightKey = new WeightKey(foodDescription, "3 ");
         Weight weight = session.load(Weight.class, weightKey);
 
-        Assertions.assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
+        assertSame(foodDescription, weight.getWeightKey().getFoodDescription());
     }
 
     //  Links to Nutrient Data file by NDB_No
@@ -54,7 +56,7 @@ public class WeightTests {
         Weight weight = session.load(Weight.class, weightKey);
 
         Set<NutrientData> nutrientDataSet = weight.getWeightKey().getFoodDescription().getNutrientDataSet();
-        Assertions.assertEquals(91, nutrientDataSet.size());
+        assertEquals(91, nutrientDataSet.size());
     }
 }
 

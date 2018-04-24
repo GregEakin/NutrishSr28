@@ -21,11 +21,12 @@ import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class ElementCountTests {
@@ -38,15 +39,15 @@ public class ElementCountTests {
     @Test
     public void waterTest() {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
-        Assertions.assertEquals("255", nutrientDefinition.getNutr_No());
-        Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("255", nutrientDefinition.getNutr_No());
+        assertEquals("Water", nutrientDefinition.getNutrDesc());
+        assertEquals("g", nutrientDefinition.getUnits());
 
         String hql = "select count(*) from  NutrientData where nutrientDataKey.nutrientDefinition.nutr_No = :nutr_no";
         Query<Long> query = session.createQuery(hql, Long.class);
         query.setParameter("nutr_no", "255");
         Long count = query.getSingleResult();
-        Assertions.assertEquals(8788L, count.longValue());
+        assertEquals(8788L, count.longValue());
     }
 
     @Test
@@ -59,10 +60,10 @@ public class ElementCountTests {
         query.setParameter("nutr_no", "255");
         query.setMaxResults(10);
         List<NutrientData> list = query.getResultList();
-        Assertions.assertEquals(10, list.size());
+        assertEquals(10, list.size());
 
         for (NutrientData nutrientData : list) {
-            Assertions.assertEquals("255", nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
+            assertEquals("255", nutrientData.getNutrientDataKey().getNutrientDefinition().getNutr_No());
             System.out.println(nutrientData.getNutrientDataKey().getFoodDescription().getNDB_No());
         }
     }

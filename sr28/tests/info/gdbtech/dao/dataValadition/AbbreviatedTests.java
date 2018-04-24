@@ -23,13 +23,14 @@ import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class AbbreviatedTests {
@@ -45,7 +46,7 @@ public class AbbreviatedTests {
         Query<DataSource> query = session.createQuery(hql, DataSource.class);
         query.setParameter("id", "D642");
         DataSource dataSource = query.getSingleResult();
-        Assertions.assertEquals("D642", dataSource.getDataSrc_ID());
+        assertEquals("D642", dataSource.getDataSrc_ID());
     }
 
     @Test
@@ -54,21 +55,21 @@ public class AbbreviatedTests {
         Query<NutrientData> query = session.createQuery(hql, NutrientData.class);
         query.setParameter("id", "D642");
         List<NutrientData> list = query.getResultList();
-        Assertions.assertEquals(2, list.size());
+        assertEquals(2, list.size());
     }
 
     @Test
     public void Test3() {
-
         String hql = "select new map( max(nutr_Val) as max, min(nutr_Val) as min, count(*) as n ) "
                 + "from NutrientData nut "
                 + "where nut.nutrientDataKey.nutrientDefinition.nutr_No = :id";
+        @SuppressWarnings("unchecked")
         Query<Map<String, Object>> query = session.createQuery(hql);
         query.setParameter("id", "262");
         Map<String, Object> map = query.getSingleResult();
-        Assertions.assertEquals(0.0, (double) map.get("min"));
-        Assertions.assertEquals(5714.0, (double) map.get("max"));
-        Assertions.assertEquals(5396, (long) map.get("n"));
+        assertEquals(0.0, (double) map.get("min"));
+        assertEquals(5714.0, (double) map.get("max"));
+        assertEquals(5396, (long) map.get("n"));
     }
 
     @Test
@@ -81,25 +82,26 @@ public class AbbreviatedTests {
         query.setParameter("id", "204");
         query.setParameter("value", 98.0);
         List list = query.getResultList();
-        Assertions.assertEquals(112, list.size());
+        assertEquals(112, list.size());
     }
 
     @Test
     public void ColumnTest() {
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "255");
-        Assertions.assertEquals("Water", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("WATER", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("Water", nutrientDefinition.getNutrDesc());
+        assertEquals("WATER", nutrientDefinition.getTagname());
+        assertEquals("g", nutrientDefinition.getUnits());
 
         Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-        Assertions.assertEquals(8788, nutrientDataSet.size());
+        assertEquals(8788, nutrientDataSet.size());
     }
 
     @Test
     public void ColumnHqlTest() {
-        String hql = "FROM NutrientData as nd join nd.nutrientDataKey.foodDescription as fd "
-                + "where nd.nutrientDataKey.nutrientDefinition.nutr_No = :id "
-                + "order by nd.nutrientDataKey.foodDescription.NDB_No ";
+        String hql = "FROM NutrientData as nd \n" +
+                "join nd.nutrientDataKey.foodDescription as fd \n" +
+                "where nd.nutrientDataKey.nutrientDefinition.nutr_No = :id \n" +
+                "order by nd.nutrientDataKey.foodDescription.NDB_No \n";
         Query query = session.createQuery(hql);
         query.setParameter("id", "255");
         query.setMaxResults(10);
@@ -108,7 +110,9 @@ public class AbbreviatedTests {
             Object[] o1 = (Object[]) listItem;
             NutrientData nd = (NutrientData) o1[0];
             FoodDescription fd = (FoodDescription) o1[1];
-            System.out.println(fd.getNDB_No() + ", " + fd.getShrt_Desc() + ", " + nd.getNutr_Val());
+            System.out.println(fd.getNDB_No() + ": " + fd.getShrt_Desc() + " has " + nd.getNutr_Val() +
+                    " " +nd.getNutrientDataKey().getNutrientDefinition().getUnits() +
+                    " of " + nd.getNutrientDataKey().getNutrientDefinition().getNutrDesc() );
         }
     }
 

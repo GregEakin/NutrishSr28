@@ -20,12 +20,13 @@ import info.gdbtech.dao.entities.*;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FoodSearchTests {
@@ -59,7 +60,7 @@ public class FoodSearchTests {
 //        Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
 //        List<NutrientData> list = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
 
-        Assertions.assertEquals(115, list.size());
+        assertEquals(115, list.size());
         for (NutrientData nutrientData : list) {
             NutrientDataKey nutrientDataKey = nutrientData.getNutrientDataKey();
             NutrientDefinition nutrientDefinition = nutrientDataKey.getNutrientDefinition();

@@ -19,9 +19,10 @@ package info.gdbtech.dao.dataValadition;
 import info.gdbtech.dao.entities.NutrientDefinition;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FattyAcidTests {
@@ -35,9 +36,9 @@ public class FattyAcidTests {
     public void butyricTest() {
 
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "607");
-        Assertions.assertEquals("4:0", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("F4D0", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("4:0", nutrientDefinition.getNutrDesc());
+        assertEquals("F4D0", nutrientDefinition.getTagname());
+        assertEquals("g", nutrientDefinition.getUnits());
 
     }
 
@@ -45,9 +46,9 @@ public class FattyAcidTests {
     public void caproicTest() {
 
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "608");
-        Assertions.assertEquals("6:0", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("F6D0", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("6:0", nutrientDefinition.getNutrDesc());
+        assertEquals("F6D0", nutrientDefinition.getTagname());
+        assertEquals("g", nutrientDefinition.getUnits());
 
     }
 
@@ -55,9 +56,9 @@ public class FattyAcidTests {
     public void myristoleicTest() {
 
         NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "625");
-        Assertions.assertEquals("14:1", nutrientDefinition.getNutrDesc());
-        Assertions.assertEquals("F14D1", nutrientDefinition.getTagname());
-        Assertions.assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("14:1", nutrientDefinition.getNutrDesc());
+        assertEquals("F14D1", nutrientDefinition.getTagname());
+        assertEquals("g", nutrientDefinition.getUnits());
 
     }
 }

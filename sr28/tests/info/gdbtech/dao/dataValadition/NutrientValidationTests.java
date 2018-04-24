@@ -20,11 +20,12 @@ import info.gdbtech.dao.entities.DataSource;
 import info.gdbtech.dao.entities.NutrientData;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class NutrientValidationTests {
@@ -39,6 +40,6 @@ public class NutrientValidationTests {
         DataSource dataSource = session.load(DataSource.class, "D642");
 
         Set<NutrientData> nutrientDataSet = dataSource.getNutrientDataSet();
-        Assertions.assertEquals(2, nutrientDataSet.size());
+        assertEquals(2, nutrientDataSet.size());
     }
 }

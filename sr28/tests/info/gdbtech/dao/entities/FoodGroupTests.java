@@ -18,12 +18,12 @@ package info.gdbtech.dao.entities;
 
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 
 import static info.gdbtech.dao.entities.FoodDescriptionTests.createFoodDescription;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class FoodGroupTests {
@@ -44,7 +44,7 @@ public class FoodGroupTests {
         FoodGroup foodGroup = createFoodGroup();
 
         Executable closureContainingCodeToTest = () -> foodGroup.addFoodDescriptionSet(null);
-        Assertions.assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
+        assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null FoodDescription");
     }
 
     @Test
@@ -53,7 +53,7 @@ public class FoodGroupTests {
         FoodDescription foodDescription = createFoodDescription();
 
         foodGroup.addFoodDescriptionSet(foodDescription);
-        Assertions.assertSame(foodGroup, foodDescription.getFoodGroup());
-        Assertions.assertTrue(foodGroup.getFoodDescriptionSet().contains(foodDescription));
+        assertSame(foodGroup, foodDescription.getFoodGroup());
+        assertTrue(foodGroup.getFoodDescriptionSet().contains(foodDescription));
     }
 }

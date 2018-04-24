@@ -20,11 +20,12 @@ import info.gdbtech.dao.entities.NutrientData;
 import info.gdbtech.dao.entities.SourceCode;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
 import org.hibernate.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(NutrishRepositoryExtension.class)
 public class SourceCodeTests {
@@ -39,7 +40,7 @@ public class SourceCodeTests {
     public void nutrientDataTest() {
         SourceCode sourceCode = session.load(SourceCode.class, "11");
         Set<NutrientData> nutrientDataSet = sourceCode.getNutrientDataSet();
-        Assertions.assertEquals(822, nutrientDataSet.size());
+        assertEquals(822, nutrientDataSet.size());
     }
 }
 
