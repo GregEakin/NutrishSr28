@@ -7,7 +7,7 @@ Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/nor
 ## External Libraries:
 - hsqldb-2.4.0
 - hibernate-core-5.4.9.Final
-- JUnit5.0
+- JUnit5.5
 
 ## Database Server:
 Run this database server
