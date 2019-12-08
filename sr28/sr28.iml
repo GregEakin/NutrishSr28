@@ -21,10 +21,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="hsqldb-2.4.0" level="application" />
-    <orderEntry type="library" name="Hibernate 5.2.13-5.2.13" level="project" />
-    <orderEntry type="library" name="org.hibernate:hibernate-core:5.4.2.Final" level="project" />
-    <orderEntry type="library" name="org.hsqldb:hsqldb:2.4.1" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.0">
         <CLASSES>
@@ -48,5 +44,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="org.hsqldb:hsqldb:2.5.0" level="project" />
+    <orderEntry type="library" name="org.hibernate:hibernate-core:5.4.9.Final" level="project" />
   </component>
 </module>
