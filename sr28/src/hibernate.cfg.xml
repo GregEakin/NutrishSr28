@@ -39,16 +39,16 @@
         <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/nutrish</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 
-        <mapping class="info.gdbtech.flatfile.entities.Abbreviations"/>
-        <mapping class="info.gdbtech.dao.entities.DataDerivation"/>
-        <mapping class="info.gdbtech.dao.entities.DataSource"/>
-        <mapping class="info.gdbtech.dao.entities.FoodDescription"/>
-        <mapping class="info.gdbtech.dao.entities.FoodGroup"/>
-        <mapping class="info.gdbtech.dao.entities.Footnote"/>
-        <mapping class="info.gdbtech.dao.entities.Language"/>
-        <mapping class="info.gdbtech.dao.entities.NutrientData"/>
-        <mapping class="info.gdbtech.dao.entities.NutrientDefinition"/>
-        <mapping class="info.gdbtech.dao.entities.SourceCode"/>
-        <mapping class="info.gdbtech.dao.entities.Weight"/>
+        <mapping class="dev.eakin.flatfile.entities.Abbreviations"/>
+        <mapping class="dev.eakin.dao.entities.DataDerivation"/>
+        <mapping class="dev.eakin.dao.entities.DataSource"/>
+        <mapping class="dev.eakin.dao.entities.FoodDescription"/>
+        <mapping class="dev.eakin.dao.entities.FoodGroup"/>
+        <mapping class="dev.eakin.dao.entities.Footnote"/>
+        <mapping class="dev.eakin.dao.entities.Language"/>
+        <mapping class="dev.eakin.dao.entities.NutrientData"/>
+        <mapping class="dev.eakin.dao.entities.NutrientDefinition"/>
+        <mapping class="dev.eakin.dao.entities.SourceCode"/>
+        <mapping class="dev.eakin.dao.entities.Weight"/>
     </session-factory>
 </hibernate-configuration>

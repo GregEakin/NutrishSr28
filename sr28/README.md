@@ -11,11 +11,11 @@ Download the [USDA National Nutrient Database SR28](https://www.ars.usda.gov/nor
 
 ## Database Server:
 Run this database server
->`info.gdbtech.server.Database`
+>`Database`
 
 ## Import the Data:
 Run this program, to load the text files into the database
->`info.gdbtech.Ddl`
+>`Ddl`
 
 ## Run the Unit Tests:
 Everything in the `/tests` folder:
