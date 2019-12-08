@@ -1,29 +1,16 @@
-alter table DATSRCLN drop constraint FKit9vvun660k9lagdn2327j5js
-alter table DATSRCLN drop constraint FKog89tm59jjnw5exeoe4r7l9f9
-alter table FOOD_DES drop constraint FKjne55ny77h9eaujlluf03jhr3
-alter table FOOTNOTE drop constraint FKksfxhfnrqb04p4ogwd1xko52p
-alter table FOOTNOTE drop constraint FKq2lmdgtcc0jwghi7y36fv0j0x
-alter table LANGUAL drop constraint FKmlg2nre4idcddb8ypr3u4itjq
-alter table LANGUAL drop constraint FKa8neid025osq8ws4gmq0j605i
-alter table NUT_DATA drop constraint FKc06gx6mc1402y442wpk7gma3d
-alter table NUT_DATA drop constraint FK2m0ffylc2w46a10cn5c1iufut
-alter table NUT_DATA drop constraint FK611i1pxqhfysdyrh0u5aervi1
-alter table NUT_DATA drop constraint FKmxhigxlkwr25ya9hpn64d6e3w
-alter table NUT_DATA drop constraint FKs029m1rl5g5tvbi6u7u8hm139
-alter table WEIGHT drop constraint FKp5sfyb791m2gf1jxjpsrgi6jr
-drop table ABBREV if exists
-drop table DATA_SRC if exists
-drop table DATSRCLN if exists
-drop table DERIV_CD if exists
-drop table FD_GROUP if exists
-drop table FOOD_DES if exists
-drop table FOOTNOTE if exists
-drop table LANGDESC if exists
-drop table LANGUAL if exists
-drop table NUT_DATA if exists
-drop table NUTR_DEF if exists
-drop table SRC_CD if exists
-drop table WEIGHT if exists
+drop table if exists ABBREV CASCADE 
+drop table if exists DATA_SRC CASCADE 
+drop table if exists DATSRCLN CASCADE 
+drop table if exists DERIV_CD CASCADE 
+drop table if exists FD_GROUP CASCADE 
+drop table if exists FOOD_DES CASCADE 
+drop table if exists FOOTNOTE CASCADE 
+drop table if exists LANGDESC CASCADE 
+drop table if exists LANGUAL CASCADE 
+drop table if exists NUT_DATA CASCADE 
+drop table if exists NUTR_DEF CASCADE 
+drop table if exists SRC_CD CASCADE 
+drop table if exists WEIGHT CASCADE 
 drop sequence hibernate_sequence if exists
 create sequence hibernate_sequence start with 1 increment by 1
 create table ABBREV (NDB_No varchar(5) not null, FA_Mono double, FA_Poly double, FA_Sat double, Alpha_Carot integer, Ash double, Beta_Carot integer, Beta_Crypt integer, Calcium integer, Carbohydrt double not null, Cholestrl double, Choline_Tot double, Copper double, Energ_Kcal integer, Fiber_TD double, Folate_DFE integer, Folate_Tot integer, Folic_acid integer, Food_Folate integer, GmWt_1 double, GmWt_2 double, GmWt_Desc1 varchar(120), GWt_Desc2 varchar(120), Iron double, Lipid_Tot double, Lut_Zea integer, Lycopene integer, Magnesium integer, Manganese double, Niacin double, Panto_acid double, Phosphorus integer, Potassium integer, Protein double, Refuse_Pct integer, Retinol integer, Riboflavin double, Selenium double, Shrt_Desc varchar(60) not null, Sodium integer, Sugar_Tot double, Thiamin double, Vit_A_IU integer, Vit_A_RAE integer, Vit_B12 double, Vit_B6 double, Vit_C double, Vit_D_IU integer, Vit_D_mcg double, Vit_E double, Vit_K double, Water double, Zinc double, primary key (NDB_No))
