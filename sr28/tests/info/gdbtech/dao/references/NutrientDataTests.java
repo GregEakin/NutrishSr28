@@ -18,7 +18,6 @@ package info.gdbtech.dao.references;
 
 import info.gdbtech.dao.entities.*;
 import info.gdbtech.dao.utilities.NutrishRepositoryExtension;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.junit.jupiter.api.Test;
@@ -49,17 +48,16 @@ public class NutrientDataTests {
     }
 
     //  Links to the Weight file by NDB_No
-    @Ignore
-    @Test
-    public void weightTest() {
-        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
-        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
-        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
-
-        Set<Weight> weightSet = nutrientData.getNutrientDataKey().getFoodDescription().getWeightSet();
-        assertEquals(3, weightSet.size());
-    }
+//    @Test
+//    public void weightTest() {
+//        FoodDescription foodDescription = session.load(FoodDescription.class, "01119");
+//        NutrientDefinition nutrientDefinition = session.load(NutrientDefinition.class, "204");
+//        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+//        NutrientData nutrientData = session.load(NutrientData.class, nutrientDataKey);
+//
+//        Set<Weight> weightSet = nutrientData.getNutrientDataKey().getFoodDescription().getWeightSet();
+//        assertEquals(3, weightSet.size());
+//    }
 
     //  Links to the Footnote file by NDB_No
     @Test

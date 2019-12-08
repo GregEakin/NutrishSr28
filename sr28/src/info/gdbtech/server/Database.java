@@ -27,7 +27,9 @@ public class Database {
         args[args.length - 4] = "--trace";
         args[args.length - 3] = "false";
         args[args.length - 2] = "--props";
-        args[args.length - 1] = ".\\sr28\\hsqldb\\server.properties";
+
+        // C:\Users\gregp\IdeaProjects\NutrishSr28\out\production\sr28\info\gdbtech\server
+        args[args.length - 1] = ".\\out\\production\\sr28\\info\\gdbtech\\server\\server.properties";
 
         for (String item : args) {
             System.out.print(item);

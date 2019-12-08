@@ -107,7 +107,7 @@ public class DbLoad {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
 
             try (Connection con = DriverManager.getConnection(
-                    "jdbc:hsqldb:hsql:nutrhis", "SA", "0xB5HweaDz")) {
+                    "jdbc:hsqldb:hsql:nutrhis", "SA", "")) {
 
                 LanguaL.sqlSelectRows(con);
             }
