@@ -29,7 +29,7 @@ public class Database {
         args[args.length - 2] = "--props";
 
         // C:\Users\gregp\IdeaProjects\NutrishSr28\out\production\sr28\dev\eakin\server
-        args[args.length - 1] = ".\\out\\production\\sr28\\dev\\eakin\\server\\server.properties";
+        args[args.length - 1] = ".\\sr28\\target\\classes\\server.properties";
 
         for (String item : args) {
             System.out.print(item);

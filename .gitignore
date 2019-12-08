@@ -52,7 +52,7 @@ fabric.properties
 .idea/httpRequests
 
 # Database files
-hsqldb/
-data/
-sr28/hsqldb/
+/data
 /lib
+/sr28/hsqldb
+/sr28/target
