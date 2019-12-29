@@ -51,7 +51,7 @@ public class NutrientCountTests {
             assertEquals(data[3], nutrientDefinition.getUnits());
 
             Set<NutrientData> nutrientDataSet = nutrientDefinition.getNutrientDataSet();
-            assertEquals(Double.parseDouble(data[4]), nutrientDataSet.size());
+            assertEquals(Integer.parseInt(data[4]), nutrientDataSet.size());
         }
     }
 }
