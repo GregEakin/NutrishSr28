@@ -7,9 +7,9 @@ Here we defined the schema with annotation in Java files.
 ## Tags
 - [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
 - [HyperSQL](http://hsqldb.org/) Database
-- [USDA National Nutrient Database](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/usda-national-nutrient-database-for-standard-reference/) for Standard Reference SR28
+- [US Department of Agriculture, Agricultural Research Service.](http://www.ars.usda.gov/nea/bhnrc/mafcl) 2016. Nutrient Data Laboratory. USDA National Nutrient Database for Standard Reference, Release 28 (Slightly revised). Version Current: May 2016.
 - [Java 8](http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html)
 - [JUnit 5](http://junit.org/junit5/) Unit Tests
 
 ## Database:
-[![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
+[![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr17-sr28/)
