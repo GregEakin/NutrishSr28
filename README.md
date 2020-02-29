@@ -4,6 +4,14 @@
 This is an experiment in configuring an existing database in Hibernate and JUnit 5.
 Here we defined the schema with annotation in Java files.
 
+## Run the Unit Tests
+1. Start the HSQLDB server by running `dev.eakin.server.Database.main()`.
+1. Initialize the DB schema with `dev.eakin.Ddl.main()`.
+1. Download [SR28ASC.zip](https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip), and unzip into the data folder.
+1. Load the data into the database with `dev.eakin.DbLoad.main()`.
+1. Run _all unit tests_; everything should pass.
+1. Remember to shut down the database when finished, by running `dev.eakin.server.Shudown.main()`.
+
 ## Tags
 - [Hibernate](http://hibernate.org/orm/) Object-Relation Mapping
 - [HyperSQL](http://hsqldb.org/) Database
