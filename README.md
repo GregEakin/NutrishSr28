@@ -13,4 +13,3 @@ Here we defined the schema with annotation in Java files.
 
 ## Database:
 [![USDA Nutrition Database](sr28/docs/Nutrish%20SR28.jpg "USDA Nutrition Database")](https://www.ars.usda.gov/northeast-area/beltsville-md/beltsville-human-nutrition-research-center/nutrient-data-laboratory/docs/sr28-download-files/)
-p
