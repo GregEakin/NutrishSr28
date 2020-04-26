@@ -23,7 +23,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 
 import static dev.eakin.dao.entities.FoodDescriptionTests.createFoodDescription;
-import static dev.eakin.dao.entities.NutrientDataTests.crateNutrientData;
+import static dev.eakin.dao.entities.NutrientDataTests.createNutrientData;
 import static dev.eakin.dao.entities.NutrientDefinitionTests.createNutrientDefinition;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,7 +54,7 @@ public class DataDerivationTests {
         DataDerivation dataDerivation = createDataDerivation();
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         dataDerivation.addNutrientData(nutrientData);
         assertSame(dataDerivation, nutrientData.getDataDerivation());

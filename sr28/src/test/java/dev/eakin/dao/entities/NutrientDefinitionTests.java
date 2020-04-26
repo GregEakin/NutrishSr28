@@ -24,7 +24,7 @@ import org.junit.jupiter.api.function.Executable;
 
 import static dev.eakin.dao.entities.FoodDescriptionTests.createFoodDescription;
 import static dev.eakin.dao.entities.FootnoteTests.createFootnote;
-import static dev.eakin.dao.entities.NutrientDataTests.crateNutrientData;
+import static dev.eakin.dao.entities.NutrientDataTests.createNutrientData;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(NutrishRepositoryExtension.class)
@@ -53,7 +53,7 @@ public class NutrientDefinitionTests {
     public void addNutrientDataTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         nutrientDefinition.addNutrientData(nutrientData);
         assertTrue(nutrientDefinition.getNutrientDataSet().contains(nutrientData));
