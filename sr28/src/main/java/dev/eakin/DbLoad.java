@@ -32,7 +32,7 @@ import java.sql.DriverManager;
 public class DbLoad {
     public static void main(String[] args) throws Exception {
 
-        Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
+        Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
         StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         try (final SessionFactory sessionFactory = configuration.buildSessionFactory()) {

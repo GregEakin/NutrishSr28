@@ -35,7 +35,7 @@ public class NutrientDataTests {
         this.session = session;
     }
 
-    public static NutrientData crateNutrientData(FoodDescription foodDescription, NutrientDefinition nutrientDefinition) {
+    public static NutrientData createNutrientData(FoodDescription foodDescription, NutrientDefinition nutrientDefinition) {
         NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
         NutrientData nutrientData = new NutrientData();
         nutrientData.setNutrientDataKey(nutrientDataKey);
@@ -46,7 +46,7 @@ public class NutrientDataTests {
     public void addNullDataDerivationTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addDataDerivation(null);
         assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataDerivation");
@@ -56,7 +56,7 @@ public class NutrientDataTests {
     public void addDataDerivationTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
         DataDerivation dataDerivation = DataDerivationTests.createDataDerivation();
 
         nutrientData.addDataDerivation(dataDerivation);
@@ -68,7 +68,7 @@ public class NutrientDataTests {
     public void addNullDataSourceTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addDataSource(null);
         assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null DataSource");
@@ -78,7 +78,7 @@ public class NutrientDataTests {
     public void addDataSourceTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
         DataSource dataSource = createDataSource();
 
         nutrientData.addDataSource(dataSource);
@@ -100,7 +100,7 @@ public class NutrientDataTests {
     public void setRefFoodDescriptionTest() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         nutrientData.setRefFoodDescription(foodDescription);
         assertSame(foodDescription, nutrientData.getRefFoodDescription());
@@ -110,7 +110,7 @@ public class NutrientDataTests {
     public void addNullSourceCode() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
 
         Executable closureContainingCodeToTest = () -> nutrientData.addSourceCode(null);
         assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "null SourceCode");
@@ -120,7 +120,7 @@ public class NutrientDataTests {
     public void addSourceCode() {
         FoodDescription foodDescription = createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = createNutrientData(foodDescription, nutrientDefinition);
         SourceCode sourceCode = createSourceCode();
 
         nutrientData.addSourceCode(sourceCode);

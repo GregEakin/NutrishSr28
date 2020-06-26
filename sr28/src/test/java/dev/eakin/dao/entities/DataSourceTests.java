@@ -52,7 +52,7 @@ public class DataSourceTests {
         DataSource dataSource = createDataSource();
         FoodDescription foodDescription = FoodDescriptionTests.createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = NutrientDataTests.crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = NutrientDataTests.createNutrientData(foodDescription, nutrientDefinition);
 
         dataSource.addNutrientData(nutrientData);
         assertTrue(nutrientData.getDataSourceSet().contains(dataSource));

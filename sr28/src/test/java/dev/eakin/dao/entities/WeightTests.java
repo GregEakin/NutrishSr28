@@ -73,7 +73,7 @@ public class WeightTests {
         FoodDescription foodDescription = FoodDescriptionTests.createFoodDescription();
         Weight weight = createWeight(foodDescription);
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = NutrientDataTests.crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = NutrientDataTests.createNutrientData(foodDescription, nutrientDefinition);
 
         assertSame(weight.getWeightKey().getFoodDescription(), nutrientData.getNutrientDataKey().getFoodDescription());
         // assertTrue(nutrientData.getWeightSet().contains(weight));

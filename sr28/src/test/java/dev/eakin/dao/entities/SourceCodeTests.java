@@ -51,7 +51,7 @@ public class SourceCodeTests {
         SourceCode sourceCode = createSourceCode();
         FoodDescription foodDescription = FoodDescriptionTests.createFoodDescription();
         NutrientDefinition nutrientDefinition = NutrientDefinitionTests.createNutrientDefinition();
-        NutrientData nutrientData = NutrientDataTests.crateNutrientData(foodDescription, nutrientDefinition);
+        NutrientData nutrientData = NutrientDataTests.createNutrientData(foodDescription, nutrientDefinition);
 
         sourceCode.addNutrientData(nutrientData);
         assertSame(sourceCode, nutrientData.getSourceCode());

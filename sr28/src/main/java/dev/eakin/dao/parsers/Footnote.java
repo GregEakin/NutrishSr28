@@ -44,9 +44,7 @@ public class Footnote {
     private static void parseLine(final Session session, final String line) {
         String[] fields = line.split("\\^", -1);
         dev.eakin.dao.entities.Footnote item = parseFootnote(session, fields);
-
-        if (item != null)
-            session.save(item);
+        session.save(item);
     }
 
     private static dev.eakin.dao.entities.Footnote parseFootnote(final Session session, final String[] fields) {
